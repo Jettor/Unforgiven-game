@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://b146hb34lplj"]
+
+[ext_resource type="Script" path="res://code/Enemy.gd" id="1_11i7g"]
+[ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="2_vm06k"]
+[ext_resource type="AudioStream" uid="uid://d26c66olj7ijn" path="res://music/enemy_damage.mp3" id="3_eeujb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5dnoo"]
+diffuse_texture = ExtResource("2_vm06k")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ahmst"]
+radius = 18.0
+height = 60.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_af7kp"]
+radius = 18.0
+height = 60.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p6537"]
+polygon = PackedVector2Array(10, -12, 14, -8, 14, -4, 14, 3, 11, 6, 10, 9, 9, 16, 7, 27, 4, 30, 1, 30, -5, 25, -6, 23, -7, 8, -11, 5, -13, 1, -18, 2, -23, 4, -26, 1, -26, -3, -24, -4, -10, -5, -6, -6, -6, -8, -5, -8, -5, -10, -1, -10, 2, -10, 3, -11, 5, -14, 6, -15, 9, -17)
+
+[node name="CharacterBody2D2" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_11i7g")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("CanvasTexture_5dnoo")
+
+[node name="enemy_hitbox" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(-4, 2)
+shape = SubResource("CapsuleShape2D_ahmst")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["Wrog"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, 2)
+shape = SubResource("CapsuleShape2D_af7kp")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+occluder = SubResource("OccluderPolygon2D_p6537")
+
+[node name="Enemy_death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eeujb")
+volume_db = 3.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

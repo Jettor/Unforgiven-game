@@ -1,0 +1,218 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnlkc48vkxun"]
+
+[ext_resource type="Script" path="res://code/pause.gd" id="1_bu60v"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_7n1bs"]
+[ext_resource type="Texture2D" uid="uid://3d85dudj2ygh" path="res://images/pixil-frame-0.png" id="3_c6o20"]
+[ext_resource type="Theme" uid="uid://bfnede0l6shee" path="res://Default.tres" id="3_x8bqu"]
+[ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="5_vabiu"]
+[ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_q5ce2"]
+
+[node name="PAUSE" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bu60v")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 11.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="paused_lbl" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.141667
+anchor_right = 0.5
+anchor_bottom = 0.141667
+offset_left = -495.0
+offset_top = 64.0
+offset_right = 495.0
+offset_bottom = 154.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.686275, 0.686275, 0.670588, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_7n1bs")
+theme_override_font_sizes/font_size = 90
+text = ">PAUSED<"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 169.0
+offset_right = 170.5
+offset_bottom = 249.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../menu")
+focus_neighbor_bottom = NodePath("../resume")
+theme = ExtResource("3_x8bqu")
+theme_override_fonts/font = ExtResource("2_7n1bs")
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
+[node name="menu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 67.0
+offset_right = 170.5
+offset_bottom = 147.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../resume")
+focus_neighbor_bottom = NodePath("../restart")
+theme = ExtResource("3_x8bqu")
+theme_override_fonts/font = ExtResource("2_7n1bs")
+theme_override_font_sizes/font_size = 30
+text = "MENU"
+
+[node name="resume" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -40.0
+offset_right = 170.5
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../restart")
+focus_neighbor_bottom = NodePath("../menu")
+theme = ExtResource("3_x8bqu")
+theme_override_fonts/font = ExtResource("2_7n1bs")
+theme_override_font_sizes/font_size = 30
+text = "RESUME"
+
+[node name="sterowanko" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -344.0
+offset_top = -393.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+
+[node name="poruszanie_sie" type="Label" parent="sterowanko"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -16.5
+offset_right = 91.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_7n1bs")
+theme_override_font_sizes/font_size = 13
+text = "MOVING"
+horizontal_alignment = 1
+
+[node name="strzelanie" type="Label" parent="sterowanko"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 65.5
+offset_right = 75.0
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_7n1bs")
+theme_override_font_sizes/font_size = 15
+text = "SHOOTING"
+horizontal_alignment = 1
+
+[node name="double_jump" type="Label" parent="sterowanko"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.5
+offset_top = -90.0
+offset_right = 81.5
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_7n1bs")
+text = "USE
+DOUBLE
+JUMP!"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="sterowanko"]
+position = Vector2(170, 152.851)
+scale = Vector2(2.17815, 2.16954)
+texture = ExtResource("3_c6o20")
+
+[node name="controls" type="Label" parent="sterowanko"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.0517799
+anchor_right = 0.5
+anchor_bottom = 0.0517799
+offset_left = -101.0
+offset_right = 101.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_7n1bs")
+theme_override_font_sizes/font_size = 34
+text = "CONTROLS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vabiu")
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_q5ce2")
+
+[connection signal="focus_entered" from="restart" to="." method="_on_restart_focus_entered"]
+[connection signal="mouse_entered" from="restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]
+[connection signal="focus_entered" from="menu" to="." method="_on_menu_focus_entered"]
+[connection signal="mouse_entered" from="menu" to="." method="_on_menu_mouse_entered"]
+[connection signal="pressed" from="menu" to="." method="_on_menu_pressed"]
+[connection signal="focus_entered" from="resume" to="." method="_on_resume_focus_entered"]
+[connection signal="mouse_entered" from="resume" to="." method="_on_resume_mouse_entered"]
+[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]

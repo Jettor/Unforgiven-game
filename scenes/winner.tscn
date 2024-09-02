@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://bimociwid02ia"]
+
+[ext_resource type="Script" path="res://code/winner.gd" id="1_n0em3"]
+[ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_v6kdm"]
+[ext_resource type="Theme" uid="uid://bfnede0l6shee" path="res://Default.tres" id="2_6hdne"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="3_jr5n4"]
+[ext_resource type="AudioStream" uid="uid://cwutu0k1fbag5" path="res://music/win-sound.mp3" id="5_6aat5"]
+[ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_hifes"]
+[ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_beta5"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n0em3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_v6kdm")
+stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_6hdne")
+
+[node name="you_win" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -405.0
+offset_top = -172.5
+offset_right = 405.0
+offset_bottom = -79.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.894118, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_font_sizes/font_size = 90
+text = ">VICTORY<"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -44.0
+offset_right = 125.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_jr5n4")
+text = "Your score:0000"
+
+[node name="czas" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -2.5
+offset_right = 116.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_jr5n4")
+text = "Collected time: 0"
+
+[node name="do_menu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.5
+offset_top = 106.0
+offset_right = 168.5
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../restart")
+theme = ExtResource("2_6hdne")
+theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_font_sizes/font_size = 30
+text = "MENU"
+
+[node name="restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = 211.0
+offset_right = 169.0
+offset_bottom = 302.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../do_menu")
+theme = ExtResource("2_6hdne")
+theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6aat5")
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hifes")
+
+[node name="press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_beta5")
+
+[connection signal="focus_entered" from="do_menu" to="." method="_on_do_menu_focus_entered"]
+[connection signal="mouse_entered" from="do_menu" to="." method="_on_do_menu_mouse_entered"]
+[connection signal="pressed" from="do_menu" to="." method="_on_do_menu_pressed"]
+[connection signal="pressed" from="do_menu" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="restart" to="." method="_on_restart_focus_entered"]
+[connection signal="mouse_entered" from="restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

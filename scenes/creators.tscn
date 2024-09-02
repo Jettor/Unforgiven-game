@@ -1,0 +1,245 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn3mip4qjhl7h"]
+
+[ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_au8bp"]
+[ext_resource type="Script" path="res://code/creators.gd" id="1_pofdq"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_qjp7c"]
+[ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="3_ljdei"]
+[ext_resource type="AudioStream" uid="uid://cdhr8f7jyk463" path="res://music/FLaK_-_Figthin_in_Elektron.wav" id="4_y5g4y"]
+[ext_resource type="Theme" uid="uid://bfnede0l6shee" path="res://Default.tres" id="5_3611e"]
+[ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_8mtft"]
+[ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="8_xmm3p"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pofdq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_au8bp")
+stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -446.0
+offset_right = 464.0
+offset_bottom = 379.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -397.0
+offset_right = 245.0
+offset_bottom = -327.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_qjp7c")
+theme_override_font_sizes/font_size = 70
+text = "AUTHORS"
+horizontal_alignment = 1
+
+[node name="prog" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = 64.0
+offset_right = 135.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 50
+text = "PROGRAMMING
+"
+horizontal_alignment = 1
+
+[node name="mg_al" type="Label" parent="Title/prog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = 35.0
+offset_right = 97.5
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.921569, 0.870588, 0, 1)
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 30
+text = "Antoni Łapiński
+Maksym Gurski
+"
+horizontal_alignment = 1
+
+[node name="grafika" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 214.0
+offset_right = 80.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 50
+text = "ART"
+horizontal_alignment = 1
+
+[node name="mg" type="Label" parent="Title/grafika"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 42.0
+offset_right = 60.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.921569, 0.870588, 0, 1)
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 30
+text = "Maksym Gurski"
+horizontal_alignment = 1
+
+[node name="sound" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 324.0
+offset_right = 125.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 50
+text = "SOUNDTRACK"
+
+[node name="ff" type="Label" parent="Title/sound"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = 29.0
+offset_right = 60.5
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.921569, 0.870588, 0, 1)
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 30
+text = "Filip Flak"
+
+[node name="test" type="Label" parent="Title"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 440.0
+offset_right = 125.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 50
+text = "TESTING"
+horizontal_alignment = 1
+
+[node name="tb" type="Label" parent="Title/test"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = 29.0
+offset_right = 60.5
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.921569, 0.870588, 0, 1)
+theme_override_fonts/font = ExtResource("3_ljdei")
+theme_override_font_sizes/font_size = 30
+text = "Tymoteusz Bielski
+"
+horizontal_alignment = 1
+
+[node name="song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y5g4y")
+autoplay = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = 235.0
+offset_right = 169.0
+offset_bottom = 314.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme = ExtResource("5_3611e")
+theme_override_fonts/font = ExtResource("2_qjp7c")
+theme_override_font_sizes/font_size = 30
+text = "MENU"
+
+[node name="press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8mtft")
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xmm3p")
+
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

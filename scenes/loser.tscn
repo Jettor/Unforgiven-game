@@ -1,0 +1,144 @@
+[gd_scene load_steps=8 format=3 uid="uid://cn8368w254jgq"]
+
+[ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_7g5gg"]
+[ext_resource type="Script" path="res://code/loser.gd" id="1_vysxg"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_bos81"]
+[ext_resource type="Theme" uid="uid://bfnede0l6shee" path="res://Default.tres" id="3_gymnu"]
+[ext_resource type="AudioStream" uid="uid://3l6on5s5klaw" path="res://music/lose-sound.mp3" id="5_ypqjt"]
+[ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_do268"]
+[ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_irffs"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vysxg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7g5gg")
+stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="you_lose" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -495.0
+offset_top = -159.0
+offset_right = 495.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.619608, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_fonts/font = ExtResource("2_bos81")
+theme_override_font_sizes/font_size = 90
+text = ">DEFEAT<"
+horizontal_alignment = 1
+
+[node name="score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -46.0
+offset_right = 120.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Your score:0000"
+
+[node name="czas" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -21.5
+offset_right = 128.0
+offset_bottom = 21.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Collected time:0"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 111.0
+offset_right = 170.5
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../restart")
+theme = ExtResource("3_gymnu")
+theme_override_fonts/font = ExtResource("2_bos81")
+theme_override_font_sizes/font_size = 30
+text = "MENU"
+
+[node name="restart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 220.0
+offset_right = 170.5
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../Button")
+theme = ExtResource("3_gymnu")
+theme_override_fonts/font = ExtResource("2_bos81")
+theme_override_font_sizes/font_size = 30
+text = "RESTART"
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ypqjt")
+volume_db = -5.0
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_do268")
+
+[node name="press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_irffs")
+
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="restart" to="." method="_on_restart_focus_entered"]
+[connection signal="mouse_entered" from="restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

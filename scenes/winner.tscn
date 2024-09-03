@@ -139,8 +139,8 @@ stream = ExtResource("7_beta5")
 
 [connection signal="focus_entered" from="do_menu" to="." method="_on_do_menu_focus_entered"]
 [connection signal="mouse_entered" from="do_menu" to="." method="_on_do_menu_mouse_entered"]
-[connection signal="pressed" from="do_menu" to="." method="_on_do_menu_pressed"]
 [connection signal="pressed" from="do_menu" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="do_menu" to="." method="_on_do_menu_pressed"]
 [connection signal="focus_entered" from="restart" to="." method="_on_restart_focus_entered"]
 [connection signal="mouse_entered" from="restart" to="." method="_on_restart_mouse_entered"]
 [connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

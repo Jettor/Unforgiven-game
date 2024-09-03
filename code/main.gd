@@ -6,7 +6,7 @@ func _ready():
 	$fall.play()
 	Global.score = 0
 	$Timer.start()
-	Global.time = 10
+	Global.time = 100
 	Global.gained_time = 0
 	Global.speed_plus = 95
 	$Camera2D/AnimationPlayer.play("shake")

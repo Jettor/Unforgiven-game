@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_qjp7c"]
 [ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="3_ljdei"]
 [ext_resource type="AudioStream" uid="uid://cdhr8f7jyk463" path="res://music/FLaK_-_Figthin_in_Elektron.wav" id="4_y5g4y"]
-[ext_resource type="Theme" uid="uid://bfnede0l6shee" path="res://Default.tres" id="5_3611e"]
+[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="5_3611e"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_8mtft"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="8_xmm3p"]
 

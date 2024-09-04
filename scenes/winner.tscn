@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://code/winner.gd" id="1_n0em3"]
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_v6kdm"]
-[ext_resource type="Theme" uid="uid://bfnede0l6shee" path="res://Default.tres" id="2_6hdne"]
+[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="2_6hdne"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="3_jr5n4"]
 [ext_resource type="AudioStream" uid="uid://cwutu0k1fbag5" path="res://music/win-sound.mp3" id="5_6aat5"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_hifes"]
@@ -139,8 +139,8 @@ stream = ExtResource("7_beta5")
 
 [connection signal="focus_entered" from="do_menu" to="." method="_on_do_menu_focus_entered"]
 [connection signal="mouse_entered" from="do_menu" to="." method="_on_do_menu_mouse_entered"]
-[connection signal="pressed" from="do_menu" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="do_menu" to="." method="_on_do_menu_pressed"]
+[connection signal="pressed" from="do_menu" to="." method="_on_button_pressed"]
 [connection signal="focus_entered" from="restart" to="." method="_on_restart_focus_entered"]
 [connection signal="mouse_entered" from="restart" to="." method="_on_restart_mouse_entered"]
 [connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

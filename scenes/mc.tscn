@@ -183,7 +183,6 @@ wait_time = 0.4
 one_shot = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
 occluder = SubResource("OccluderPolygon2D_ouph0")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

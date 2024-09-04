@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dkvci1chonna6" path="res://images/windows.png" id="5_bquqp"]
 [ext_resource type="Shader" path="res://shaders/moving_columns.gdshader" id="6_jn6w5"]
 [ext_resource type="Texture2D" uid="uid://cnlwimxtre7yi" path="res://images/test_cols.png" id="7_1oky4"]
-[ext_resource type="Theme" uid="uid://bfnede0l6shee" path="res://Default.tres" id="8_df72t"]
+[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="8_df72t"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="9_1drgl"]
 [ext_resource type="Texture2D" uid="uid://cqtxqtmghug5m" path="res://images/3.png" id="10_4whiy"]
 [ext_resource type="AudioStream" uid="uid://bmf2n8foh7nmo" path="res://music/Damned_Cathedra.mp3" id="11_dh5ek"]

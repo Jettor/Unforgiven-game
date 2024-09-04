@@ -1,6 +1,8 @@
 extends Node
 
 var enemy_scene = preload("res://scenes/enemy.tscn")
+var rngX = RandomNumberGenerator.new()
+var rngY = RandomNumberGenerator.new()
 
 func _ready():
 	$fall.play()
@@ -9,16 +11,18 @@ func _ready():
 	Global.time = 100
 	Global.gained_time = 0
 	Global.speed_plus = 95
-	$Camera2D/AnimationPlayer.play("shake")
+	$Camera2D/AnimationPlayer.play("shake") #NAPRAWIĆ!
+
 
 func _physics_process(delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
-	
-func _on_timer_timeout():
-	var position1 = Vector2(124, 842)
-	var position2 = Vector2(1550, 850)
-	var position3 = Vector2(1567, 236)
-	var position4 = Vector2(156, 155)
+
+func _on_timer_timeout():         #SPAWNING ENEMIES
+	var position1 = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
+	var position2 = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
+	var position3 = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
+	var position4 = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
+	#ADD NO SPAWNING ZONE
 	
 	spawn_enemies(position1)
 	await get_tree().create_timer(1.5).timeout

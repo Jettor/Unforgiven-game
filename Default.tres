@@ -1398,7 +1398,8 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ast4v"]
-region_rect = Rect2(64, 0, 64, 16)
+texture = ExtResource("1_0y74c")
+region_rect = Rect2(0, 0, 64, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjd11"]
 texture = ExtResource("1_0y74c")

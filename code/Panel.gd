@@ -30,6 +30,10 @@ func on_time_reached_zero() -> void:
 	$"../../L/move_left".play("left_gate")
 	$"../../R/move_right".play("right_gate")
 	$"../../gates".play()
+	$punkty.add_theme_color_override("font_color", "#00FF00")
+	$"../x2".show()
+	Global.x2 = true
+	Global.score_reward = Global.score_reward * 2
 
 func format_time() -> String:
 	return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2) + "." + str(milliseconds).pad_zeros(3)

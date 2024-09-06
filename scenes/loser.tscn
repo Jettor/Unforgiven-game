@@ -43,9 +43,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -495.0
-offset_top = -159.0
+offset_top = -255.0
 offset_right = 495.0
-offset_bottom = -69.0
+offset_bottom = -165.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.619608, 0, 0, 1)
@@ -87,6 +87,24 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_bos81")
 text = "Collected time:0"
+
+[node name="message" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.0
+offset_top = -119.0
+offset_right = 424.0
+offset_bottom = -103.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+theme_override_font_sizes/font_size = 20
+text = "You were consumed by greed and failed your mission"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

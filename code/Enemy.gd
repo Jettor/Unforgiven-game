@@ -38,7 +38,7 @@ func death():
 	Global.time += 0.5
 	print("+0.5 second")
 	Global.gained_time += 0.5
-	Global.score += 100
+	Global.score += Global.score_reward
 	$Enemy.visible = false
 	var death_scene = load("res://scenes/death_stuff.tscn")
 	var instance = death_scene.instantiate()

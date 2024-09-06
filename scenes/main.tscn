@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bdi3r7uxv6kq4"]
+[gd_scene load_steps=38 format=3 uid="uid://bdi3r7uxv6kq4"]
 
 [ext_resource type="Script" path="res://code/main.gd" id="1_ebn5p"]
 [ext_resource type="Script" path="res://code/Panel.gd" id="2_vwm40"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cnlkc48vkxun" path="res://scenes/pause.tscn" id="4_nyclh"]
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="5_atycw"]
 [ext_resource type="Texture2D" uid="uid://vu0sk2st4xui" path="res://images/moving_element.png" id="6_0jqmp"]
+[ext_resource type="Texture2D" uid="uid://dktakuih34c54" path="res://images/x2.png" id="6_pfh7f"]
 [ext_resource type="Texture2D" uid="uid://c0yas33spof52" path="res://images/illumination.png" id="7_1dcnv"]
 [ext_resource type="Texture2D" uid="uid://bnlqixsrmjjat" path="res://images/tilemap_2.png" id="8_hdrim"]
 [ext_resource type="Texture2D" uid="uid://dh58fvsj8gnit" path="res://images/TEST2.png" id="9_kyu6k"]
@@ -482,6 +483,12 @@ offset_bottom = 74.0
 theme_override_fonts/font = ExtResource("3_x0r3i")
 theme_override_font_sizes/font_size = 13
 text = "SCORE:0"
+
+[node name="x2" type="Sprite2D" parent="CanvasL"]
+visible = false
+position = Vector2(1682, 124)
+scale = Vector2(2.25002, 2.25002)
+texture = ExtResource("6_pfh7f")
 
 [node name="PAUSE" parent="CanvasL" instance=ExtResource("4_nyclh")]
 visible = false

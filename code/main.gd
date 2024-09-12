@@ -10,10 +10,10 @@ func _ready():
 	$fall.play()
 	Global.score = 0
 	$Timer.start()
-	Global.time = 10
+	Global.time = 100
 	Global.gained_time = 0
 	Global.speed_plus = 95
-	$Camera2D/AnimationPlayer.play("shake") #NAPRAWIĆ!
+	 #NAPRAWIĆ!
 
 func _physics_process(delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
@@ -38,5 +38,9 @@ func _stop() -> void:
 	set_process(false)
 
 func _on_finish_area_entered(area):
+	$Camera2D/AnimationPlayer.play("drag_down")
+	$CharacterBody2D.hide()
+
+func _on_animation_player_animation_finished(anim_name):
 	_stop()
 	get_tree().change_scene_to_file("res://scenes/winner.tscn")

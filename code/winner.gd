@@ -2,6 +2,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$ColorRect/black_screen.play("fade out")
 	$do_menu.grab_focus()
 	Global.player_alive = false
 	$WinSound.play()

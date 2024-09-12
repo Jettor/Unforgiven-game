@@ -1,12 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://cn8368w254jgq"]
+[gd_scene load_steps=11 format=3 uid="uid://cn8368w254jgq"]
 
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_7g5gg"]
 [ext_resource type="Script" path="res://code/loser.gd" id="1_vysxg"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_bos81"]
 [ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="3_gymnu"]
+[ext_resource type="Texture2D" uid="uid://2v2ig0s37y2" path="res://images/death_skull.png" id="4_4eb4u"]
 [ext_resource type="AudioStream" uid="uid://3l6on5s5klaw" path="res://music/lose-sound.mp3" id="5_ypqjt"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_do268"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_irffs"]
+
+[sub_resource type="Shader" id="Shader_fl0mm"]
+code = "shader_type canvas_item;
+
+void vertex() {
+	UV.x += TIME * 0.45;
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fhwo5"]
+shader = SubResource("Shader_fl0mm")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -17,7 +38,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vysxg")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="wall" type="TextureRect" parent="."]
+modulate = Color(0.521141, 0.521141, 0.521141, 1)
+material = SubResource("ShaderMaterial_fhwo5")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,13 +50,29 @@ grow_vertical = 2
 texture = ExtResource("1_7g5gg")
 stretch_mode = 1
 
+[node name="skull" type="Sprite2D" parent="."]
+modulate = Color(0.856067, 0.856067, 0.856067, 1)
+position = Vector2(1365, 509)
+scale = Vector2(8.95313, 8.95313)
+texture = ExtResource("4_4eb4u")
+
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -671.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="you_lose" type="Label" parent="Panel"]
 layout_mode = 1
@@ -42,18 +81,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -495.0
-offset_top = -255.0
-offset_right = 495.0
-offset_bottom = -165.0
+offset_left = -525.0
+offset_top = -478.0
+offset_right = 525.0
+offset_bottom = -328.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.619608, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = ExtResource("2_bos81")
-theme_override_font_sizes/font_size = 90
-text = ">DEFEAT<"
+theme_override_font_sizes/font_size = 150
+text = ">DEATH<"
 horizontal_alignment = 1
 
 [node name="score" type="Label" parent="Panel"]
@@ -64,9 +103,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -120.0
-offset_top = -46.0
+offset_top = -227.0
 offset_right = 120.0
-offset_bottom = 46.0
+offset_bottom = -185.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_bos81")
@@ -80,9 +119,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = -21.5
+offset_top = -188.0
 offset_right = 128.0
-offset_bottom = 21.5
+offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_bos81")
@@ -96,17 +135,17 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -424.0
-offset_top = -119.0
+offset_top = -278.0
 offset_right = 424.0
-offset_bottom = -103.0
+offset_bottom = -258.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_bos81")
 theme_override_font_sizes/font_size = 20
-text = "You were consumed by greed and failed your mission"
+text = "You have failed your mission"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -114,9 +153,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = 111.0
+offset_top = 184.0
 offset_right = 170.5
-offset_bottom = 191.0
+offset_bottom = 264.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../restart")
@@ -125,7 +164,7 @@ theme_override_fonts/font = ExtResource("2_bos81")
 theme_override_font_sizes/font_size = 30
 text = "MENU"
 
-[node name="restart" type="Button" parent="."]
+[node name="restart" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -133,9 +172,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = 220.0
+offset_top = 293.0
 offset_right = 170.5
-offset_bottom = 300.0
+offset_bottom = 373.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_bottom = NodePath("../Button")
@@ -154,9 +193,9 @@ stream = ExtResource("6_do268")
 [node name="press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_irffs")
 
-[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
-[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="focus_entered" from="restart" to="." method="_on_restart_focus_entered"]
-[connection signal="mouse_entered" from="restart" to="." method="_on_restart_mouse_entered"]
-[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]
+[connection signal="focus_entered" from="Panel/Button" to="." method="_on_button_focus_entered"]
+[connection signal="mouse_entered" from="Panel/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="Panel/restart" to="." method="_on_restart_focus_entered"]
+[connection signal="mouse_entered" from="Panel/restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="Panel/restart" to="." method="_on_restart_pressed"]

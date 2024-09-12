@@ -3,7 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Button.grab_focus()
+	$Panel/Button.grab_focus()
 	$LoseSound.play()
 	$Panel/score.text = "Your score: "+str(Global.score)
 	$Panel/czas.text = "Collected time:"+str(Global.gained_time)+" seconds"

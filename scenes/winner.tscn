@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bimociwid02ia"]
+[gd_scene load_steps=11 format=3 uid="uid://bimociwid02ia"]
 
 [ext_resource type="Script" path="res://code/winner.gd" id="1_n0em3"]
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_v6kdm"]
@@ -7,6 +7,42 @@
 [ext_resource type="AudioStream" uid="uid://cwutu0k1fbag5" path="res://music/win-sound.mp3" id="5_6aat5"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_hifes"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_beta5"]
+
+[sub_resource type="Animation" id="Animation_0r2kn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5xoca"]
+resource_name = "fade out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3i3fh"]
+_data = {
+"RESET": SubResource("Animation_0r2kn"),
+"fade out": SubResource("Animation_5xoca")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -153,6 +189,21 @@ stream = ExtResource("6_hifes")
 
 [node name="press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_beta5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="black_screen" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_3i3fh")
+}
 
 [connection signal="focus_entered" from="do_menu" to="." method="_on_do_menu_focus_entered"]
 [connection signal="mouse_entered" from="do_menu" to="." method="_on_do_menu_mouse_entered"]

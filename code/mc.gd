@@ -45,6 +45,7 @@ func death():
 	var death_scene = load("res://scenes/death_stuff.tscn")
 	var instance = death_scene.instantiate()
 	instance.play_death()
+	$LightOccluder2D.hide()
 	get_tree().get_root().add_child(instance)
 	instance.position = $Sprite2D.global_position
 	$WaitForLoseScreen.start()
@@ -124,9 +125,9 @@ func _on_area_2d_area_entered(area): # TAKING DAMAGE
 			healthbar.hide()
 		$DamageSound.play()
 		print("wrog dotkniety")
-		emit_signal("knockback")
+		#emit_signal("knockback")
 	else:
 		return
-
+		
 func _on_wait_for_lose_screen_timeout():
 	get_tree().change_scene_to_file("res://scenes/loser.tscn")

@@ -4,6 +4,7 @@ class_name Enemy
 @onready var target = $"../CharacterBody2D"
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var timer = $Timer
+@onready var enemy = $Enemy
 var alive = true
 var motion = Vector2()
 var health = 10
@@ -29,9 +30,9 @@ func _physics_process(delta):
 	#	motion.y = 20 
 	#	knockback = false
 	if direction.x < 0:
-		$Enemy.scale.x = 1  # Noz/? flip (default)
+		enemy.scale.x = 1  # Noz/? flip (default)
 	elif direction.x > 0:
-		$Enemy.scale.x = -1  # Flip horizontally
+		enemy.scale.x = -1  # Flip horizontally
 		
 func death():
 	print("enemy has died")
@@ -39,14 +40,12 @@ func death():
 	print("+0.5 second")
 	Global.gained_time += 0.5
 	Global.score += Global.score_reward
-	$Enemy.visible = false
+	enemy.visible = false
 	var death_scene = load("res://scenes/death_stuff.tscn")
 	var instance = death_scene.instantiate()
 	instance.play_death_enemy()
 	get_tree().get_root().add_child(instance)
-	instance.position = $Enemy.global_position
-	if $Enemy_death.playing == false:
-		$Enemy_death.play()    #NIE DZIAŁA >:(
+	instance.position = enemy.global_position
 	
 func damage():
 	if can_take_damage:
@@ -56,7 +55,10 @@ func damage():
 				alive = false
 				if not alive:
 					death()
+					$Enemy_death.play()    #NIE DZIAŁA >:(
 					queue_free()
+					Global.kill_count += 1 #DOESN'T WORK FOR SOME REASON!
+					print("kills: "+str(Global.kill_count))
 			elif health > 0:
 				print(health)
 

@@ -587,7 +587,6 @@ shadow_filter_smooth = 0.9
 color = Color(0.556583, 0.536982, 0.52533, 1)
 
 [node name="candle_light" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(456, 983)
 scale = Vector2(1.29395, 1.29395)
 color = Color(0.95794, 0.382877, 0, 1)
@@ -596,7 +595,6 @@ shadow_enabled = true
 texture = ExtResource("15_hm3ku")
 
 [node name="lamp_light" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(403, 280)
 scale = Vector2(2.35352, 2.35352)
 color = Color(0.968627, 0.454902, 0.14902, 1)
@@ -605,7 +603,6 @@ shadow_enabled = true
 texture = ExtResource("15_hm3ku")
 
 [node name="lamp_light2" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(1441, 281)
 scale = Vector2(2.35352, 2.35352)
 color = Color(0.968627, 0.454902, 0.14902, 1)
@@ -614,7 +611,6 @@ shadow_enabled = true
 texture = ExtResource("15_hm3ku")
 
 [node name="lamp_light3" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(1426, 618)
 scale = Vector2(2.35352, 2.35352)
 color = Color(0.968627, 0.454902, 0.14902, 1)
@@ -623,7 +619,6 @@ shadow_enabled = true
 texture = ExtResource("15_hm3ku")
 
 [node name="lamp_light4" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(649, 618)
 scale = Vector2(2.35352, 2.35352)
 color = Color(0.968627, 0.454902, 0.14902, 1)

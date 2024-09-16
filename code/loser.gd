@@ -3,11 +3,39 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(">>LOST<<")
+	Global.load_data()
 	$Panel/Button.grab_focus()
 	$LoseSound.play()
-	$Panel/score.text = "Your score: "+str(Global.score)
-	$Panel/czas.text = "Collected time:"+str(Global.gained_time)+" seconds"
-
+	
+	# Display current match stats
+	$Panel/current_stats/score.text = "Score: " + str(Global.score)
+	$Panel/current_stats/czas.text = "Gained time: " + str(Global.gained_time) + " sec"
+	$Panel/current_stats/kill_count.text = "Kill count: " + str(Global.kill_count)
+	var new_best = false
+	
+	if Global.score > Global.best_score:
+		Global.best_score = Global.score
+		new_best = true
+	
+	if Global.gained_time > Global.best_gained_time:
+		Global.best_gained_time = Global.gained_time
+		new_best = true
+	
+	if Global.kill_count > Global.best_kill_count:
+		Global.best_kill_count = Global.kill_count
+		new_best = true
+	
+	# Save the new best stats if any were updated
+	if new_best:
+		Global.save()
+		Global.load_data()  # Reload the saved data to make sure it's updated
+	
+	# Display best stats
+	$Panel/best_stats/score.text = "Score: " + str(Global.best_score)
+	$Panel/best_stats/czas.text = "Gained time: " + str(Global.best_gained_time) + " sec"
+	$Panel/best_stats/kill_count.text = "Kill count: " + str(Global.best_kill_count)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("kill_game"):

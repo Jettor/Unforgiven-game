@@ -5,6 +5,7 @@ var rngX = RandomNumberGenerator.new()
 var rngY = RandomNumberGenerator.new()
 
 func _ready():
+	$finish/shape.disabled = false
 	Global.x2 = false
 	Global.score_reward = 100
 	$fall.play()
@@ -12,11 +13,14 @@ func _ready():
 	$Timer.start()
 	Global.time = 10
 	Global.gained_time = 0
+	Global.kill_count = 0
 	Global.speed_plus = 95
 	$Camera2D/AnimationPlayer.play("shake") #NAPRAWIĆ!
 
 func _physics_process(delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
+	if(!Global.player_alive):
+		$finish/shape.disabled = true
 
 func _on_timer_timeout():         #SPAWNING ENEMIES
 	for i in range(4):

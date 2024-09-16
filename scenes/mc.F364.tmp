@@ -1,0 +1,190 @@
+[gd_scene load_steps=25 format=3 uid="uid://bkoweo4wyyvik"]
+
+[ext_resource type="Texture2D" uid="uid://ige8o7gprmu6" path="res://images/juan.png" id="1_6kxty"]
+[ext_resource type="Script" path="res://code/mc.gd" id="1_tt4rc"]
+[ext_resource type="Texture2D" uid="uid://cwfobrkdj72xo" path="res://images/wolking.png" id="2_s011u"]
+[ext_resource type="Texture2D" uid="uid://m5qhamx1vyns" path="res://images/jumping.png" id="3_nqa4r"]
+[ext_resource type="PackedScene" uid="uid://c44pwmfk4ihob" path="res://scenes/death_stuff.tscn" id="5_ocdsp"]
+[ext_resource type="AudioStream" uid="uid://c4u78vsnpdtuw" path="res://music/alt_shot.wav" id="6_ggplk"]
+[ext_resource type="AudioStream" uid="uid://bimivjtgqopkj" path="res://music/mc_death.mp3" id="7_rjc3q"]
+[ext_resource type="AudioStream" uid="uid://bs3xllpaxpcqp" path="res://music/player_damage.mp3" id="8_5krv6"]
+[ext_resource type="Script" path="res://code/healthbar.gd" id="9_32chr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v4ak"]
+atlas = ExtResource("2_s011u")
+region = Rect2(0, 0, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aofgv"]
+atlas = ExtResource("2_s011u")
+region = Rect2(63, 0, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep4rp"]
+atlas = ExtResource("2_s011u")
+region = Rect2(126, 0, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc27r"]
+atlas = ExtResource("2_s011u")
+region = Rect2(189, 0, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm146"]
+atlas = ExtResource("2_s011u")
+region = Rect2(252, 0, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arru8"]
+atlas = ExtResource("2_s011u")
+region = Rect2(315, 0, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s24e"]
+atlas = ExtResource("2_s011u")
+region = Rect2(378, 0, 63, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k74gw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6kxty")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nqa4r")
+}],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v4ak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aofgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep4rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc27r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm146")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arru8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s24e")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3aqem"]
+radius = 17.0
+height = 62.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xf07x"]
+radius = 17.0
+height = 62.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7tgi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1chy2"]
+bg_color = Color(0.72549, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyxsd"]
+bg_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(1, 1, 1, 0.27451)
+shadow_offset = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ba2oa"]
+bg_color = Color(0.917647, 0.917647, 0.917647, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ouph0"]
+polygon = PackedVector2Array(-5, -25, -9, -24, -12, -23, -13, -22, -15, -22, -21, -17, -21, -13, -18, -10, -15, -10, -15, -9, -13, -8, -12, -7, -13, -6, -13, -5, -11, -4, -6, -3, -8, -2, -14, 3, -14, 6, -17, 6, -17, 13, -15, 13, -15, 12, -12, 12, -10, 14, -6, 14, -6, 18, -7, 18, -7, 20, -9, 20, -9, 21, -14, 21, -14, 30, -11, 30, -11, 29, -10, 29, -10, 26, -1, 26, -1, 25, 0, 25, 0, 24, 1, 24, 1, 21, 6, 21, 6, 23, 7, 23, 7, 29, 17, 29, 17, 26, 16, 25, 13, 25, 13, 17, 11, 15, 8, 14, 7, 14, 7, 10, 11, 12, 17, 12, 20, 11, 22, 10, 23, 9, 24, 8, 24, 7, 12, 4, 12, 3, 7, -2, 4, -2, 4, -3, 6, -3, 8, -5, 11, -5, 11, -6, 9, -8, 8, -8, 8, -11, 10, -10, 11, -10, 11, -13, 14, -13, 15, -14, 16, -15, 18, -18, 18, -20, 14, -24, 11, -25, 5, -25, 1, -25)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_tt4rc")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_k74gw")
+animation = &"walking"
+autoplay = "default"
+
+[node name="player_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_3aqem")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(31, 5)
+
+[node name="Death_stuff" parent="." instance=ExtResource("5_ocdsp")]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ggplk")
+volume_db = -11.948
+pitch_scale = 0.93
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_rjc3q")
+volume_db = 3.0
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5krv6")
+volume_db = -10.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_xf07x")
+
+[node name="WaitForLoseScreen" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+
+[node name="Healthbar" type="ProgressBar" parent="."]
+z_index = 1
+offset_left = -30.0
+offset_top = -44.0
+offset_right = 120.0
+offset_bottom = -17.0
+scale = Vector2(0.4, 0.4)
+theme_override_styles/background = SubResource("StyleBoxEmpty_c7tgi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1chy2")
+value = 60.0
+show_percentage = false
+script = ExtResource("9_32chr")
+
+[node name="DamageBar" type="ProgressBar" parent="Healthbar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_pyxsd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ba2oa")
+value = 80.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="Healthbar"]
+wait_time = 0.4
+one_shot = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ouph0")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="WaitForLoseScreen" to="." method="_on_wait_for_lose_screen_timeout"]
+[connection signal="timeout" from="Healthbar/Timer" to="Healthbar" method="_on_timer_timeout"]

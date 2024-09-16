@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn8368w254jgq"]
+[gd_scene load_steps=15 format=3 uid="uid://cn8368w254jgq"]
 
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_7g5gg"]
 [ext_resource type="Script" path="res://code/loser.gd" id="1_vysxg"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_bos81"]
 [ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="3_gymnu"]
 [ext_resource type="Texture2D" uid="uid://2v2ig0s37y2" path="res://images/death_skull.png" id="4_4eb4u"]
+[ext_resource type="Texture2D" uid="uid://m5ki5qtuhy5t" path="res://images/frame.png" id="5_nu8p5"]
 [ext_resource type="AudioStream" uid="uid://3l6on5s5klaw" path="res://music/lose-sound.mp3" id="5_ypqjt"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_do268"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_irffs"]
@@ -28,6 +29,14 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fhwo5"]
 shader = SubResource("Shader_fl0mm")
+
+[sub_resource type="Theme" id="Theme_tf1p8"]
+
+[sub_resource type="Theme" id="Theme_jhvxs"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_diu08"]
+texture = ExtResource("5_nu8p5")
+region_rect = Rect2(0, 0, 96, 53)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -61,18 +70,173 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -671.0
+offset_right = -670.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_tf1p8")
 
-[node name="ColorRect" type="ColorRect" parent="Panel"]
+[node name="best_stats" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 257.0
+offset_right = 1138.0
+offset_bottom = 526.0
+theme = SubResource("Theme_jhvxs")
+theme_override_styles/panel = SubResource("StyleBoxTexture_diu08")
+metadata/_edit_group_ = true
+
+[node name="personal" type="Label" parent="Panel/best_stats"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -88.5
+offset_right = 102.5
+offset_bottom = -53.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_fonts/font = ExtResource("2_bos81")
+theme_override_font_sizes/font_size = 25
+text = "PERSONAL BEST
+
+"
+
+[node name="score" type="Label" parent="Panel/best_stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -30.5
+offset_right = 119.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Your score:0"
+horizontal_alignment = 1
+
+[node name="czas" type="Label" parent="Panel/best_stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = 8.5
+offset_right = 131.0
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Collected time:0 sec"
+horizontal_alignment = 1
+
+[node name="kill_count" type="Label" parent="Panel/best_stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 53.5
+offset_right = 88.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Kill count:0"
+horizontal_alignment = 1
+
+[node name="current_stats" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 257.0
+offset_right = 605.0
+offset_bottom = 526.0
+theme = SubResource("Theme_jhvxs")
+theme_override_styles/panel = SubResource("StyleBoxTexture_diu08")
+metadata/_edit_group_ = true
+
+[node name="this_game" type="Label" parent="Panel/current_stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.5
+offset_top = -95.5
+offset_right = 111.5
+offset_bottom = -14.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
+theme_override_fonts/font = ExtResource("2_bos81")
+theme_override_font_sizes/font_size = 25
+text = "THIS GAME
+
+
+"
+
+[node name="score" type="Label" parent="Panel/current_stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -30.5
+offset_right = 125.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Your score:0"
+horizontal_alignment = 1
+
+[node name="czas" type="Label" parent="Panel/current_stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = 8.5
+offset_right = 131.0
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Collected time:0 sec"
+horizontal_alignment = 1
+
+[node name="kill_count" type="Label" parent="Panel/current_stats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 53.5
+offset_right = 89.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_bos81")
+text = "Kill count:0"
+horizontal_alignment = 1
 
 [node name="you_lose" type="Label" parent="Panel"]
 layout_mode = 1
@@ -88,44 +252,12 @@ offset_bottom = -328.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.619608, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.177101, 0.0144391, 6.01634e-09, 1)
 theme_override_constants/outline_size = 40
 theme_override_fonts/font = ExtResource("2_bos81")
 theme_override_font_sizes/font_size = 150
 text = ">DEATH<"
 horizontal_alignment = 1
-
-[node name="score" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -227.0
-offset_right = 120.0
-offset_bottom = -185.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_bos81")
-text = "Your score:0000"
-
-[node name="czas" type="Label" parent="Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -188.0
-offset_right = 128.0
-offset_bottom = -145.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_bos81")
-text = "Collected time:0"
 
 [node name="message" type="Label" parent="Panel"]
 layout_mode = 1
@@ -135,14 +267,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -424.0
-offset_top = -278.0
+offset_top = 77.0
 offset_right = 424.0
-offset_bottom = -258.0
+offset_bottom = 97.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_bos81")
 theme_override_font_sizes/font_size = 20
-text = "You have failed your mission"
+text = "Your sins were not forgiven"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Panel"]

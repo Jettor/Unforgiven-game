@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bdi3r7uxv6kq4"]
+[gd_scene load_steps=42 format=3 uid="uid://bdi3r7uxv6kq4"]
 
 [ext_resource type="Script" path="res://code/main.gd" id="1_ebn5p"]
 [ext_resource type="Script" path="res://code/Panel.gd" id="2_vwm40"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkoweo4wyyvik" path="res://scenes/mc.tscn" id="10_ieyke"]
 [ext_resource type="PackedScene" uid="uid://b146hb34lplj" path="res://scenes/enemy.tscn" id="11_8aqqj"]
 [ext_resource type="AudioStream" uid="uid://c05o6cgeneptp" path="res://music/FLak_-_The_022_Incident.wav" id="12_p2r8u"]
+[ext_resource type="Texture2D" uid="uid://cth35pgm2voel" path="res://images/pentagram.png" id="13_at5j4"]
 [ext_resource type="AudioStream" uid="uid://56hlc57ujl53" path="res://music/fall.mp3" id="13_cdjdf"]
 [ext_resource type="AudioStream" uid="uid://c4btnpb7u0o6t" path="res://music/stone_gate.mp3" id="14_qnobu"]
 [ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="15_hm3ku"]
@@ -425,29 +426,49 @@ tracks/0/keys = {
 "values": [Vector2(961, 543), Vector2(961, 1620)]
 }
 
-[sub_resource type="Animation" id="Animation_u8i1o"]
-resource_name = "drag_down"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2i2re"]
+_data = {
+"RESET": SubResource("Animation_ndc1f")
+}
+
+[sub_resource type="Animation" id="Animation_asyyc"]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(961, 543), Vector2(961, 1620)]
+"values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2i2re"]
+[sub_resource type="Animation" id="Animation_ke3kx"]
+resource_name = "handle_penta"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.8, 1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulwul"]
 _data = {
-"RESET": SubResource("Animation_ndc1f"),
-"drag_down": SubResource("Animation_u8i1o")
+"RESET": SubResource("Animation_asyyc"),
+"handle_penta": SubResource("Animation_ke3kx")
 }
 
-[node name="Node" type="Node"]
+[node name="Main_scene" type="Node"]
 script = ExtResource("1_ebn5p")
 
 [node name="CanvasL" type="CanvasLayer" parent="."]
@@ -644,7 +665,7 @@ shadow_enabled = true
 texture = ExtResource("15_hm3ku")
 
 [node name="moon" type="PointLight2D" parent="."]
-position = Vector2(964, -570)
+position = Vector2(972, -571)
 scale = Vector2(12.8379, 12.8379)
 color = Color(0.493324, 0.562323, 0.699757, 1)
 energy = 1.36
@@ -662,9 +683,13 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="finish" type="Area2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 
 [node name="shape" type="CollisionShape2D" parent="finish"]
-position = Vector2(938, 1183)
+light_mask = 3
+visibility_layer = 3
+position = Vector2(938, 1060)
 shape = SubResource("RectangleShape2D_gduly")
 debug_color = Color(0.0938, 0.648576, 1.92523e-07, 0.42)
 
@@ -676,7 +701,21 @@ libraries = {
 "": SubResource("AnimationLibrary_2i2re")
 }
 
+[node name="pentagram" type="Sprite2D" parent="."]
+modulate = Color(0.65, 0, 0, 1)
+self_modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+texture_filter = 1
+scale = Vector2(1.10938, 1.10938)
+texture = ExtResource("13_at5j4")
+
+[node name="pentagram_animation" type="AnimationPlayer" parent="pentagram"]
+libraries = {
+"": SubResource("AnimationLibrary_ulwul")
+}
+
 [connection signal="knockback" from="CharacterBody2D" to="CharacterBody2D2" method="_on_character_body_2d_knockback"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="finish" to="." method="_on_finish_area_entered"]
 [connection signal="animation_finished" from="Camera2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="pentagram/pentagram_animation" to="." method="_on_pentagram_animation_animation_finished"]

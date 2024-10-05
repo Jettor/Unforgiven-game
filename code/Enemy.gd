@@ -17,7 +17,7 @@ var knockback
 
 func _ready():
 	$Timer.timeout.connect(self._on_timer_timeout)
-
+	
 func _on_timer_timeout() -> void:
 	nav.target_position = target.position
 

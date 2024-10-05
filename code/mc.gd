@@ -46,6 +46,7 @@ func death():
 	var instance = death_scene.instantiate()
 	instance.play_death()
 	$LightOccluder2D.hide()
+	$Area2D/CollisionShape2D.disabled = true
 	get_tree().get_root().add_child(instance)
 	instance.position = $Sprite2D.global_position
 	$WaitForLoseScreen.start()

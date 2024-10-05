@@ -2,12 +2,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ColorRect/black_screen.play("fade out")
+	print(">>WIN<<")
 	$do_menu.grab_focus()
 	Global.player_alive = false
 	$WinSound.play()
 	$Panel/score.text = "Your score: "+str(Global.score)
 	$Panel/czas.text = "Collected time:"+str(Global.gained_time)+" seconds"
+	$ColorRect/black_screen.play("fade out")
 	
 	if Input.is_action_just_pressed("kill_game"):
 		get_tree().quit()

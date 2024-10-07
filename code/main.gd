@@ -1,10 +1,9 @@
 extends Node
 
 var enemy_scene = preload("res://scenes/enemy.tscn")
+var penta_scene = preload("res://scenes/pentagram.tscn")
 var rngX = RandomNumberGenerator.new()
 var rngY = RandomNumberGenerator.new()
-@onready var penta_appear = $pentagram/pentagram_animation
-@onready var penta_sprite = $pentagram
 
 func _ready():
 	Global.x2 = false
@@ -31,13 +30,18 @@ func _on_timer_timeout():         #SPAWNING ENEMIES
 		await get_tree().create_timer(1.5).timeout
 
 func spawn_enemy(position: Vector2):
+	var pentagram = penta_scene.instantiate()
 	var enemy = enemy_scene.instantiate()
+	pentagram.global_position = position
 	enemy.global_position = position
-	penta_sprite.global_position = position
-	penta_appear.play("handle_penta")
+	add_child(pentagram)
+	#$pentagram/pentagram_animation.play("handle_penta")
+	pentagram.get_node("pentagram_animation").play("handle_penta")
 	await get_tree().create_timer(0.8).timeout
 	add_child(enemy)
 	print("Enemy spawned at:", position)
+	await get_tree().create_timer(0.5).timeout
+	pentagram.queue_free()
 	Global.speed_plus += Global.normal_addition
 
 func _stop() -> void:

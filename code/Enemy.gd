@@ -12,11 +12,13 @@ var can_take_damage = true
 var bullet_name = ""
 var bullet_damage = 10
 var direction
-var knockback_dir
-var knockback
+#var knockback_dir
+#var knockback
 
 func _ready():
 	$Timer.timeout.connect(self._on_timer_timeout)
+	$enemy_hitbox.disabled = true #Jeżeli wyłączone -> enemy materialni, ale nie otrzymują damage, nie biją
+	$Area2D/CollisionShape2D.disabled = true #Jeżeli wyłączone -> enemy niematerialni, otrzymują damage, biją
 	
 func _on_timer_timeout() -> void:
 	nav.target_position = target.position
@@ -54,10 +56,10 @@ func damage():
 			if health <= 0:
 				alive = false
 				if not alive:
-					death()
-					$Enemy_death.play()    #NIE DZIAŁA >:(
+					$Enemy_death.play() #NIE DZIAŁA >:(
+					death()  
 					queue_free()
-					Global.kill_count += 1 #DOESN'T WORK FOR SOME REASON!
+					Global.kill_count += 1 
 					print("kills: "+str(Global.kill_count))
 			elif health > 0:
 				print(health)

@@ -8,8 +8,11 @@ const JUMP_VELOCITY = -500.0
 @onready var marker_2d = $Marker2D
 @onready var death_stuff = $Death_stuff
 @onready var healthbar = $Healthbar
+@onready var camera = $"../Camera2D"
 var knockback_dir = Vector2()
 var knockback_wait = 10
+var shake = false
+var shake_time = 0
 
 var face_direction = Vector2.RIGHT
 var can_fire = true
@@ -46,6 +49,7 @@ func death():
 	var instance = death_scene.instantiate()
 	instance.play_death()
 	$LightOccluder2D.hide()
+	$player_hitbox.disabled = true
 	$Area2D/CollisionShape2D.disabled = true
 	get_tree().get_root().add_child(instance)
 	instance.position = $Sprite2D.global_position
@@ -60,7 +64,13 @@ func _physics_process(delta):
 		sprite_2d.animation = "walking"
 	else:
 		sprite_2d.animation = "default"
-		
+		# Screen shake	
+	if shake == true:
+		shake_time += 1
+		var final_pos = Vector2(sin(shake_time) * 10, sin(shake_time) * 10)
+		camera.offset = lerp(camera. offset, final_pos, 0.2)
+	elif shake_time:
+		shake_time = 0
 		
 	# Add the gravity.
 	if not is_on_floor():
@@ -125,6 +135,12 @@ func _on_area_2d_area_entered(area): # TAKING DAMAGE
 		if healthp <= 0:
 			healthbar.hide()
 		$DamageSound.play()
+		$shake_animation.play("shake")
+		
+		#$Area2D/CollisionShape2D.disabled = true  DOESN'T WORK
+		#$player_hitbox.disabled = true
+		#area.monitoring = false
+		
 		print("wrog dotkniety")
 		#emit_signal("knockback")
 	else:

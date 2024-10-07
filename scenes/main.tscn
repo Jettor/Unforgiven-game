@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bdi3r7uxv6kq4"]
+[gd_scene load_steps=38 format=3 uid="uid://bdi3r7uxv6kq4"]
 
 [ext_resource type="Script" path="res://code/main.gd" id="1_ebn5p"]
 [ext_resource type="Script" path="res://code/Panel.gd" id="2_vwm40"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://bkoweo4wyyvik" path="res://scenes/mc.tscn" id="10_ieyke"]
 [ext_resource type="PackedScene" uid="uid://b146hb34lplj" path="res://scenes/enemy.tscn" id="11_8aqqj"]
 [ext_resource type="AudioStream" uid="uid://c05o6cgeneptp" path="res://music/FLak_-_The_022_Incident.wav" id="12_p2r8u"]
-[ext_resource type="Texture2D" uid="uid://cth35pgm2voel" path="res://images/pentagram.png" id="13_at5j4"]
 [ext_resource type="AudioStream" uid="uid://56hlc57ujl53" path="res://music/fall.mp3" id="13_cdjdf"]
 [ext_resource type="AudioStream" uid="uid://c4btnpb7u0o6t" path="res://music/stone_gate.mp3" id="14_qnobu"]
 [ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="15_hm3ku"]
@@ -431,43 +430,6 @@ _data = {
 "RESET": SubResource("Animation_ndc1f")
 }
 
-[sub_resource type="Animation" id="Animation_asyyc"]
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ke3kx"]
-resource_name = "handle_penta"
-length = 1.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.8, 1, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulwul"]
-_data = {
-"RESET": SubResource("Animation_asyyc"),
-"handle_penta": SubResource("Animation_ke3kx")
-}
-
 [node name="Main_scene" type="Node"]
 script = ExtResource("1_ebn5p")
 
@@ -701,21 +663,7 @@ libraries = {
 "": SubResource("AnimationLibrary_2i2re")
 }
 
-[node name="pentagram" type="Sprite2D" parent="."]
-modulate = Color(0.65, 0, 0, 1)
-self_modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
-texture_filter = 1
-scale = Vector2(1.10938, 1.10938)
-texture = ExtResource("13_at5j4")
-
-[node name="pentagram_animation" type="AnimationPlayer" parent="pentagram"]
-libraries = {
-"": SubResource("AnimationLibrary_ulwul")
-}
-
 [connection signal="knockback" from="CharacterBody2D" to="CharacterBody2D2" method="_on_character_body_2d_knockback"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="finish" to="." method="_on_finish_area_entered"]
 [connection signal="animation_finished" from="Camera2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="pentagram/pentagram_animation" to="." method="_on_pentagram_animation_animation_finished"]

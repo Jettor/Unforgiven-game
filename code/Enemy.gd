@@ -17,8 +17,6 @@ var direction
 
 func _ready():
 	$Timer.timeout.connect(self._on_timer_timeout)
-	$enemy_hitbox.disabled = true #Jeżeli wyłączone -> enemy materialni, ale nie otrzymują damage, nie biją
-	$Area2D/CollisionShape2D.disabled = true #Jeżeli wyłączone -> enemy niematerialni, otrzymują damage, biją
 	
 func _on_timer_timeout() -> void:
 	nav.target_position = target.position

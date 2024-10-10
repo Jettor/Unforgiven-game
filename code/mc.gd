@@ -2,8 +2,11 @@ extends CharacterBody2D
 
 signal knockback
 
-const SPEED = 300.0
+const normal_SPEED = 300.0
+const dash_SPEED = 700.0
+const dash_length =  0.3
 const JUMP_VELOCITY = -500.0
+@onready var dash = $Dash
 @onready var sprite_2d = $Sprite2D
 @onready var marker_2d = $Marker2D
 @onready var death_stuff = $Death_stuff
@@ -13,7 +16,6 @@ var knockback_dir = Vector2()
 var knockback_wait = 10
 var shake = false
 var shake_time = 0
-
 var face_direction = Vector2.RIGHT
 var can_fire = true
 var bullet = load("res://scenes/bullet.tscn")
@@ -23,19 +25,22 @@ var direction = 1
 var jump_count = 0
 var healthp = Global.healthp
 var damage_takenp = 20;
-var can_take_damagep = true
+var can_take_damage = true
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func damagee():
-	if can_take_damagep:
+	if can_take_damage:
 		if healthp > 0:
+			can_take_damage = false
 			healthp = healthp - damage_takenp
 			if healthp <= 0:
 				Global.player_alive = false
 				if not Global.player_alive:
 					death()
 			elif healthp > 0:
+				$immortality.start()
 				print(healthp)
 	
 func _ready():
@@ -64,7 +69,7 @@ func _physics_process(delta):
 		sprite_2d.animation = "walking"
 	else:
 		sprite_2d.animation = "default"
-		# Screen shake	
+		# Screen shake
 	if shake == true:
 		shake_time += 1
 		var final_pos = Vector2(sin(shake_time) * 10, sin(shake_time) * 10)
@@ -83,7 +88,14 @@ func _physics_process(delta):
 	elif Input.is_action_pressed('ui_right'):
 		face_direction = Vector2.RIGHT
 		direction = -1
-
+	if Input.is_action_just_pressed("dash"): # Dash
+		dash.start_dash(dash_length)
+		can_take_damage = false
+		await get_tree().create_timer(dash_length).timeout
+		can_take_damage = true
+		
+	var SPEED = dash_SPEED if dash.is_dashing() else normal_SPEED # Dash speed handler
+	
 	if Input.is_action_just_pressed("fire") and can_fire: # SHOOTING
 		$ShootSound.play()
 		var bullet_instance = bullet.instantiate()
@@ -128,23 +140,22 @@ func _physics_process(delta):
 		$Marker2D.position = Vector2(31, 5)
 		
 func _on_area_2d_area_entered(area): # TAKING DAMAGE
-	if area.is_in_group("Wrog"):
+	if area.is_in_group("Wrog") and can_take_damage == true:
 		damage_takenp = 20
+		$DamageSound.play()
+		$shake_animation.play("shake")
 		damagee()
 		healthbar.health = healthp
 		if healthp <= 0:
 			healthbar.hide()
-		$DamageSound.play()
-		$shake_animation.play("shake")
-		
-		#$Area2D/CollisionShape2D.disabled = true  DOESN'T WORK
-		#$player_hitbox.disabled = true
-		#area.monitoring = false
-		
 		print("wrog dotkniety")
+		$damage.play("damage")
 		#emit_signal("knockback")
 	else:
 		return
 		
 func _on_wait_for_lose_screen_timeout():
 	get_tree().change_scene_to_file("res://scenes/loser.tscn")
+
+func _on_immortality_timeout():
+	can_take_damage = true

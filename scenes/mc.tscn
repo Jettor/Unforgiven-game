@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=34 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Texture2D" uid="uid://ige8o7gprmu6" path="res://images/juan.png" id="1_6kxty"]
 [ext_resource type="Script" path="res://code/mc.gd" id="1_tt4rc"]
+[ext_resource type="Shader" path="res://shaders/mc.gdshader" id="2_6iiml"]
 [ext_resource type="Texture2D" uid="uid://cwfobrkdj72xo" path="res://images/wolking.png" id="2_s011u"]
 [ext_resource type="Texture2D" uid="uid://m5qhamx1vyns" path="res://images/jumping.png" id="3_nqa4r"]
 [ext_resource type="PackedScene" uid="uid://c44pwmfk4ihob" path="res://scenes/death_stuff.tscn" id="5_ocdsp"]
@@ -9,6 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://bimivjtgqopkj" path="res://music/mc_death.mp3" id="7_rjc3q"]
 [ext_resource type="AudioStream" uid="uid://bs3xllpaxpcqp" path="res://music/player_damage.mp3" id="8_5krv6"]
 [ext_resource type="Script" path="res://code/healthbar.gd" id="9_32chr"]
+[ext_resource type="PackedScene" uid="uid://cuom58gpjk0p6" path="res://dash.tscn" id="11_cosi0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61ipx"]
+shader = ExtResource("2_6iiml")
+shader_parameter/hit_opacity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2v4ak"]
 atlas = ExtResource("2_s011u")
@@ -148,13 +154,39 @@ _data = {
 "shake": SubResource("Animation_avmsq")
 }
 
+[sub_resource type="Animation" id="Animation_ckpnf"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_kx8nl"]
+resource_name = "damage"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.240625, 0.440625, 0.640625, 0.840625, 1.02865, 1.22865, 1.4125, 1.6125, 1.8125, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nhnyd"]
+_data = {
+"RESET": SubResource("Animation_ckpnf"),
+"damage": SubResource("Animation_kx8nl")
+}
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_tt4rc")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_61ipx")
 sprite_frames = SubResource("SpriteFrames_k74gw")
-animation = &"walking"
+animation = &"jumping"
 autoplay = "default"
 
 [node name="player_hitbox" type="CollisionShape2D" parent="."]
@@ -227,6 +259,17 @@ libraries = {
 "": SubResource("AnimationLibrary_p17f7")
 }
 
+[node name="immortality" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="damage" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nhnyd")
+}
+
+[node name="Dash" parent="." instance=ExtResource("11_cosi0")]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="WaitForLoseScreen" to="." method="_on_wait_for_lose_screen_timeout"]
 [connection signal="timeout" from="Healthbar/Timer" to="Healthbar" method="_on_timer_timeout"]
+[connection signal="timeout" from="immortality" to="." method="_on_immortality_timeout"]

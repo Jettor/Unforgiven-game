@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c44pwmfk4ihob"]
+[gd_scene load_steps=15 format=3 uid="uid://c44pwmfk4ihob"]
 
 [ext_resource type="Script" path="res://code/Death_stuff.gd" id="1_tqpyj"]
 [ext_resource type="Texture2D" uid="uid://cn4jjh7bysyw2" path="res://images/death.png" id="2_ni7ni"]
@@ -7,12 +7,67 @@
 [sub_resource type="Curve" id="Curve_h2y2d"]
 min_value = -360.0
 max_value = 360.0
-_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.99999, -360), 0.0, 0.0, 0, 0, Vector2(1, -360), -4011.2, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, 8.8486), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Curve" id="Curve_3mpka"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.992509, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_pryas"]
+max_value = 200.0
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kcfv7"]
+curve = SubResource("Curve_pryas")
+
+[sub_resource type="Gradient" id="Gradient_w4i8x"]
+colors = PackedColorArray(1, 0.53, 0.53, 1, 0.41598, 0.41598, 0.41598, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_15gay"]
+gradient = SubResource("Gradient_w4i8x")
+
+[sub_resource type="Gradient" id="Gradient_eatwl"]
+colors = PackedColorArray(1, 1, 1, 1, 0.62, 0.62, 0.62, 0.752941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_onwuh"]
+gradient = SubResource("Gradient_eatwl")
+
+[sub_resource type="Curve" id="Curve_kgb8u"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 6.43185), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nwb33"]
+curve = SubResource("Curve_kgb8u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vu8yq"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.73
+angle_min = 1.07288e-05
+angle_max = 23.6
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 134.42
+initial_velocity_max = 339.2
+orbit_velocity_min = -0.144
+orbit_velocity_max = 0.131
+gravity = Vector3(0, 0, 0)
+damping_min = 93.77
+damping_max = 98.338
+damping_curve = SubResource("CurveTexture_nwb33")
+scale_min = 2.73
+scale_max = 10.37
+color = Color(0.618589, 0.00334778, 0.921363, 1)
+color_ramp = SubResource("GradientTexture1D_onwuh")
+color_initial_ramp = SubResource("GradientTexture1D_15gay")
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+anim_speed_max = 1.1
+anim_speed_curve = SubResource("CurveTexture_kcfv7")
 
 [node name="Death_stuff" type="Node2D"]
 script = ExtResource("1_tqpyj")
@@ -48,3 +103,12 @@ angular_velocity_min = 0.5
 angular_velocity_max = 1.0
 angular_velocity_curve = SubResource("Curve_h2y2d")
 scale_amount_curve = SubResource("Curve_3mpka")
+
+[node name="enemy_damage" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_vu8yq")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.15

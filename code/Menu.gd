@@ -1,10 +1,11 @@
 extends Control
 
 func _ready():
-	$CanvasLayer/Control/GRAJ.grab_focus()
+	$CanvasLayer/moving/Control/GRAJ.grab_focus()
 	$logo_wave.play("title_animation");
 	$CanvasLayer/transition.play("fade_in");
-
+	$CanvasLayer/moving.play("UI_appear")
+	
 func _physics_process(delta):
 	if Input.is_action_just_pressed("kill_game"):
 		get_tree().quit()

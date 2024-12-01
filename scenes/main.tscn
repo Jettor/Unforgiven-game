@@ -584,7 +584,7 @@ shadow_filter = 2
 shadow_filter_smooth = 0.9
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.556583, 0.536982, 0.52533, 1)
+color = Color(0.517184, 0.517184, 0.517184, 1)
 
 [node name="candle_light" type="PointLight2D" parent="."]
 position = Vector2(456, 983)
@@ -627,6 +627,7 @@ shadow_enabled = true
 texture = ExtResource("15_hm3ku")
 
 [node name="moon" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(972, -571)
 scale = Vector2(12.8379, 12.8379)
 color = Color(0.493324, 0.562323, 0.699757, 1)

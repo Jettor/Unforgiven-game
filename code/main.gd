@@ -9,6 +9,7 @@ func _ready():
 	Global.x2 = false
 	Global.score_reward = 100
 	$fall.play()
+	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
 	Global.score = 0
 	$Timer.start()
 	Global.time = 100

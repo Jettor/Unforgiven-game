@@ -6,6 +6,7 @@ const normal_SPEED = 300.0
 const dash_SPEED = 700.0
 const dash_length =  0.3
 const JUMP_VELOCITY = -500.0
+var death_scene = load("res://scenes/death_stuff.tscn")
 @onready var dash = $Dash
 @onready var sprite_2d = $Sprite2D
 @onready var marker_2d = $Marker2D
@@ -50,7 +51,6 @@ func _ready():
 func death():
 	$DeathSound.play()
 	$Sprite2D.visible = false
-	var death_scene = load("res://scenes/death_stuff.tscn")
 	var instance = death_scene.instantiate()
 	instance.play_death()
 	$LightOccluder2D.hide()

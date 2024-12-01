@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 class_name Enemy
+var particle_handler = load("res://scenes/death_stuff.tscn")
 @onready var target = $"../CharacterBody2D"
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var timer = $Timer
@@ -41,9 +42,9 @@ func death():
 	Global.gained_time += 0.5
 	Global.score += Global.score_reward
 	enemy.visible = false
-	var death_scene = load("res://scenes/death_stuff.tscn")
-	var instance = death_scene.instantiate()
+	var instance = particle_handler.instantiate()
 	instance.play_death_enemy()
+	instance.play_damage_enemy()
 	get_tree().get_root().add_child(instance)
 	instance.position = enemy.global_position
 	

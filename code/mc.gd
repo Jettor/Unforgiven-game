@@ -143,7 +143,7 @@ func _on_area_2d_area_entered(area): # TAKING DAMAGE
 	if area.is_in_group("Wrog") and can_take_damage == true:
 		damage_takenp = 20
 		$DamageSound.play()
-		$shake_animation.play("shake")
+		$Camera2D/zoom_animation.play("cam_shake")
 		damagee()
 		healthbar.health = healthp
 		if healthp <= 0:

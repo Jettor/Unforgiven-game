@@ -14,7 +14,7 @@ func _on_graj_pressed():
 	Engine.time_scale = 1
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/controls_pop_up.tscn")
+	get_tree().change_scene_to_file("res://scenes/cutscene.tscn")
 	
 
 func _on_wyjdz_pressed():

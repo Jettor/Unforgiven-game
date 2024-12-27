@@ -12,7 +12,7 @@ func _ready():
 	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
 	Global.score = 0
 	$Timer.start()
-	Global.time = 100
+	Global.time = 1 #100
 	Global.kill_count = 0
 	Global.gained_time = 0
 	Global.speed_plus = 95
@@ -44,14 +44,15 @@ func spawn_enemy(position: Vector2):
 	pentagram.queue_free()
 	Global.speed_plus += Global.normal_addition
 
-func _stop() -> void:
+func _stop() -> void: 
 	set_process(false)
 
 func _on_finish_area_entered(area):
 	print("ENTERED!!")
-	$Camera2D/AnimationPlayer.play("RESET")
+	$CharacterBody2D/Camera2D/zoom_animation.play("limit_break")
 	$CharacterBody2D.hide()
+	$CharacterBody2D/lvl_finished.start()
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_lvl_finished_timeout():
 	_stop()
 	get_tree().change_scene_to_file("res://scenes/winner.tscn")

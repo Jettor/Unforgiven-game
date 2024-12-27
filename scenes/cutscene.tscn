@@ -1,14 +1,14 @@
 [gd_scene load_steps=49 format=3 uid="uid://pgjrvm77s61h"]
 
-[ext_resource type="Script" path="res://code/controls_pop_up.gd" id="1_7gyyq"]
-[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="1_p5u2x"]
-[ext_resource type="Texture2D" uid="uid://3d85dudj2ygh" path="res://images/pixil-frame-0.png" id="2_08r36"]
-[ext_resource type="AudioStream" uid="uid://d3ejisirg3ryk" path="res://music/pravetz - flow of time.ogg" id="2_lckjy"]
-[ext_resource type="Texture2D" uid="uid://chgrbcdpi0ji7" path="res://images/cutscene1_spritesheet.png" id="4_gpjap"]
-[ext_resource type="Texture2D" uid="uid://c3oh2ex85c44h" path="res://images/cutscene2_spritesheet.png" id="5_ox0wa"]
-[ext_resource type="Texture2D" uid="uid://dxbb7jp3gokp4" path="res://images/cutscene0_spritesheet.png" id="6_mgokq"]
-[ext_resource type="Texture2D" uid="uid://dwf5nwev5l87g" path="res://images/cutscene3_spritesheet.png" id="7_aneem"]
-[ext_resource type="Texture2D" uid="uid://dgbe5wnioxhq1" path="res://images/cutscene4_spritesheet.png" id="9_83671"]
+[ext_resource type="Script" path="res://code/controls_pop_up.gd" id="1_rx5p7"]
+[ext_resource type="AudioStream" uid="uid://d3ejisirg3ryk" path="res://music/pravetz - flow of time.ogg" id="2_3rjci"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="3_jld5f"]
+[ext_resource type="Texture2D" uid="uid://3d85dudj2ygh" path="res://images/pixil-frame-0.png" id="4_qrq03"]
+[ext_resource type="Texture2D" uid="uid://dxbb7jp3gokp4" path="res://images/cutscene0_spritesheet.png" id="5_0sioy"]
+[ext_resource type="Texture2D" uid="uid://chgrbcdpi0ji7" path="res://images/cutscene1_spritesheet.png" id="6_yxdq7"]
+[ext_resource type="Texture2D" uid="uid://c3oh2ex85c44h" path="res://images/cutscene2_spritesheet.png" id="7_jukmj"]
+[ext_resource type="Texture2D" uid="uid://dwf5nwev5l87g" path="res://images/cutscene3_spritesheet.png" id="8_r1c6m"]
+[ext_resource type="Texture2D" uid="uid://dgbe5wnioxhq1" path="res://images/cutscene4_spritesheet.png" id="9_4rlkm"]
 
 [sub_resource type="Animation" id="Animation_lb0oj"]
 length = 0.001
@@ -102,19 +102,19 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8k2b"]
-atlas = ExtResource("6_mgokq")
+atlas = ExtResource("5_0sioy")
 region = Rect2(0, 0, 65, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pm61d"]
-atlas = ExtResource("6_mgokq")
+atlas = ExtResource("5_0sioy")
 region = Rect2(65, 0, 65, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eiurp"]
-atlas = ExtResource("6_mgokq")
+atlas = ExtResource("5_0sioy")
 region = Rect2(130, 0, 65, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_atdqh"]
-atlas = ExtResource("6_mgokq")
+atlas = ExtResource("5_0sioy")
 region = Rect2(195, 0, 65, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jcsiq"]
@@ -138,39 +138,39 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cufrl"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(0, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_udman"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(128, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rrcsy"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(256, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bx5jg"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(384, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_avc05"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(512, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8r7lx"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(640, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_453gg"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(768, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rroqo"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(896, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i7rgq"]
-atlas = ExtResource("4_gpjap")
+atlas = ExtResource("6_yxdq7")
 region = Rect2(1024, 0, 128, 65)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lo4hw"]
@@ -209,23 +209,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5e8gv"]
-atlas = ExtResource("5_ox0wa")
+atlas = ExtResource("7_jukmj")
 region = Rect2(0, 0, 65, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xdxw8"]
-atlas = ExtResource("5_ox0wa")
+atlas = ExtResource("7_jukmj")
 region = Rect2(65, 0, 65, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_quufn"]
-atlas = ExtResource("5_ox0wa")
+atlas = ExtResource("7_jukmj")
 region = Rect2(130, 0, 65, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8vbf0"]
-atlas = ExtResource("5_ox0wa")
+atlas = ExtResource("7_jukmj")
 region = Rect2(195, 0, 65, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7drjr"]
-atlas = ExtResource("5_ox0wa")
+atlas = ExtResource("7_jukmj")
 region = Rect2(260, 0, 65, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bbbyv"]
@@ -252,23 +252,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h0851"]
-atlas = ExtResource("7_aneem")
+atlas = ExtResource("8_r1c6m")
 region = Rect2(0, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_de1ft"]
-atlas = ExtResource("7_aneem")
+atlas = ExtResource("8_r1c6m")
 region = Rect2(128, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahhj3"]
-atlas = ExtResource("7_aneem")
+atlas = ExtResource("8_r1c6m")
 region = Rect2(256, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4loji"]
-atlas = ExtResource("7_aneem")
+atlas = ExtResource("8_r1c6m")
 region = Rect2(384, 0, 128, 65)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mi6nb"]
-atlas = ExtResource("7_aneem")
+atlas = ExtResource("8_r1c6m")
 region = Rect2(512, 0, 128, 65)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2qioy"]
@@ -295,19 +295,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5yawe"]
-atlas = ExtResource("9_83671")
+atlas = ExtResource("9_4rlkm")
 region = Rect2(0, 0, 128, 55)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05iao"]
-atlas = ExtResource("9_83671")
+atlas = ExtResource("9_4rlkm")
 region = Rect2(128, 0, 128, 55)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7ee2"]
-atlas = ExtResource("9_83671")
+atlas = ExtResource("9_4rlkm")
 region = Rect2(256, 0, 128, 55)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i20eb"]
-atlas = ExtResource("9_83671")
+atlas = ExtResource("9_4rlkm")
 region = Rect2(384, 0, 128, 55)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o2n7g"]
@@ -338,7 +338,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7gyyq")
+script = ExtResource("1_rx5p7")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -350,7 +350,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="bg_music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_lckjy")
+stream = ExtResource("2_3rjci")
 autoplay = true
 
 [node name="sterowanko" type="Panel" parent="."]
@@ -383,7 +383,7 @@ offset_right = 91.0
 offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 20
 text = "MOVING"
 horizontal_alignment = 1
@@ -401,7 +401,7 @@ offset_right = 80.0
 offset_bottom = 226.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 20
 text = "SHOOTING"
 horizontal_alignment = 1
@@ -416,7 +416,7 @@ offset_top = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 30
 text = "USE DOUBLE JUMP!"
 horizontal_alignment = 1
@@ -424,7 +424,7 @@ horizontal_alignment = 1
 [node name="Sprite2D" type="Sprite2D" parent="sterowanko"]
 position = Vector2(273, 280)
 scale = Vector2(4.55241, 4.53442)
-texture = ExtResource("2_08r36")
+texture = ExtResource("4_qrq03")
 
 [node name="controls" type="Label" parent="sterowanko"]
 layout_mode = 1
@@ -437,7 +437,7 @@ offset_left = -101.0
 offset_right = 101.0
 offset_bottom = 31.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 50
 text = "CONTROLS"
 horizontal_alignment = 1
@@ -491,7 +491,7 @@ offset_left = 192.0
 offset_top = 416.0
 offset_right = 1728.0
 offset_bottom = 608.0
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 25
 text = "It all started after French revolution 
 
@@ -500,7 +500,7 @@ filled soil with blood.
 
 Cataclysm known as Punishment day 
 
-rapidly expanded all over the Europe."
+rapidly expanded all over the Europe"
 horizontal_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
@@ -525,16 +525,16 @@ offset_left = 704.0
 offset_top = 272.0
 offset_right = 1664.0
 offset_bottom = 832.0
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 21
-text = "Complete mayhem caused by outbreak of the unholy 
+text = "Complete mayhem caused by outbreak of the unholy
 
-took lives of even more people.
+decimated the continent's population.
 
 
-Many thought it was the Apocalypse, but humans did 
+Many thought it was the Apocalypse, but humans made
 
-what they know best... they adapted."
+a choice to withstand God's challenge."
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -559,16 +559,16 @@ offset_left = 384.0
 offset_top = 744.0
 offset_right = 1536.0
 offset_bottom = 856.0
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 21
 text = "70 years later, I am ordered to explore
 
 the abandoned monastery.
 
 
-New inquisition wants to strengthen it's 
+New inquisition seeks to reclaim it's 
 
-influence here on the south."
+control over the south."
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -593,13 +593,16 @@ offset_left = 128.0
 offset_top = 272.0
 offset_right = 1152.0
 offset_bottom = 384.0
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 21
-text = "Thanks to technological progress triggered by
+text = "Omnipresent desperation to not vanish, triggered
 
-common obstacle, they make real strongholds out
+a rapid technologial progress. 
 
-of places like this one."
+
+Humans learned to build unyielding bastions 
+
+out of places like this one"
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -618,16 +621,24 @@ animation = &"play_cutscene3"
 
 [node name="text3" type="Label" parent="."]
 visible = false
-layout_mode = 0
-offset_left = 448.0
-offset_top = 760.0
-offset_right = 1472.0
-offset_bottom = 872.0
-theme_override_fonts/font = ExtResource("1_p5u2x")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.5
+offset_top = 204.0
+offset_right = 577.5
+offset_bottom = 316.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 21
-text = "Other executors tell about colossal underground
+text = "Other executors spread rumors about colossal structures
 
-structures often hidden in old forts."
+often hidden deep beneath the old monasteries"
+horizontal_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
 
@@ -651,9 +662,9 @@ offset_left = 448.0
 offset_top = 696.0
 offset_right = 1472.0
 offset_bottom = 808.0
-theme_override_fonts/font = ExtResource("1_p5u2x")
+theme_override_fonts/font = ExtResource("3_jld5f")
 theme_override_font_sizes/font_size = 21
-text = "I wonder what this one has for me."
+text = "I wonder what this one hides from me"
 horizontal_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0

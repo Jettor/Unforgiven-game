@@ -20,6 +20,9 @@ func _ready():
 
 func _physics_process(delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
+	
+	if Global.player_alive == false:
+		$finish/shape.disabled = true
 
 func _on_timer_timeout():         #SPAWNING ENEMIES
 	for i in range(4):

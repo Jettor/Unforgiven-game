@@ -1,12 +1,12 @@
 extends Control
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(">>LOST<<")
 	Global.load_data()
 	$Panel/Button.grab_focus()
 	$LoseSound.play()
+	$ColorRect/black_screen.play("fade out")
 	
 	# Display current match stats
 	$Panel/current_stats/score.text = "Score: " + str(Global.score)

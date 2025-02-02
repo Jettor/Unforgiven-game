@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cn8368w254jgq"]
+[gd_scene load_steps=18 format=3 uid="uid://cn8368w254jgq"]
 
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_7g5gg"]
 [ext_resource type="Script" path="res://code/loser.gd" id="1_vysxg"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_do268"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_irffs"]
 
-[sub_resource type="Shader" id="Shader_fl0mm"]
+[sub_resource type="Shader" id="Shader_0ytkg"]
 code = "shader_type canvas_item;
 
 void vertex() {
@@ -28,7 +28,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fhwo5"]
-shader = SubResource("Shader_fl0mm")
+shader = SubResource("Shader_0ytkg")
 
 [sub_resource type="Theme" id="Theme_tf1p8"]
 
@@ -37,6 +37,42 @@ shader = SubResource("Shader_fl0mm")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_diu08"]
 texture = ExtResource("5_nu8p5")
 region_rect = Rect2(0, 0, 96, 53)
+
+[sub_resource type="Animation" id="Animation_0r2kn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5xoca"]
+resource_name = "fade out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3i3fh"]
+_data = {
+"RESET": SubResource("Animation_0r2kn"),
+"fade out": SubResource("Animation_5xoca")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -324,6 +360,21 @@ stream = ExtResource("6_do268")
 
 [node name="press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_irffs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="black_screen" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_3i3fh")
+}
 
 [connection signal="focus_entered" from="Panel/Button" to="." method="_on_button_focus_entered"]
 [connection signal="mouse_entered" from="Panel/Button" to="." method="_on_button_mouse_entered"]

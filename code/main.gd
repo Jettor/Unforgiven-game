@@ -12,7 +12,7 @@ func _ready():
 	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
 	Global.score = 0
 	$Timer.start()
-	Global.time = 1 #100
+	Global.time = 100 #100
 	Global.kill_count = 0
 	Global.gained_time = 0
 	Global.speed_plus = 95
@@ -28,7 +28,7 @@ func _on_timer_timeout():         #SPAWNING ENEMIES
 	for i in range(4):
 		var position = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
 		
-		while position.distance_to($CharacterBody2D.position) < 200:
+		while position.distance_to($CharacterBody2D.position) < 300:
 			position = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
 		spawn_enemy(position)
 		await get_tree().create_timer(1.5).timeout

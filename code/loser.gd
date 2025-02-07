@@ -59,3 +59,4 @@ func _on_button_focus_entered():
 	$hover.play()
 func _on_restart_focus_entered():
 	$hover.play()
+#When I win the game, then loose and try to win again, WIN collision shape doesn't work

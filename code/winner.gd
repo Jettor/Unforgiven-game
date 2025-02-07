@@ -4,7 +4,7 @@ extends Control
 func _ready():
 	print(">>WIN<<")
 	Global.load_data()
-	$Panel/Button.grab_focus()
+	$Panel/Next.grab_focus()
 	$WinSound.play()
 	$ColorRect/black_screen.play("fade out")
 	
@@ -51,6 +51,11 @@ func _on_restart_pressed(): #RESTART
 	$press.play()
 	await $press.finished
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	
+func _on_next_pressed(): #NEXT LEVEL
+	$press.play()
+	await $press.finished
+	get_tree().change_scene_to_file("res://scenes/main.tscn")#change to new level
 
 func _on_button_mouse_entered():
 	$hover.play()
@@ -59,4 +64,8 @@ func _on_restart_mouse_entered():
 func _on_button_focus_entered():
 	$hover.play()
 func _on_restart_focus_entered():
+	$hover.play()
+func _on_next_focus_entered():
+	$hover.play()
+func _on_next_mouse_entered():
 	$hover.play()

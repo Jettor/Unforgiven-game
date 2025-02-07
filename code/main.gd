@@ -9,14 +9,14 @@ func _ready():
 	Global.x2 = false
 	Global.score_reward = 100
 	$fall.play()
+	$finish/shape.disabled = false
 	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
 	Global.score = 0
 	$Timer.start()
-	Global.time = 100 #100
+	Global.time = 10 #100
 	Global.kill_count = 0
 	Global.gained_time = 0
 	Global.speed_plus = 95
-	 #NAPRAWIĆ!
 
 func _physics_process(delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
@@ -32,6 +32,7 @@ func _on_timer_timeout():         #SPAWNING ENEMIES
 			position = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
 		spawn_enemy(position)
 		await get_tree().create_timer(1.5).timeout
+		
 
 func spawn_enemy(position: Vector2):
 	var pentagram = penta_scene.instantiate()

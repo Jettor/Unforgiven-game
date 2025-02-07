@@ -52,6 +52,6 @@ occluder = SubResource("OccluderPolygon2D_p6537")
 
 [node name="Enemy_death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_eeujb")
-volume_db = 3.0
+volume_db = -7.048
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

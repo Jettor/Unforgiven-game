@@ -13,11 +13,13 @@ var can_take_damage = true
 var bullet_name = ""
 var bullet_damage = 10
 var direction
+signal enemy_scream
 #var knockback_dir
 #var knockback
 
 func _ready():
 	$Timer.timeout.connect(self._on_timer_timeout)
+	connect("enemy_scream", Callable(Global, "_on_enemy_died"))
 	
 func _on_timer_timeout() -> void:
 	nav.target_position = target.position
@@ -54,12 +56,10 @@ func damage():
 			health = health - bullet_damage
 			if health <= 0:
 				alive = false
-				if not alive:
-					$Enemy_death.play() #NIE DZIAŁA >:(
+				if not alive: 
+					emit_signal("enemy_scream")
 					death()  
 					queue_free()
-					Global.kill_count += 1 
-					print("kills: "+str(Global.kill_count))
 			elif health > 0:
 				print(health)
 
@@ -71,6 +71,7 @@ func _on_area_2d_area_entered(area):
 		damage()
 	else:
 		return
+	
 
 #func _on_character_body_2d_knockback():
 #	print("knocked")

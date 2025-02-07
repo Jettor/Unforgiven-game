@@ -257,7 +257,7 @@ position = Vector2(31, 5)
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ggplk")
-volume_db = -11.948
+volume_db = -6.7
 pitch_scale = 0.93
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]

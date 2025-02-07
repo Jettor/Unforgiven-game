@@ -316,7 +316,7 @@ text = "You managed to survive and descend deeper
  into the unknowm"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="Next" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -333,6 +333,26 @@ focus_neighbor_top = NodePath("../restart")
 theme = ExtResource("2_6hdne")
 theme_override_fonts/font = ExtResource("3_jr5n4")
 theme_override_font_sizes/font_size = 30
+text = "NEXT"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = 286.0
+offset_right = 170.5
+offset_bottom = 366.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../Next")
+focus_neighbor_bottom = NodePath("../restart")
+theme = ExtResource("2_6hdne")
+theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_font_sizes/font_size = 30
 text = "MENU"
 
 [node name="restart" type="Button" parent="Panel"]
@@ -343,18 +363,20 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -170.5
-offset_top = 293.0
+offset_top = 386.0
 offset_right = 170.5
-offset_bottom = 373.0
+offset_bottom = 466.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_bottom = NodePath("../Button")
+focus_neighbor_top = NodePath("../Button")
+focus_neighbor_bottom = NodePath("../Next")
 theme = ExtResource("2_6hdne")
 theme_override_fonts/font = ExtResource("3_jr5n4")
 theme_override_font_sizes/font_size = 30
 text = "RESTART"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -369,6 +391,9 @@ libraries = {
 "": SubResource("AnimationLibrary_3i3fh")
 }
 
+[connection signal="focus_entered" from="Panel/Next" to="." method="_on_next_focus_entered"]
+[connection signal="mouse_entered" from="Panel/Next" to="." method="_on_next_mouse_entered"]
+[connection signal="pressed" from="Panel/Next" to="." method="_on_next_pressed"]
 [connection signal="focus_entered" from="Panel/Button" to="." method="_on_button_focus_entered"]
 [connection signal="mouse_entered" from="Panel/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

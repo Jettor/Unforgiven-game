@@ -144,6 +144,8 @@ func _on_area_2d_area_entered(area): # TAKING DAMAGE
 		damage_takenp = 20
 		$DamageSound.play()
 		$Camera2D/zoom_animation.play("cam_shake")
+		if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD:
+			Input.start_joy_vibration(0,0.5,0.2,0.2)
 		damagee()
 		healthbar.health = healthp
 		if healthp <= 0:

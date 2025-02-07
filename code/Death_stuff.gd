@@ -1,17 +1,16 @@
 extends Node2D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 	
 func play_death():
+	if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD: #Controller vibration support doesn't work
+		Input.start_joy_vibration(1,0.5,0.2,0.2)
 	$mc_dead.emitting = true
 func play_death_enemy():
 	$enemy_dead.emitting = true
 func play_damage_enemy():
 	$enemy_damage.emitting = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

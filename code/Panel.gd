@@ -27,13 +27,25 @@ func _process(delta) -> void:
 		on_time_reached_zero()
 		
 func on_time_reached_zero() -> void:
-	$"../../L/move_left".play("left_gate")
-	$"../../R/move_right".play("right_gate")
-	$"../../gates".play()
+	var left_gate = get_tree().get_nodes_in_group("left_gate")
+	var right_gate = get_tree().get_nodes_in_group("right_gate")
+	var gates = $"../../gates" if has_node("../../gates") else null
+	for gate in left_gate:
+		if Global.lvl1_playing:
+			gate.play("left_gate")
+		elif Global.lvl2_playing:
+			gate.play("left_gate2")
+	for gate in right_gate:
+		if Global.lvl1_playing:
+			gate.play("right_gate")
+		elif Global.lvl2_playing:
+			gate.play("right_gate2")
+	if gates:
+		gates.play()
 	$punkty.add_theme_color_override("font_color", "#00FF00")
 	$"../x2".show()
 	Global.x2 = true
-	Global.score_reward = Global.score_reward * 2
+	Global.score_reward *= 2
 
 func format_time() -> String:
 	return str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2) + "." + str(milliseconds).pad_zeros(3)

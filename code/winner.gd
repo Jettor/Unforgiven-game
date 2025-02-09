@@ -55,7 +55,7 @@ func _on_restart_pressed(): #RESTART
 func _on_next_pressed(): #NEXT LEVEL
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/main.tscn")#change to new level
+	get_tree().change_scene_to_file("res://scenes/library_2.tscn")
 
 func _on_button_mouse_entered():
 	$hover.play()

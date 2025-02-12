@@ -35,10 +35,14 @@ func on_time_reached_zero() -> void:
 			gate.play("left_gate")
 		elif Global.lvl2_playing:
 			gate.play("left_gate2")
+		elif Global.lvl3_playing:
+			gate.play("left_gate2")
 	for gate in right_gate:
 		if Global.lvl1_playing:
 			gate.play("right_gate")
 		elif Global.lvl2_playing:
+			gate.play("right_gate2")
+		elif Global.lvl3_playing:
 			gate.play("right_gate2")
 	if gates:
 		gates.play()

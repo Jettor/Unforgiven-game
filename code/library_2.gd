@@ -7,9 +7,8 @@ var rngY = RandomNumberGenerator.new()
 
 func _ready():
 	Global.lvl2_playing = true
-	Global.time = 100 
-	Global.kill_count = 0
-	Global.score = 0
+	Global.time = 100
+	Global.lvl_id = 2
 	Global.x2 = false
 	Global.player_alive = true
 	Global.score_reward = 100
@@ -18,16 +17,8 @@ func _ready():
 	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
 	$Timer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
-
-func _on_finish_area_entered(area):
-	print("ENTERED!!")
-	Global.lvl1_playing = false
-	$CharacterBody2D/Camera2D/zoom_animation.play("limit_break")
-	$CharacterBody2D.hide()
-	$lvl_finished.start()
 	
 func _on_timer_timeout():
 	for i in range(4):
@@ -53,6 +44,13 @@ func spawn_enemy(position: Vector2):
 	
 func _stop() -> void: 
 	set_process(false)
+	
+func _on_finish_area_entered(area):
+	print("ENTERED!!")
+	Global.lvl2_playing = false
+	$CharacterBody2D/Camera2D/zoom_animation.play("limit_break")
+	$CharacterBody2D.hide()
+	$lvl_finished.start()
 	
 func _on_lvl_finished_timeout():
 	_stop()

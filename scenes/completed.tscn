@@ -1,15 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://bimociwid02ia"]
+[gd_scene load_steps=17 format=3 uid="uid://cthp43gdwix47"]
 
-[ext_resource type="Script" path="res://code/winner.gd" id="1_n0em3"]
-[ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_v6kdm"]
-[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="2_6hdne"]
-[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="3_jr5n4"]
-[ext_resource type="AudioStream" uid="uid://cwutu0k1fbag5" path="res://music/win-sound.mp3" id="5_6aat5"]
-[ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_hifes"]
-[ext_resource type="Texture2D" uid="uid://m5ki5qtuhy5t" path="res://images/frame.png" id="6_k0yv5"]
-[ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_beta5"]
+[ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_2b16g"]
+[ext_resource type="Script" path="res://scenes/completed.gd" id="1_j0n2s"]
+[ext_resource type="AudioStream" uid="uid://cwutu0k1fbag5" path="res://music/win-sound.mp3" id="2_h0or1"]
+[ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="3_v4sjj"]
+[ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="4_slv0e"]
+[ext_resource type="Texture2D" uid="uid://m5ki5qtuhy5t" path="res://images/frame.png" id="5_l12f8"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="6_jxup0"]
+[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="7_ofpoi"]
 
-[sub_resource type="Shader" id="Shader_ry2kt"]
+[sub_resource type="Shader" id="Shader_fl0mm"]
 code = "shader_type canvas_item;
 
 void vertex() {
@@ -26,15 +26,15 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v35s8"]
-shader = SubResource("Shader_ry2kt")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnksp"]
+shader = SubResource("Shader_fl0mm")
 
-[sub_resource type="Theme" id="Theme_sj6pb"]
+[sub_resource type="Theme" id="Theme_4s37r"]
 
-[sub_resource type="Theme" id="Theme_asdg7"]
+[sub_resource type="Theme" id="Theme_hgsm4"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ev81"]
-texture = ExtResource("6_k0yv5")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1plod"]
+texture = ExtResource("5_l12f8")
 region_rect = Rect2(0, 0, 96, 53)
 
 [sub_resource type="Animation" id="Animation_0r2kn"]
@@ -73,57 +73,59 @@ _data = {
 "fade out": SubResource("Animation_5xoca")
 }
 
-[node name="Control" type="Control"]
+[node name="Completed" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_n0em3")
+script = ExtResource("1_j0n2s")
 
-[node name="wall" type="TextureRect" parent="."]
+[node name="wall2" type="TextureRect" parent="."]
 modulate = Color(0.521141, 0.521141, 0.521141, 1)
-material = SubResource("ShaderMaterial_v35s8")
+material = SubResource("ShaderMaterial_vnksp")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_v6kdm")
+texture = ExtResource("1_2b16g")
 stretch_mode = 1
 
-[node name="WinSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_6aat5")
+[node name="WinSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_h0or1")
 
 [node name="hover" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_hifes")
+stream = ExtResource("3_v4sjj")
 
 [node name="press" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_beta5")
+stream = ExtResource("4_slv0e")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel2" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_right = -670.0
+offset_left = -805.0
+offset_right = 805.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_sj6pb")
+theme = SubResource("Theme_4s37r")
 
-[node name="best_stats" type="Panel" parent="Panel"]
+[node name="best_stats" type="Panel" parent="Panel2"]
 layout_mode = 0
-offset_left = 626.0
-offset_top = 257.0
-offset_right = 1138.0
-offset_bottom = 526.0
-theme = SubResource("Theme_asdg7")
-theme_override_styles/panel = SubResource("StyleBoxTexture_7ev81")
+offset_left = 816.0
+offset_top = 268.0
+offset_right = 1328.0
+offset_bottom = 537.0
+theme = SubResource("Theme_hgsm4")
+theme_override_styles/panel = SubResource("StyleBoxTexture_1plod")
 metadata/_edit_group_ = true
 
-[node name="personal" type="Label" parent="Panel/best_stats"]
+[node name="personal" type="Label" parent="Panel2/best_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -137,13 +139,13 @@ offset_bottom = -53.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 theme_override_font_sizes/font_size = 25
 text = "PERSONAL BEST
 
 "
 
-[node name="score" type="Label" parent="Panel/best_stats"]
+[node name="score" type="Label" parent="Panel2/best_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -156,11 +158,11 @@ offset_right = 119.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 text = "Your score:0"
 horizontal_alignment = 1
 
-[node name="czas" type="Label" parent="Panel/best_stats"]
+[node name="czas" type="Label" parent="Panel2/best_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -173,11 +175,11 @@ offset_right = 131.0
 offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 text = "Collected time:0 sec"
 horizontal_alignment = 1
 
-[node name="kill_count" type="Label" parent="Panel/best_stats"]
+[node name="kill_count" type="Label" parent="Panel2/best_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -190,21 +192,21 @@ offset_right = 88.0
 offset_bottom = 76.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 text = "Kill count:0"
 horizontal_alignment = 1
 
-[node name="current_stats" type="Panel" parent="Panel"]
+[node name="current_stats" type="Panel" parent="Panel2"]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 257.0
-offset_right = 605.0
-offset_bottom = 526.0
-theme = SubResource("Theme_asdg7")
-theme_override_styles/panel = SubResource("StyleBoxTexture_7ev81")
+offset_left = 283.0
+offset_top = 268.0
+offset_right = 795.0
+offset_bottom = 537.0
+theme = SubResource("Theme_hgsm4")
+theme_override_styles/panel = SubResource("StyleBoxTexture_1plod")
 metadata/_edit_group_ = true
 
-[node name="this_game" type="Label" parent="Panel/current_stats"]
+[node name="this_game" type="Label" parent="Panel2/current_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -218,14 +220,14 @@ offset_bottom = -14.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.843137, 0, 1)
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 theme_override_font_sizes/font_size = 25
 text = "THIS GAME
 
 
 "
 
-[node name="score" type="Label" parent="Panel/current_stats"]
+[node name="score" type="Label" parent="Panel2/current_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -238,11 +240,11 @@ offset_right = 125.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 text = "Your score:0"
 horizontal_alignment = 1
 
-[node name="czas" type="Label" parent="Panel/current_stats"]
+[node name="czas" type="Label" parent="Panel2/current_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -255,11 +257,11 @@ offset_right = 131.0
 offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 text = "Collected time:0 sec"
 horizontal_alignment = 1
 
-[node name="kill_count" type="Label" parent="Panel/current_stats"]
+[node name="kill_count" type="Label" parent="Panel2/current_stats"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -272,32 +274,32 @@ offset_right = 89.0
 offset_bottom = 76.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 text = "Kill count:0"
 horizontal_alignment = 1
 
-[node name="you_win" type="Label" parent="Panel"]
+[node name="you_win" type="Label" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -675.0
-offset_top = -478.0
-offset_right = 675.0
-offset_bottom = -328.0
+offset_left = -715.0
+offset_top = -484.0
+offset_right = 715.0
+offset_bottom = -334.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.0315464, 0.758554, 3.85046e-07, 1)
-theme_override_colors/font_outline_color = Color(0.128453, 0.269749, 8.26405e-05, 1)
+theme_override_colors/font_color = Color(1, 0.74902, 0, 1)
+theme_override_colors/font_outline_color = Color(0.427129, 0.312432, 9.62615e-08, 1)
 theme_override_constants/outline_size = 40
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 theme_override_font_sizes/font_size = 130
-text = ">VICTORY<"
+text = ">COMPLETED<"
 horizontal_alignment = 1
 
-[node name="message" type="Label" parent="Panel"]
+[node name="message" type="Label" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -305,18 +307,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -424.0
-offset_top = 77.0
+offset_top = 55.0
 offset_right = 424.0
-offset_bottom = 97.0
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme_override_fonts/font = ExtResource("6_jxup0")
 theme_override_font_sizes/font_size = 20
-text = "You managed to survive and descend deeper
- into the unknowm"
+text = "The dungeons are nothing for you! 
+Enjoy freedom. For now..."
 horizontal_alignment = 1
 
-[node name="Next" type="Button" parent="Panel"]
+[node name="Next" type="Button" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -330,12 +332,12 @@ offset_bottom = 264.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../restart")
-theme = ExtResource("2_6hdne")
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme = ExtResource("7_ofpoi")
+theme_override_fonts/font = ExtResource("6_jxup0")
 theme_override_font_sizes/font_size = 30
-text = "NEXT"
+text = "CREDITS"
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="Button" type="Button" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -350,12 +352,12 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../Next")
 focus_neighbor_bottom = NodePath("../restart")
-theme = ExtResource("2_6hdne")
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme = ExtResource("7_ofpoi")
+theme_override_fonts/font = ExtResource("6_jxup0")
 theme_override_font_sizes/font_size = 30
 text = "MENU"
 
-[node name="restart" type="Button" parent="Panel"]
+[node name="restart" type="Button" parent="Panel2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -370,12 +372,13 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../Button")
 focus_neighbor_bottom = NodePath("../Next")
-theme = ExtResource("2_6hdne")
-theme_override_fonts/font = ExtResource("3_jr5n4")
+theme = ExtResource("7_ofpoi")
+theme_override_fonts/font = ExtResource("6_jxup0")
 theme_override_font_sizes/font_size = 30
 text = "RESTART"
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -385,17 +388,17 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="black_screen" type="AnimationPlayer" parent="ColorRect"]
+[node name="black_screen" type="AnimationPlayer" parent="ColorRect2"]
 libraries = {
 "": SubResource("AnimationLibrary_3i3fh")
 }
 
-[connection signal="focus_entered" from="Panel/Next" to="." method="_on_next_focus_entered"]
-[connection signal="mouse_entered" from="Panel/Next" to="." method="_on_next_mouse_entered"]
-[connection signal="pressed" from="Panel/Next" to="." method="_on_next_pressed"]
-[connection signal="focus_entered" from="Panel/Button" to="." method="_on_button_focus_entered"]
-[connection signal="mouse_entered" from="Panel/Button" to="." method="_on_button_mouse_entered"]
-[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
-[connection signal="focus_entered" from="Panel/restart" to="." method="_on_restart_focus_entered"]
-[connection signal="mouse_entered" from="Panel/restart" to="." method="_on_restart_mouse_entered"]
-[connection signal="pressed" from="Panel/restart" to="." method="_on_restart_pressed"]
+[connection signal="focus_entered" from="Panel2/Next" to="." method="_on_next_focus_entered"]
+[connection signal="mouse_entered" from="Panel2/Next" to="." method="_on_next_mouse_entered"]
+[connection signal="pressed" from="Panel2/Next" to="." method="_on_next_pressed"]
+[connection signal="focus_entered" from="Panel2/Button" to="." method="_on_button_focus_entered"]
+[connection signal="mouse_entered" from="Panel2/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="Panel2/Button" to="." method="_on_button_pressed"]
+[connection signal="focus_entered" from="Panel2/restart" to="." method="_on_restart_focus_entered"]
+[connection signal="mouse_entered" from="Panel2/restart" to="." method="_on_restart_mouse_entered"]
+[connection signal="pressed" from="Panel2/restart" to="." method="_on_restart_pressed"]

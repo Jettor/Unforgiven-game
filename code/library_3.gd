@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var enemy_scene = preload("res://scenes/enemy.tscn")
 var penta_scene = preload("res://scenes/pentagram.tscn")
@@ -6,26 +6,22 @@ var rngX = RandomNumberGenerator.new()
 var rngY = RandomNumberGenerator.new()
 
 func _ready():
-	Global.lvl1_playing = true
-	Global.x2 = false
-	Global.score_reward = 100
-	$fall.play()
-	Global.player_alive = true
-	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
-	Global.score = 0
-	$Timer.start()
-	Global.lvl_id = 1
+	Global.lvl3_playing = true
 	Global.time = 100
-	Global.kill_count = 0
+	Global.x2 = false
+	Global.lvl_id = 3
+	Global.player_alive = true
+	Global.score_reward = 100
 	Global.gained_time = 0
 	Global.speed_plus = 95
+	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
+	$Timer.start()
+	$CharacterBody2D/candle_light.show()
 
-func _physics_process(delta):
+func _process(delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
-	if Global.player_alive == false:
-		$finish/shape.disabled = true
-
-func _on_timer_timeout():         #SPAWNING ENEMIES
+	
+func _on_timer_timeout():
 	for i in range(4):
 		var position = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
 		while position.distance_to($CharacterBody2D.position) < 300:
@@ -46,17 +42,18 @@ func spawn_enemy(position: Vector2):
 	await get_tree().create_timer(0.5).timeout
 	pentagram.queue_free()
 	Global.speed_plus += Global.normal_addition
-
+	
 func _stop() -> void: 
 	set_process(false)
-
-func _on_finish_area_entered(area):
-	print("ENTERED!!")
-	Global.lvl1_playing = false
-	$CharacterBody2D/Camera2D/zoom_animation.play("limit_break")
-	$CharacterBody2D.hide()
-	$lvl_finished.start()
-
+	
 func _on_lvl_finished_timeout():
 	_stop()
 	get_tree().change_scene_to_file("res://scenes/winner.tscn")
+
+
+func _on_end_game_zone_area_entered(area):
+	print("END!!")
+	Global.lvl3_playing = false
+	$CharacterBody2D/Camera2D/zoom_animation.play("limit_break")
+	$CharacterBody2D.hide()
+	$lvl_finished.start()

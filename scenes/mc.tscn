@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=37 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Texture2D" uid="uid://ige8o7gprmu6" path="res://images/juan.png" id="1_6kxty"]
 [ext_resource type="Script" path="res://code/mc.gd" id="1_tt4rc"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bs3xllpaxpcqp" path="res://music/player_damage.mp3" id="8_5krv6"]
 [ext_resource type="Script" path="res://code/healthbar.gd" id="9_32chr"]
 [ext_resource type="PackedScene" uid="uid://cuom58gpjk0p6" path="res://dash.tscn" id="11_cosi0"]
+[ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="12_7lxtn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61ipx"]
 shader = ExtResource("2_6iiml")
@@ -338,6 +339,15 @@ editor_draw_limits = true
 libraries = {
 "": SubResource("AnimationLibrary_r08sr")
 }
+
+[node name="candle_light" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(3.09151, 2.76355)
+color = Color(0.999998, 0.538496, 0.334466, 1)
+energy = 1.78
+shadow_enabled = true
+texture = ExtResource("12_7lxtn")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="WaitForLoseScreen" to="." method="_on_wait_for_lose_screen_timeout"]

@@ -20,9 +20,11 @@ var death_sound: AudioStreamPlayer
 var best_score = 0
 var best_kill_count = 0
 var best_gained_time = 0
+var lvl_id = 0
 
 var lvl1_playing = false
 var lvl2_playing = false
+var lvl3_playing = false
 
 func _ready():
 	death_sound = AudioStreamPlayer.new()

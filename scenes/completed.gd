@@ -4,14 +4,14 @@ extends Control
 func _ready():
 	print(">>WIN<<")
 	Global.load_data()
-	$Panel/Next.grab_focus()
-	$WinSound.play()
-	$ColorRect/black_screen.play("fade out")
+	$Panel2/Next.grab_focus()
+	$WinSound2.play()
+	$ColorRect2/black_screen.play("fade out")
 	
 	# Display current match stats
-	$Panel/current_stats/score.text = "Score: " + str(Global.score)
-	$Panel/current_stats/czas.text = "Gained time: " + str(Global.gained_time) + " sec"
-	$Panel/current_stats/kill_count.text = "Kill count: " + str(Global.kill_count)
+	$Panel2/current_stats/score.text = "Score: " + str(Global.score)
+	$Panel2/current_stats/czas.text = "Gained time: " + str(Global.gained_time) + " sec"
+	$Panel2/current_stats/kill_count.text = "Kill count: " + str(Global.kill_count)
 	var new_best = false
 	
 	if Global.score > Global.best_score:
@@ -32,9 +32,9 @@ func _ready():
 		Global.load_data()  # Reload the saved data to make sure it's updated
 	
 	# Display best stats
-	$Panel/best_stats/score.text = "Score: " + str(Global.best_score)
-	$Panel/best_stats/czas.text = "Gained time: " + str(Global.best_gained_time) + " sec"
-	$Panel/best_stats/kill_count.text = "Kill count: " + str(Global.best_kill_count)
+	$Panel2/best_stats/score.text = "Score: " + str(Global.best_score)
+	$Panel2/best_stats/czas.text = "Gained time: " + str(Global.best_gained_time) + " sec"
+	$Panel2/best_stats/kill_count.text = "Kill count: " + str(Global.best_kill_count)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,13 +52,10 @@ func _on_restart_pressed(): #RESTART
 	await $press.finished
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 	
-func _on_next_pressed(): #NEXT LEVEL
+func _on_next_pressed(): #CREDITS
 	$press.play()
 	await $press.finished
-	if Global.lvl_id == 1:
-		get_tree().change_scene_to_file("res://scenes/library_2.tscn")
-	elif Global.lvl_id == 2:
-		get_tree().change_scene_to_file("res://scenes/library_3.tscn")
+	get_tree().change_scene_to_file("res://scenes/creators.tscn")
 
 func _on_button_mouse_entered():
 	$hover.play()

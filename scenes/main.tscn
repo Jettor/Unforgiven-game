@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=4 uid="uid://bdi3r7uxv6kq4"]
 
-[ext_resource type="Script" path="res://code/main.gd" id="1_ebn5p"]
-[ext_resource type="Script" path="res://code/Panel.gd" id="2_vwm40"]
+[ext_resource type="Script" uid="uid://dwhemxm3hh4c3" path="res://code/main.gd" id="1_ebn5p"]
+[ext_resource type="Script" uid="uid://buvauasj7qngx" path="res://code/Panel.gd" id="2_vwm40"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="3_x0r3i"]
 [ext_resource type="PackedScene" uid="uid://cnlkc48vkxun" path="res://scenes/pause.tscn" id="4_nyclh"]
 [ext_resource type="Texture2D" uid="uid://vu0sk2st4xui" path="res://images/moving_element.png" id="6_0jqmp"]
@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://c0yas33spof52" path="res://images/illumination.png" id="8_rrvs0"]
 [ext_resource type="PackedScene" uid="uid://bkoweo4wyyvik" path="res://scenes/mc.tscn" id="10_ieyke"]
 [ext_resource type="PackedScene" uid="uid://b146hb34lplj" path="res://scenes/enemy.tscn" id="11_8aqqj"]
-[ext_resource type="AudioStream" uid="uid://c05o6cgeneptp" path="res://music/FLak_-_The_022_Incident.wav" id="12_p2r8u"]
 [ext_resource type="AudioStream" uid="uid://56hlc57ujl53" path="res://music/fall.mp3" id="13_cdjdf"]
+[ext_resource type="AudioStream" uid="uid://0yo8hc0xoko4" path="res://music/new_battle_theme.mp3" id="13_jbj1t"]
 [ext_resource type="AudioStream" uid="uid://c4btnpb7u0o6t" path="res://music/stone_gate.mp3" id="14_qnobu"]
 [ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="15_hm3ku"]
 
@@ -1014,8 +1014,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_60od3"]
 _data = {
-"left_gate": SubResource("Animation_8enqo"),
-"left_gate2": SubResource("Animation_gte7y")
+&"left_gate": SubResource("Animation_8enqo"),
+&"left_gate2": SubResource("Animation_gte7y")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a8gjb"]
@@ -1055,8 +1055,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2ba3w"]
 _data = {
-"right_gate": SubResource("Animation_i07bo"),
-"right_gate2": SubResource("Animation_7lvv7")
+&"right_gate": SubResource("Animation_i07bo"),
+&"right_gate2": SubResource("Animation_7lvv7")
 }
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_485y4"]
@@ -1634,10 +1634,10 @@ polygon = PackedVector2Array(8, -8, 8, -1.375, -0.375, -1, -4.25, 8, -8, 8, -8, 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mw7q4"]
 texture = ExtResource("8_hdrim")
 0:0/0 = 0
-0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
-1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1652,16 +1652,16 @@ texture = ExtResource("8_hdrim")
 7:0/0 = 0
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:0/0 = 0
-8:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wadpj")
+8:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wadpj")
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:0/0 = 0
-9:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wadpj")
+9:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wadpj")
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
-0:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
+0:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
-1:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
+1:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2ptuo")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
 2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1676,10 +1676,10 @@ texture = ExtResource("8_hdrim")
 7:1/0 = 0
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0 = 0
-8:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_vsfca")
+8:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_vsfca")
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -8, 8, -8, 8, 8, 3.625, 0.125, -1.5, -1)
 9:1/0 = 0
-9:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wadpj")
+9:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wadpj")
 9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0 = 0
 1:2/0 = 0
@@ -1690,10 +1690,10 @@ texture = ExtResource("8_hdrim")
 6:2/0 = 0
 7:2/0 = 0
 8:2/0 = 0
-8:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wadpj")
+8:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wadpj")
 8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:2/0 = 0
-9:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wadpj")
+9:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wadpj")
 9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0 = 0
 1:3/0 = 0
@@ -1704,10 +1704,10 @@ texture = ExtResource("8_hdrim")
 6:3/0 = 0
 7:3/0 = 0
 8:3/0 = 0
-8:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wadpj")
+8:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_wadpj")
 8:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:3/0 = 0
-9:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_a0r41")
+9:3/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_a0r41")
 9:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, -4.375, 8, -2, 0.25, 8, -2.375)
 0:4/0 = 0
 1:4/0 = 0
@@ -1886,7 +1886,7 @@ shape = SubResource("RectangleShape2D_y6d8t")
 
 [node name="move_left" type="AnimationPlayer" parent="L" groups=["left_gate"]]
 libraries = {
-"": SubResource("AnimationLibrary_60od3")
+&"": SubResource("AnimationLibrary_60od3")
 }
 
 [node name="R" type="CharacterBody2D" parent="."]
@@ -1902,7 +1902,7 @@ shape = SubResource("RectangleShape2D_a8gjb")
 
 [node name="move_right" type="AnimationPlayer" parent="R" groups=["right_gate"]]
 libraries = {
-"": SubResource("AnimationLibrary_2ba3w")
+&"": SubResource("AnimationLibrary_2ba3w")
 }
 
 [node name="CharacterBody2D" parent="." groups=["Player"] instance=ExtResource("10_ieyke")]
@@ -1931,7 +1931,7 @@ tile_set = SubResource("TileSet_htiqn")
 wait_time = 5.0
 
 [node name="theme" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_p2r8u")
+stream = ExtResource("13_jbj1t")
 volume_db = -10.0
 autoplay = true
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dn3mip4qjhl7h"]
 
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_au8bp"]
-[ext_resource type="Script" path="res://code/creators.gd" id="1_pofdq"]
+[ext_resource type="Script" uid="uid://bdpbcpsa5q3gr" path="res://code/creators.gd" id="1_pofdq"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_qjp7c"]
 [ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="3_ljdei"]
 [ext_resource type="AudioStream" uid="uid://cdhr8f7jyk463" path="res://music/FLaK_-_Figthin_in_Elektron.wav" id="4_y5g4y"]

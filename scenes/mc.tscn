@@ -1,15 +1,15 @@
 [gd_scene load_steps=37 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Texture2D" uid="uid://ige8o7gprmu6" path="res://images/juan.png" id="1_6kxty"]
-[ext_resource type="Script" path="res://code/mc.gd" id="1_tt4rc"]
-[ext_resource type="Shader" path="res://shaders/mc.gdshader" id="2_6iiml"]
+[ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/mc.gd" id="1_tt4rc"]
+[ext_resource type="Shader" uid="uid://bef32hgvxjsqu" path="res://shaders/mc.gdshader" id="2_6iiml"]
 [ext_resource type="Texture2D" uid="uid://cwfobrkdj72xo" path="res://images/wolking.png" id="2_s011u"]
 [ext_resource type="Texture2D" uid="uid://m5qhamx1vyns" path="res://images/jumping.png" id="3_nqa4r"]
 [ext_resource type="PackedScene" uid="uid://c44pwmfk4ihob" path="res://scenes/death_stuff.tscn" id="5_ocdsp"]
 [ext_resource type="AudioStream" uid="uid://c4u78vsnpdtuw" path="res://music/alt_shot.wav" id="6_ggplk"]
 [ext_resource type="AudioStream" uid="uid://bimivjtgqopkj" path="res://music/mc_death.mp3" id="7_rjc3q"]
 [ext_resource type="AudioStream" uid="uid://bs3xllpaxpcqp" path="res://music/player_damage.mp3" id="8_5krv6"]
-[ext_resource type="Script" path="res://code/healthbar.gd" id="9_32chr"]
+[ext_resource type="Script" uid="uid://c8cixb4mugd2o" path="res://code/healthbar.gd" id="9_32chr"]
 [ext_resource type="PackedScene" uid="uid://cuom58gpjk0p6" path="res://dash.tscn" id="11_cosi0"]
 [ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="12_7lxtn"]
 
@@ -139,8 +139,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nhnyd"]
 _data = {
-"RESET": SubResource("Animation_ckpnf"),
-"damage": SubResource("Animation_kx8nl")
+&"RESET": SubResource("Animation_ckpnf"),
+&"damage": SubResource("Animation_kx8nl")
 }
 
 [sub_resource type="Animation" id="Animation_m6f18"]
@@ -231,10 +231,10 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r08sr"]
 _data = {
-"RESET": SubResource("Animation_m6f18"),
-"cam_shake": SubResource("Animation_g7e8f"),
-"limit_break": SubResource("Animation_ds1sp"),
-"zoom_out": SubResource("Animation_ekbpb")
+&"RESET": SubResource("Animation_m6f18"),
+&"cam_shake": SubResource("Animation_g7e8f"),
+&"limit_break": SubResource("Animation_ds1sp"),
+&"zoom_out": SubResource("Animation_ekbpb")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
@@ -320,7 +320,7 @@ wait_time = 2.0
 
 [node name="damage" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_nhnyd")
+&"": SubResource("AnimationLibrary_nhnyd")
 }
 
 [node name="Dash" parent="." instance=ExtResource("11_cosi0")]
@@ -337,7 +337,7 @@ editor_draw_limits = true
 
 [node name="zoom_animation" type="AnimationPlayer" parent="Camera2D"]
 libraries = {
-"": SubResource("AnimationLibrary_r08sr")
+&"": SubResource("AnimationLibrary_r08sr")
 }
 
 [node name="candle_light" type="PointLight2D" parent="."]

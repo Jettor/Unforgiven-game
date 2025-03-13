@@ -1,6 +1,6 @@
 [gd_scene load_steps=49 format=3 uid="uid://pgjrvm77s61h"]
 
-[ext_resource type="Script" path="res://code/controls_pop_up.gd" id="1_rx5p7"]
+[ext_resource type="Script" uid="uid://cx7iuewml0kgu" path="res://code/controls_pop_up.gd" id="1_rx5p7"]
 [ext_resource type="AudioStream" uid="uid://d3ejisirg3ryk" path="res://music/pravetz - flow of time.ogg" id="2_3rjci"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="3_jld5f"]
 [ext_resource type="Texture2D" uid="uid://3d85dudj2ygh" path="res://images/pixil-frame-0.png" id="4_qrq03"]
@@ -59,9 +59,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gsp1v"]
 _data = {
-"RESET": SubResource("Animation_lb0oj"),
-"fade in": SubResource("Animation_o46m6"),
-"fade out": SubResource("Animation_lg1og")
+&"RESET": SubResource("Animation_lb0oj"),
+&"fade in": SubResource("Animation_o46m6"),
+&"fade out": SubResource("Animation_lg1og")
 }
 
 [sub_resource type="Animation" id="Animation_lnix6"]
@@ -97,8 +97,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rriu"]
 _data = {
-"RESET": SubResource("Animation_lnix6"),
-"text show": SubResource("Animation_8iko0")
+&"RESET": SubResource("Animation_lnix6"),
+&"text show": SubResource("Animation_8iko0")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8k2b"]

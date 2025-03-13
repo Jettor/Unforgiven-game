@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cuom58gpjk0p6"]
 
-[ext_resource type="Script" path="res://code/dash.gd" id="1_bfuik"]
+[ext_resource type="Script" uid="uid://dviwnvvfb13b1" path="res://code/dash.gd" id="1_bfuik"]
 [ext_resource type="AudioStream" uid="uid://b0slt68stso6t" path="res://music/dodge_sound.mp3" id="2_hw4il"]
 
 [node name="Dash" type="Node2D"]

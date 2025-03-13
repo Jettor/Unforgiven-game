@@ -1,12 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://c44pwmfk4ihob"]
 
-[ext_resource type="Script" path="res://code/Death_stuff.gd" id="1_tqpyj"]
+[ext_resource type="Script" uid="uid://5ysdi0sv6oma" path="res://code/Death_stuff.gd" id="1_tqpyj"]
 [ext_resource type="Texture2D" uid="uid://cn4jjh7bysyw2" path="res://images/death.png" id="2_ni7ni"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="3_gynlv"]
 
 [sub_resource type="Curve" id="Curve_h2y2d"]
-min_value = -360.0
-max_value = 360.0
+_limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, 8.8486), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -15,7 +14,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.992509, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_pryas"]
-max_value = 200.0
+_limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -35,7 +34,7 @@ colors = PackedColorArray(1, 1, 1, 1, 0.62, 0.62, 0.62, 0.752941)
 gradient = SubResource("Gradient_eatwl")
 
 [sub_resource type="Curve" id="Curve_kgb8u"]
-max_value = 100.0
+_limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 6.43185), 0.0, 0.0, 0, 0]
 point_count = 2
 

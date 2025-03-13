@@ -7,7 +7,7 @@ var rngY = RandomNumberGenerator.new()
 
 func _ready():
 	Global.lvl3_playing = true
-	Global.time = 100
+	Global.time = 10
 	Global.x2 = false
 	Global.lvl_id = 3
 	Global.player_alive = true
@@ -48,7 +48,7 @@ func _stop() -> void:
 	
 func _on_lvl_finished_timeout():
 	_stop()
-	get_tree().change_scene_to_file("res://scenes/winner.tscn")
+	get_tree().change_scene_to_file("res://scenes/completed.tscn")
 
 
 func _on_end_game_zone_area_entered(area):

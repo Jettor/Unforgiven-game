@@ -1,12 +1,12 @@
 [gd_scene load_steps=18 format=4 uid="uid://dsukx1wet7d6e"]
 
-[ext_resource type="Script" path="res://code/tutorial_lvl_1.gd" id="1_88rbc"]
+[ext_resource type="Script" uid="uid://52jtjo8k40hl" path="res://code/tutorial_lvl_1.gd" id="1_88rbc"]
 [ext_resource type="Texture2D" uid="uid://cxhlwoxypo5bh" path="res://images/surface_tilemap.png" id="1_vm8h0"]
 [ext_resource type="PackedScene" uid="uid://bkoweo4wyyvik" path="res://scenes/mc.tscn" id="2_8wa3c"]
 [ext_resource type="Texture2D" uid="uid://drgn3hk7rd7ok" path="res://images/tree.png" id="3_ex5vx"]
-[ext_resource type="AudioStream" uid="uid://bebgc377ul7xm" path="res://music/Abandoned Cathedra(demo-V2).mp3" id="4_4onaf"]
 [ext_resource type="Texture2D" uid="uid://bp4tqoslt7x6t" path="res://images/leaf.png" id="4_h33r3"]
 [ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="5_p7gbe"]
+[ext_resource type="AudioStream" uid="uid://h8d0b47ghq8o" path="res://music/Pravetz - Quiet Place.wav" id="6_ikraa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fuoh0"]
 texture = ExtResource("1_vm8h0")
@@ -91,8 +91,7 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_fu3d4")
 
 [sub_resource type="Curve" id="Curve_uscvp"]
-min_value = -360.0
-max_value = 360.0
+_limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -334,8 +333,8 @@ tile_set = SubResource("TileSet_4yaef")
 [node name="leaves1" type="CPUParticles2D" parent="layer_holder"]
 position = Vector2(739, 832)
 amount = 2
-lifetime = 3.0
 texture = ExtResource("4_h33r3")
+lifetime = 3.0
 spread = 180.0
 gravity = Vector2(300, 0)
 angular_velocity_min = -2.0
@@ -347,8 +346,8 @@ color_ramp = SubResource("Gradient_hba8b")
 [node name="leaves2" type="CPUParticles2D" parent="layer_holder"]
 position = Vector2(855, 890)
 amount = 2
-lifetime = 2.0
 texture = ExtResource("4_h33r3")
+lifetime = 2.0
 spread = 180.0
 gravity = Vector2(300, 0)
 angular_velocity_min = -2.0
@@ -370,9 +369,8 @@ tile_set = SubResource("TileSet_lnukm")
 position = Vector2(1874, 990)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_4onaf")
+stream = ExtResource("6_ikraa")
 autoplay = true
-parameters/looping = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.485703, 0.485704, 0.485703, 1)

@@ -16,7 +16,6 @@ func _set_health(new_health):
 	else:
 		damage_bar.value = health
 
-
 func init_health(_health):
 	health = _health
 	max_value = health

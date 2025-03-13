@@ -1,11 +1,11 @@
 [gd_scene load_steps=26 format=3 uid="uid://tdpuab6wo04l"]
 
-[ext_resource type="Script" path="res://code/Menu.gd" id="1_mm7fr"]
-[ext_resource type="Shader" path="res://shaders/moving_menu.gdshader" id="2_ed1n0"]
+[ext_resource type="Script" uid="uid://da02w47wg2cec" path="res://code/Menu.gd" id="1_mm7fr"]
+[ext_resource type="Shader" uid="uid://cbpbfpd2c6rw6" path="res://shaders/moving_menu.gdshader" id="2_ed1n0"]
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="3_hm6j2"]
-[ext_resource type="Shader" path="res://shaders/intro_windws.gdshader" id="4_uvgkk"]
+[ext_resource type="Shader" uid="uid://b375r6q3vhajd" path="res://shaders/intro_windws.gdshader" id="4_uvgkk"]
 [ext_resource type="Texture2D" uid="uid://dkvci1chonna6" path="res://images/windows.png" id="5_bquqp"]
-[ext_resource type="Shader" path="res://shaders/moving_columns.gdshader" id="6_jn6w5"]
+[ext_resource type="Shader" uid="uid://bh3h0g2lo2pp0" path="res://shaders/moving_columns.gdshader" id="6_jn6w5"]
 [ext_resource type="Texture2D" uid="uid://cnlwimxtre7yi" path="res://images/test_cols.png" id="7_1oky4"]
 [ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="8_df72t"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="9_1drgl"]
@@ -80,8 +80,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ji2j7"]
 _data = {
-"RESET": SubResource("Animation_3dbwb"),
-"UI_appear": SubResource("Animation_j12w8")
+&"RESET": SubResource("Animation_3dbwb"),
+&"UI_appear": SubResource("Animation_j12w8")
 }
 
 [sub_resource type="Animation" id="Animation_bk6vo"]
@@ -118,8 +118,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8p0el"]
 _data = {
-"fade_in": SubResource("Animation_bk6vo"),
-"fade_out": SubResource("Animation_p2vmv")
+&"fade_in": SubResource("Animation_bk6vo"),
+&"fade_out": SubResource("Animation_p2vmv")
 }
 
 [sub_resource type="Animation" id="Animation_ld56l"]
@@ -156,8 +156,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_stwfa"]
 _data = {
-"RESET": SubResource("Animation_ld56l"),
-"title_animation": SubResource("Animation_6hi56")
+&"RESET": SubResource("Animation_ld56l"),
+&"title_animation": SubResource("Animation_6hi56")
 }
 
 [node name="Menu" type="Control"]
@@ -213,7 +213,7 @@ texture = ExtResource("7_1oky4")
 [node name="moving" type="AnimationPlayer" parent="CanvasLayer"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_ji2j7")
+&"": SubResource("AnimationLibrary_ji2j7")
 }
 
 [node name="Control" type="Control" parent="CanvasLayer/moving"]
@@ -304,7 +304,7 @@ hframes = 7
 [node name="transition" type="AnimationPlayer" parent="CanvasLayer"]
 root_node = NodePath("../..")
 libraries = {
-"": SubResource("AnimationLibrary_8p0el")
+&"": SubResource("AnimationLibrary_8p0el")
 }
 
 [node name="black screen" type="ColorRect" parent="CanvasLayer/transition"]
@@ -326,7 +326,7 @@ autoplay = true
 [node name="logo_wave" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CanvasLayer/moving/HBoxContainer/Sprite2D")
 libraries = {
-"": SubResource("AnimationLibrary_stwfa")
+&"": SubResource("AnimationLibrary_stwfa")
 }
 
 [node name="hover" type="AudioStreamPlayer" parent="."]

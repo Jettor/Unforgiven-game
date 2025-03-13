@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b146hb34lplj"]
 
-[ext_resource type="Script" path="res://code/Enemy.gd" id="1_11i7g"]
+[ext_resource type="Script" uid="uid://cbqr802i45acx" path="res://code/Enemy.gd" id="1_11i7g"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="2_vm06k"]
 [ext_resource type="AudioStream" uid="uid://d26c66olj7ijn" path="res://music/enemy_damage.mp3" id="3_eeujb"]
 

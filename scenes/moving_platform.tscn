@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://cwd4dv8tmvx7x"]
 
-[ext_resource type="Script" path="res://platform.gd" id="1_4i0x7"]
+[ext_resource type="Script" uid="uid://xpv5d1msnaip" path="res://platform.gd" id="1_4i0x7"]
 [ext_resource type="Texture2D" uid="uid://dw7exv7113q2i" path="res://images/library_stuff_TEST.png" id="1_05qvn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_djba2"]
@@ -392,8 +392,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8ykf"]
 _data = {
-"RESET": SubResource("Animation_0vkkc"),
-"move_platform": SubResource("Animation_52k8p")
+&"RESET": SubResource("Animation_0vkkc"),
+&"move_platform": SubResource("Animation_52k8p")
 }
 
 [node name="Moving_platform" type="Node2D"]

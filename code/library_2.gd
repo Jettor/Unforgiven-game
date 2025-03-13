@@ -7,7 +7,7 @@ var rngY = RandomNumberGenerator.new()
 
 func _ready():
 	Global.lvl2_playing = true
-	Global.time = 100
+	Global.time = 10
 	Global.lvl_id = 2
 	Global.x2 = false
 	Global.player_alive = true

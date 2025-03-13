@@ -35,8 +35,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ulwul"]
 _data = {
-"RESET": SubResource("Animation_asyyc"),
-"handle_penta": SubResource("Animation_ke3kx")
+&"RESET": SubResource("Animation_asyyc"),
+&"handle_penta": SubResource("Animation_ke3kx")
 }
 
 [node name="Pentagram" type="Node2D"]

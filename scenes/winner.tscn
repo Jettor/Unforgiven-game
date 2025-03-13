@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bimociwid02ia"]
 
-[ext_resource type="Script" path="res://code/winner.gd" id="1_n0em3"]
+[ext_resource type="Script" uid="uid://duyyw2x1tg1mu" path="res://code/winner.gd" id="1_n0em3"]
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_v6kdm"]
 [ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="2_6hdne"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="3_jr5n4"]
@@ -69,8 +69,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3i3fh"]
 _data = {
-"RESET": SubResource("Animation_0r2kn"),
-"fade out": SubResource("Animation_5xoca")
+&"RESET": SubResource("Animation_0r2kn"),
+&"fade out": SubResource("Animation_5xoca")
 }
 
 [node name="Control" type="Control"]
@@ -387,7 +387,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="black_screen" type="AnimationPlayer" parent="ColorRect"]
 libraries = {
-"": SubResource("AnimationLibrary_3i3fh")
+&"": SubResource("AnimationLibrary_3i3fh")
 }
 
 [connection signal="focus_entered" from="Panel/Next" to="." method="_on_next_focus_entered"]

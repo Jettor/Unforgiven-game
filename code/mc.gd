@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal knockback
 
-const normal_SPEED = 300.0
+var normal_SPEED = 300.0
 const dash_SPEED = 700.0
 const dash_length =  0.3
 const JUMP_VELOCITY = -500.0
@@ -161,3 +161,8 @@ func _on_wait_for_lose_screen_timeout():
 
 func _on_immortality_timeout():
 	can_take_damage = true
+
+func set_jump(value):	#Change max jumps if needed
+	jump_max = value
+func set_normalSpeed(value): #Change player walk speed
+	normal_SPEED = value

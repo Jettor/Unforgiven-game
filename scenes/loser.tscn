@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=3 uid="uid://cn8368w254jgq"]
 
 [ext_resource type="Texture2D" uid="uid://dravm6dli77kc" path="res://images/bg.png" id="1_7g5gg"]
-[ext_resource type="Script" path="res://code/loser.gd" id="1_vysxg"]
+[ext_resource type="Script" uid="uid://bjh4nblgiaj18" path="res://code/loser.gd" id="1_vysxg"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_bos81"]
 [ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="3_gymnu"]
 [ext_resource type="Texture2D" uid="uid://2v2ig0s37y2" path="res://images/death_skull.png" id="4_4eb4u"]
 [ext_resource type="Texture2D" uid="uid://m5ki5qtuhy5t" path="res://images/frame.png" id="5_nu8p5"]
-[ext_resource type="AudioStream" uid="uid://3l6on5s5klaw" path="res://music/lose-sound.mp3" id="5_ypqjt"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="6_do268"]
+[ext_resource type="AudioStream" uid="uid://bhbonrx0yst8d" path="res://music/pravetz-loose_sound2.ogg" id="7_hg4ij"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_irffs"]
 
 [sub_resource type="Shader" id="Shader_0ytkg"]
@@ -70,8 +70,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3i3fh"]
 _data = {
-"RESET": SubResource("Animation_0r2kn"),
-"fade out": SubResource("Animation_5xoca")
+&"RESET": SubResource("Animation_0r2kn"),
+&"fade out": SubResource("Animation_5xoca")
 }
 
 [node name="Control" type="Control"]
@@ -352,8 +352,10 @@ theme_override_font_sizes/font_size = 30
 text = "RESTART"
 
 [node name="LoseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_ypqjt")
-volume_db = -5.0
+stream = ExtResource("7_hg4ij")
+volume_db = 1.6
+autoplay = true
+parameters/looping = true
 
 [node name="hover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_do268")
@@ -362,7 +364,6 @@ stream = ExtResource("6_do268")
 stream = ExtResource("7_irffs")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -374,7 +375,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="black_screen" type="AnimationPlayer" parent="ColorRect"]
 libraries = {
-"": SubResource("AnimationLibrary_3i3fh")
+&"": SubResource("AnimationLibrary_3i3fh")
 }
 
 [connection signal="focus_entered" from="Panel/Button" to="." method="_on_button_focus_entered"]

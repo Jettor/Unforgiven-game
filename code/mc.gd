@@ -8,6 +8,7 @@ const dash_length =  0.3
 const JUMP_VELOCITY = -500.0
 var death_scene = load("res://scenes/death_stuff.tscn")
 @onready var dash = $Dash
+@onready var walk_sound = $WalkSound
 @onready var sprite_2d = $Sprite2D
 @onready var marker_2d = $Marker2D
 @onready var death_stuff = $Death_stuff
@@ -61,6 +62,7 @@ func death():
 	$WaitForLoseScreen.start()
 	
 func _physics_process(delta):
+	
 	if Input.is_action_just_pressed("kill_game"): # KILL GAME
 		get_tree().quit()
 		
@@ -111,20 +113,23 @@ func _physics_process(delta):
 	if is_on_floor(): # Reset jump
 		jump_count = 0
 		
+	if is_on_floor() and is_moving(): # walk sound
+		if $walk_timer.time_left <= 0:
+			walk_sound.pitch_scale = randf_range(0.8, 1.2)
+			walk_sound.play()
+			$walk_timer.start()
+		
 	if Input.is_action_just_pressed("instant_death"): 
 		death()
 		
 	if Input.is_action_just_released("ui_accept") and velocity.y < 0:
 		velocity.y = JUMP_VELOCITY /4
 		
-
 	if Input.is_action_just_pressed("ui_accept") and jump_count < jump_max: # Handle jump
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("ui_left", "ui_right") # Handle movement
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -139,6 +144,7 @@ func _physics_process(delta):
 		sprite_2d.flip_h = false
 		$Marker2D.position = Vector2(31, 5)
 		
+	
 func _on_area_2d_area_entered(area): # TAKING DAMAGE
 	if area.is_in_group("Wrog") and can_take_damage == true:
 		damage_takenp = 20
@@ -161,6 +167,9 @@ func _on_wait_for_lose_screen_timeout():
 
 func _on_immortality_timeout():
 	can_take_damage = true
+
+func is_moving() -> bool:
+	return velocity.length() > 0
 
 func set_jump(value):	#Change max jumps if needed
 	jump_max = value

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=38 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Texture2D" uid="uid://ige8o7gprmu6" path="res://images/juan.png" id="1_6kxty"]
 [ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/mc.gd" id="1_tt4rc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://m5qhamx1vyns" path="res://images/jumping.png" id="3_nqa4r"]
 [ext_resource type="PackedScene" uid="uid://c44pwmfk4ihob" path="res://scenes/death_stuff.tscn" id="5_ocdsp"]
 [ext_resource type="AudioStream" uid="uid://c4u78vsnpdtuw" path="res://music/alt_shot.wav" id="6_ggplk"]
+[ext_resource type="AudioStream" uid="uid://d1lnt08ay2umo" path="res://music/walk_concrete.wav" id="7_dlm4k"]
 [ext_resource type="AudioStream" uid="uid://bimivjtgqopkj" path="res://music/mc_death.mp3" id="7_rjc3q"]
 [ext_resource type="AudioStream" uid="uid://bs3xllpaxpcqp" path="res://music/player_damage.mp3" id="8_5krv6"]
 [ext_resource type="Script" uid="uid://c8cixb4mugd2o" path="res://code/healthbar.gd" id="9_32chr"]
@@ -255,6 +256,14 @@ shape = SubResource("CapsuleShape2D_3aqem")
 position = Vector2(31, 5)
 
 [node name="Death_stuff" parent="." instance=ExtResource("5_ocdsp")]
+
+[node name="walk_timer" type="Timer" parent="."]
+wait_time = 0.297
+one_shot = true
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_dlm4k")
+volume_db = 1.2
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ggplk")

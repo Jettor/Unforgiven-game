@@ -445,7 +445,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="fader" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gsp1v")
+&"": SubResource("AnimationLibrary_gsp1v")
 }
 
 [node name="screen" type="ColorRect" parent="fader"]
@@ -507,7 +507,7 @@ visible_ratio = 0.0
 
 [node name="Writer" type="AnimationPlayer" parent="no_image_text"]
 libraries = {
-"": SubResource("AnimationLibrary_3rriu")
+&"": SubResource("AnimationLibrary_3rriu")
 }
 speed_scale = 0.5
 
@@ -540,7 +540,7 @@ visible_ratio = 0.0
 
 [node name="Writer" type="AnimationPlayer" parent="text0"]
 libraries = {
-"": SubResource("AnimationLibrary_3rriu")
+&"": SubResource("AnimationLibrary_3rriu")
 }
 speed_scale = 0.5
 
@@ -574,7 +574,7 @@ visible_ratio = 0.0
 
 [node name="Writer" type="AnimationPlayer" parent="text1"]
 libraries = {
-"": SubResource("AnimationLibrary_3rriu")
+&"": SubResource("AnimationLibrary_3rriu")
 }
 speed_scale = 0.5
 
@@ -608,7 +608,7 @@ visible_ratio = 0.0
 
 [node name="Writer" type="AnimationPlayer" parent="text2"]
 libraries = {
-"": SubResource("AnimationLibrary_3rriu")
+&"": SubResource("AnimationLibrary_3rriu")
 }
 speed_scale = 0.5
 
@@ -644,7 +644,7 @@ visible_ratio = 0.0
 
 [node name="Writer" type="AnimationPlayer" parent="text3"]
 libraries = {
-"": SubResource("AnimationLibrary_3rriu")
+&"": SubResource("AnimationLibrary_3rriu")
 }
 speed_scale = 0.5
 
@@ -671,7 +671,7 @@ visible_ratio = 0.0
 
 [node name="Writer" type="AnimationPlayer" parent="text4"]
 libraries = {
-"": SubResource("AnimationLibrary_3rriu")
+&"": SubResource("AnimationLibrary_3rriu")
 }
 speed_scale = 0.5
 

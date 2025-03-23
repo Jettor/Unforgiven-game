@@ -3,6 +3,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$song.play()
+	$moveClouds.play("move_clouds")
 	$Opener.play("opening")
 	$Title/AnimationPlayer.play("up")
 	$BoxContainer/AnimatedSprite2D.play("new_animation")

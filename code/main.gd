@@ -15,7 +15,7 @@ func _ready():
 	Global.score = 0
 	$Timer.start()
 	Global.lvl_id = 1
-	Global.time = 10
+	Global.time = 100
 	Global.kill_count = 0
 	Global.gained_time = 0
 	Global.speed_plus = 95

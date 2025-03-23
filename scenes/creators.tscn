@@ -1,44 +1,83 @@
-[gd_scene load_steps=25 format=3 uid="uid://dn3mip4qjhl7h"]
+[gd_scene load_steps=30 format=3 uid="uid://dn3mip4qjhl7h"]
 
 [ext_resource type="Script" uid="uid://bdpbcpsa5q3gr" path="res://code/creators.gd" id="1_pofdq"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_qjp7c"]
-[ext_resource type="Texture2D" uid="uid://dnqktorc3lwhp" path="res://images/end_cutscene_DEMO.png" id="2_yq262"]
+[ext_resource type="Texture2D" uid="uid://26lqvxvaubti" path="res://images/end_cutscene_SKY.png" id="2_wu85y"]
+[ext_resource type="Texture2D" uid="uid://di4bjxb32247" path="res://images/end_cutscene_CLOUDS.png" id="3_bsn26"]
 [ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="3_ljdei"]
+[ext_resource type="Texture2D" uid="uid://cd6ksbrnslbj0" path="res://images/end_cutscene_MAIN.png" id="4_6g583"]
 [ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="5_3611e"]
 [ext_resource type="AudioStream" uid="uid://dfgwj2pqombyu" path="res://music/Plastic Treeてふてふ.wav" id="5_yq262"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/ui_press.mp3" id="7_8mtft"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/ui_hover1.mp3" id="8_xmm3p"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5l1e1"]
-atlas = ExtResource("2_yq262")
+[sub_resource type="Animation" id="Animation_t77nr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(218, 160)]
+}
+
+[sub_resource type="Animation" id="Animation_cetlr"]
+resource_name = "move_clouds"
+length = 40.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666676, 40.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(218, 160), Vector2(-376.073, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g087m"]
+_data = {
+&"RESET": SubResource("Animation_t77nr"),
+&"move_clouds": SubResource("Animation_cetlr")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe36r"]
+atlas = ExtResource("4_6g583")
 region = Rect2(0, 0, 233, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wu85y"]
-atlas = ExtResource("2_yq262")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tfvx"]
+atlas = ExtResource("4_6g583")
 region = Rect2(233, 0, 233, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bsn26"]
-atlas = ExtResource("2_yq262")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qsuf"]
+atlas = ExtResource("4_6g583")
 region = Rect2(466, 0, 233, 144)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6g583"]
-atlas = ExtResource("2_yq262")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug0sy"]
+atlas = ExtResource("4_6g583")
 region = Rect2(699, 0, 233, 144)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6f0x"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5l1e1")
+"texture": SubResource("AtlasTexture_pe36r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wu85y")
+"texture": SubResource("AtlasTexture_2tfvx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bsn26")
+"texture": SubResource("AtlasTexture_1qsuf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6g583")
+"texture": SubResource("AtlasTexture_ug0sy")
 }],
 "loop": true,
 "name": &"new_animation",
@@ -231,15 +270,59 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 218.0
+offset_top = 160.0
+offset_right = 1416.0
+offset_bottom = 900.0
+texture = ExtResource("2_wu85y")
+
+[node name="clouds" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 218.0
+offset_top = 160.0
+offset_right = 2613.0
+offset_bottom = 900.0
+size_flags_horizontal = 6
+texture = ExtResource("3_bsn26")
+
+[node name="hide R" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1414.0
+offset_top = 157.0
+offset_right = 1925.0
+offset_bottom = 904.0
+color = Color(0, 0, 0, 1)
+
+[node name="hide L" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 157.0
+offset_right = 218.0
+offset_bottom = 904.0
+color = Color(0, 0, 0, 1)
+
+[node name="moveClouds" type="AnimationPlayer" parent="."]
+root_node = NodePath("../clouds")
+libraries = {
+&"": SubResource("AnimationLibrary_g087m")
+}
+
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BoxContainer"]
 position = Vector2(816, 529)
 scale = Vector2(5.13542, 5.13542)
 sprite_frames = SubResource("SpriteFrames_n6f0x")
 animation = &"new_animation"
-frame_progress = 0.106161
+frame_progress = 0.0201252
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 1
@@ -512,7 +595,7 @@ pixilart.com
 
 pixabay.com
 
-REMINDER TO ADD MOVING CLOUDS AND ANIMATE SHADOWS!"
+Song: Plastic tree - てふてふ"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]

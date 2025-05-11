@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c44pwmfk4ihob"]
+[gd_scene load_steps=13 format=3 uid="uid://c44pwmfk4ihob"]
 
 [ext_resource type="Script" uid="uid://5ysdi0sv6oma" path="res://code/Death_stuff.gd" id="1_tqpyj"]
 [ext_resource type="Texture2D" uid="uid://cn4jjh7bysyw2" path="res://images/death.png" id="2_ni7ni"]
@@ -21,14 +21,9 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_kcfv7"]
 curve = SubResource("Curve_pryas")
 
-[sub_resource type="Gradient" id="Gradient_w4i8x"]
-colors = PackedColorArray(1, 0.53, 0.53, 1, 0.41598, 0.41598, 0.41598, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_15gay"]
-gradient = SubResource("Gradient_w4i8x")
-
 [sub_resource type="Gradient" id="Gradient_eatwl"]
-colors = PackedColorArray(1, 1, 1, 1, 0.62, 0.62, 0.62, 0.752941)
+offsets = PackedFloat32Array(0.0882353, 0.794118, 1)
+colors = PackedColorArray(0.347817, 0.347817, 0.347817, 1, 1, 1, 1, 1, 1, 1, 1, 0.0156863)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_onwuh"]
 gradient = SubResource("Gradient_eatwl")
@@ -60,9 +55,8 @@ damping_max = 98.338
 damping_curve = SubResource("CurveTexture_nwb33")
 scale_min = 2.73
 scale_max = 10.37
-color = Color(0.618589, 0.00334778, 0.921363, 1)
+color = Color(0.720467, 0.720468, 0.720467, 1)
 color_ramp = SubResource("GradientTexture1D_onwuh")
-color_initial_ramp = SubResource("GradientTexture1D_15gay")
 hue_variation_min = -2.23517e-08
 hue_variation_max = -2.23517e-08
 anim_speed_max = 1.1

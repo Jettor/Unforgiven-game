@@ -366,7 +366,7 @@ tile_map_data = PackedByteArray("AAAAACAAAAAEAAIAAAAAACEAAAAEAAMAAAABACAAAAAEAAI
 tile_set = SubResource("TileSet_lnukm")
 
 [node name="CharacterBody2D" parent="layer_holder/ground" instance=ExtResource("2_8wa3c")]
-position = Vector2(1874, 991)
+position = Vector2(1850, 990)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ikraa")

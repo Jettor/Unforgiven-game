@@ -9,7 +9,8 @@ const JUMP_VELOCITY = -500.0
 var death_scene = load("res://scenes/death_stuff.tscn")
 @onready var dash = $Dash
 @onready var walk_sound = $WalkSound
-@onready var sprite_2d = $Sprite2D
+@onready var sprite_bottom = $Sprite_bottom
+@onready var sprite_top = $Sprite_top
 @onready var marker_2d = $Marker2D
 @onready var death_stuff = $Death_stuff
 @onready var healthbar = $Healthbar
@@ -51,14 +52,16 @@ func _ready():
 	
 func death():
 	$DeathSound.play()
-	$Sprite2D.visible = false
+	sprite_bottom.visible = false
+	sprite_top.visible = false
 	var instance = death_scene.instantiate()
 	instance.play_death()
 	$LightOccluder2D.hide()
 	$player_hitbox.disabled = true
 	$Area2D/CollisionShape2D.disabled = true
 	get_tree().get_root().add_child(instance)
-	instance.position = $Sprite2D.global_position
+	instance.position = sprite_bottom.global_position
+	instance.position = sprite_top.global_position
 	$WaitForLoseScreen.start()
 	
 func _physics_process(delta):
@@ -66,11 +69,17 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("kill_game"): # KILL GAME
 		get_tree().quit()
 		
-	# Animations
-	if (velocity.x > 1 || velocity.x < -1):
-		sprite_2d.animation = "walking2"
+	# Handle animations + gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		sprite_bottom.play("jumping")
+		sprite_top.play("default")
+	elif abs(velocity.x) > 0.1:
+		sprite_bottom.play("walking_bottom")
+		sprite_top.play("walking_top")
 	else:
-		sprite_2d.animation = "default"
+		sprite_bottom.play("default")
+		sprite_top.play("default")
 		# Screen shake
 	if shake == true:
 		shake_time += 1
@@ -78,11 +87,6 @@ func _physics_process(delta):
 		camera.offset = lerp(camera. offset, final_pos, 0.2)
 	elif shake_time:
 		shake_time = 0
-		
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-		sprite_2d.animation = "jumping"
 		
 	if Input.is_action_pressed('ui_left'): # FLIP
 		face_direction = Vector2.LEFT
@@ -102,10 +106,9 @@ func _physics_process(delta):
 		$ShootSound.play()
 		var bullet_instance = bullet.instantiate()
 		bullet_instance.global_position = $Marker2D.global_position
-		
 		bullet_instance.face_direction = face_direction
-		
 		get_parent().add_child(bullet_instance)
+		
 		can_fire = false
 		await get_tree().create_timer(0.4).timeout
 		can_fire = true
@@ -138,10 +141,12 @@ func _physics_process(delta):
 	move_and_slide()
 
 	if Input.is_action_just_pressed('ui_left'):
-		sprite_2d.flip_h = true
+		sprite_bottom.flip_h = true
+		sprite_top.flip_h = true
 		$Marker2D.position = Vector2(-31, 5)
 	if Input.is_action_just_pressed('ui_right'):
-		sprite_2d.flip_h = false
+		sprite_bottom.flip_h = false
+		sprite_top.flip_h = false
 		$Marker2D.position = Vector2(31, 5)
 		
 	

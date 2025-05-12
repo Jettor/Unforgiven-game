@@ -387,6 +387,7 @@ animation = &"walking_bottom"
 frame_progress = 0.694883
 
 [node name="Sprite_top" type="AnimatedSprite2D" parent="."]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_61ipx")
 position = Vector2(0, 1)

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 class_name Enemy
-var particle_handler = load("res://scenes/death_stuff.tscn")
+var particle_handler = load("uid://c44pwmfk4ihob")
 @onready var target = $"../CharacterBody2D"
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var timer = $Timer
@@ -66,7 +66,7 @@ func damage():
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("bullet"):
 		bullet_name = "normal"
-		print(bullet_name, " bullet has hit enemy")
+		print(bullet_name, "bullet has hit enemy")
 		bullet_damage = 10
 		damage()
 	else:

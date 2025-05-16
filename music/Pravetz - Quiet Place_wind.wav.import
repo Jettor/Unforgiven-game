@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://com57kvid4cl"
+path="res://.godot/imported/Pravetz - Quiet Place_wind.wav-3fce85690eafd91a99a0a55de38a7dfb.sample"
+
+[deps]
+
+source_file="res://music/Pravetz - Quiet Place_wind.wav"
+dest_files=["res://.godot/imported/Pravetz - Quiet Place_wind.wav-3fce85690eafd91a99a0a55de38a7dfb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

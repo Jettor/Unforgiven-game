@@ -384,14 +384,16 @@ script = ExtResource("1_tt4rc")
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_fsooo")
 animation = &"walking_bottom"
-frame_progress = 0.694883
+frame_progress = 0.771923
 
 [node name="Sprite_top" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_61ipx")
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_k74gw")
+animation = &"walking_top"
 autoplay = "default"
+frame_progress = 0.00379094
 
 [node name="player_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

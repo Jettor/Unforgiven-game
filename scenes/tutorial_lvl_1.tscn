@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://dsukx1wet7d6e"]
+[gd_scene load_steps=38 format=4 uid="uid://dsukx1wet7d6e"]
 
 [ext_resource type="Script" uid="uid://52jtjo8k40hl" path="res://code/tutorial_lvl_1.gd" id="1_88rbc"]
 [ext_resource type="Texture2D" uid="uid://cxhlwoxypo5bh" path="res://images/surface_tilemap.png" id="1_vm8h0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bd4rk26o0vmsj" path="res://images/crow.png" id="6_dsfwl"]
 [ext_resource type="AudioStream" uid="uid://com57kvid4cl" path="res://music/Pravetz - Quiet Place_wind.wav" id="8_8t0xr"]
 [ext_resource type="AudioStream" uid="uid://dq4a0jotfq07o" path="res://music/crow.wav" id="10_vbtu8"]
+[ext_resource type="PackedScene" uid="uid://beph3d3i7fi7" path="res://scenes/Fog.tscn" id="11_vbtu8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbtu8"]
 resource_local_to_scene = true
@@ -458,6 +459,43 @@ sources/0 = SubResource("TileSetAtlasSource_b7pvg")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa4o8"]
 size = Vector2(39, 68)
 
+[sub_resource type="Animation" id="Animation_vbtu8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dsfwl"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.933333, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y1hcs"]
+_data = {
+&"RESET": SubResource("Animation_vbtu8"),
+&"fade_out": SubResource("Animation_dsfwl")
+}
+
 [node name="tutorial_lvl1" type="Node2D"]
 script = ExtResource("1_88rbc")
 
@@ -561,7 +599,7 @@ stream = ExtResource("10_vbtu8")
 volume_db = 10.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.4151, 0.419304, 0.473116, 1)
+color = Color(0.320833, 0.362597, 0.456212, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1147, 963)
@@ -569,5 +607,22 @@ position = Vector2(1147, 963)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-9.5, 24)
 shape = SubResource("RectangleShape2D_pa4o8")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("11_vbtu8")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="fader" type="AnimationPlayer" parent="CanvasLayer"]
+root_node = NodePath("black")
+libraries = {
+&"": SubResource("AnimationLibrary_y1hcs")
+}
+
+[node name="black" type="ColorRect" parent="CanvasLayer/fader"]
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 1932.0
+offset_bottom = 1085.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

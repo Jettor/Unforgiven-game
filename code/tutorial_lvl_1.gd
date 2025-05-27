@@ -9,6 +9,7 @@ func _ready():
 	player.set_jump(1)
 	player.set_normalSpeed(230)
 	healthbar.hide()
+	$CanvasLayer/fader.play("fade_out")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

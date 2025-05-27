@@ -66,20 +66,36 @@ func death():
 	
 func _physics_process(delta):
 	
+	if Global.has_gun == false:
+		can_fire = false
+		
 	if Input.is_action_just_pressed("kill_game"): # KILL GAME
 		get_tree().quit()
 		
 	# Handle animations + gravity
 	if not is_on_floor():
-		velocity.y += gravity * delta
-		sprite_bottom.play("jumping")
-		sprite_top.play("default")
+		if !Global.has_gun:
+			velocity.y += gravity * delta
+			sprite_bottom.play("jumping")
+			sprite_top.play("jumping_no_gun_top")
+		else:
+			velocity.y += gravity * delta
+			sprite_bottom.play("jumping")
+			sprite_top.play("default")
 	elif abs(velocity.x) > 0.1:
-		sprite_bottom.play("walking_bottom")
-		sprite_top.play("walking_top")
+		if !Global.has_gun:
+			sprite_bottom.play("walking_bottom")
+			sprite_top.play("walking_no_gun_top")
+		else:
+			sprite_bottom.play("walking_bottom")
+			sprite_top.play("walking_top")
 	else:
-		sprite_bottom.play("default")
-		sprite_top.play("default")
+		if !Global.has_gun:
+			sprite_bottom.play("default")
+			sprite_top.play("default_no_gun")
+		else:
+			sprite_bottom.play("default")
+			sprite_top.play("default")
 		# Screen shake
 	if shake == true:
 		shake_time += 1
@@ -108,7 +124,6 @@ func _physics_process(delta):
 		bullet_instance.global_position = $Marker2D.global_position
 		bullet_instance.face_direction = face_direction
 		get_parent().add_child(bullet_instance)
-		
 		can_fire = false
 		await get_tree().create_timer(0.4).timeout
 		can_fire = true

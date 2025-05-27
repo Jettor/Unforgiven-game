@@ -21,6 +21,7 @@ var best_score = 0
 var best_kill_count = 0
 var best_gained_time = 0
 var lvl_id = 0
+var has_gun = true
 
 var lvl1_playing = false
 var lvl2_playing = false

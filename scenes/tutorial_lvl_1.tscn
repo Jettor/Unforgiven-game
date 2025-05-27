@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dsukx1wet7d6e"]
+[gd_scene load_steps=34 format=4 uid="uid://dsukx1wet7d6e"]
 
 [ext_resource type="Script" uid="uid://52jtjo8k40hl" path="res://code/tutorial_lvl_1.gd" id="1_88rbc"]
 [ext_resource type="Texture2D" uid="uid://cxhlwoxypo5bh" path="res://images/surface_tilemap.png" id="1_vm8h0"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://0sqbrnk0dra4" path="res://images/night_sky.png" id="3_dsfwl"]
 [ext_resource type="Texture2D" uid="uid://drgn3hk7rd7ok" path="res://images/tree.png" id="3_ex5vx"]
 [ext_resource type="Texture2D" uid="uid://bp4tqoslt7x6t" path="res://images/leaf.png" id="4_h33r3"]
-[ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="5_p7gbe"]
 [ext_resource type="Texture2D" uid="uid://bd4rk26o0vmsj" path="res://images/crow.png" id="6_dsfwl"]
 [ext_resource type="AudioStream" uid="uid://com57kvid4cl" path="res://music/Pravetz - Quiet Place_wind.wav" id="8_8t0xr"]
 [ext_resource type="AudioStream" uid="uid://dq4a0jotfq07o" path="res://music/crow.wav" id="10_vbtu8"]
@@ -563,15 +562,6 @@ volume_db = 10.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.4151, 0.419304, 0.473116, 1)
-
-[node name="moon" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(958, -136)
-scale = Vector2(12.8379, 12.8379)
-color = Color(0.493324, 0.562323, 0.699757, 1)
-energy = 1.36
-shadow_enabled = true
-texture = ExtResource("5_p7gbe")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1147, 963)

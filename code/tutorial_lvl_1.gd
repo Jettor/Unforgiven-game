@@ -10,11 +10,9 @@ func _ready():
 	player.set_normalSpeed(230)
 	healthbar.hide()
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func _on_area_2d_area_entered(area):
 	if(!check):

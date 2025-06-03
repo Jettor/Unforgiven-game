@@ -21,6 +21,7 @@ var shake = false
 var shake_time = 0
 var face_direction = Vector2.RIGHT
 var can_fire = true
+var can_punch = true
 var bullet = load("res://scenes/bullet.tscn")
 var jump_max = 2
 var enemy_instance
@@ -29,7 +30,7 @@ var jump_count = 0
 var healthp = Global.healthp
 var damage_takenp = 20;
 var can_take_damage = true
-
+var is_attacking = false
 #Gravity from project settings
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -68,34 +69,68 @@ func _physics_process(delta):
 	
 	if Global.has_gun == false:
 		can_fire = false
+		#can_punch = true
 		
 	if Input.is_action_just_pressed("kill_game"): # KILL GAME
 		get_tree().quit()
 		
 	# Handle animations + gravity
 	if not is_on_floor():
-		if !Global.has_gun:
-			velocity.y += gravity * delta
-			sprite_bottom.play("jumping")
-			sprite_top.play("jumping_no_gun_top")
+		velocity.y += gravity * delta
+
+	var is_moving = abs(velocity.x) > 0.1
+	var has_gun = Global.has_gun
+
+	if not is_on_floor():
+		sprite_bottom.play("jumping")
+		if is_attacking:
+			if has_gun:
+				if sprite_top.animation != "shoot":
+					sprite_top.play("shoot")
+			else:
+				if sprite_top.animation != "punch1":
+					sprite_top.play("punch1")
 		else:
-			velocity.y += gravity * delta
-			sprite_bottom.play("jumping")
-			sprite_top.play("default")
-	elif abs(velocity.x) > 0.1:
-		if !Global.has_gun:
-			sprite_bottom.play("walking_bottom")
-			sprite_top.play("walking_no_gun_top")
+			if has_gun:
+				if sprite_top.animation != "default":
+					sprite_top.play("default")
+			else:
+				if sprite_top.animation != "jumping_no_gun_top":
+					sprite_top.play("jumping_no_gun_top")
+	elif is_moving:
+		sprite_bottom.play("walking_bottom")
+		if is_attacking:
+			if has_gun:
+				if sprite_top.animation != "shoot":
+					sprite_top.play("shoot")
+			else:
+				if sprite_top.animation != "punch1":
+					sprite_top.play("punch1")
 		else:
-			sprite_bottom.play("walking_bottom")
-			sprite_top.play("walking_top")
+			if has_gun:
+				if sprite_top.animation != "walking_top":
+					sprite_top.play("walking_top")
+			else:
+				if sprite_top.animation != "walking_no_gun_top":
+					sprite_top.play("walking_no_gun_top")
 	else:
-		if !Global.has_gun:
-			sprite_bottom.play("default")
-			sprite_top.play("default_no_gun")
+		sprite_bottom.play("default")
+		if is_attacking:
+			if has_gun:
+				if sprite_top.animation != "shoot":
+					sprite_top.play("shoot")
+			else:
+				if sprite_top.animation != "punch1":
+					sprite_top.play("punch1")
 		else:
-			sprite_bottom.play("default")
-			sprite_top.play("default")
+			if has_gun:
+				if sprite_top.animation != "default":
+					sprite_top.play("default")
+			else:
+				if sprite_top.animation != "default_no_gun":
+					sprite_top.play("default_no_gun")
+			#if not is_attacking and sprite_top.animation != "default":
+				#sprite_top.play("default")
 		# Screen shake
 	if shake == true:
 		shake_time += 1
@@ -118,7 +153,17 @@ func _physics_process(delta):
 		
 	var SPEED = dash_SPEED if dash.is_dashing() else normal_SPEED # Dash speed handler
 	
+	if Input.is_action_just_pressed("melee"):
+		is_attacking = true
+		sprite_top.play("punch1")
+		$PunchSound.pitch_scale = randf_range(0.8, 1.2)
+		$PunchSound.play()
+		can_fire = false
+		await get_tree().create_timer(0.5).timeout
+		can_fire = true
+	
 	if Input.is_action_just_pressed("fire") and can_fire: # SHOOTING
+		is_attacking = true
 		$ShootSound.play()
 		var bullet_instance = bullet.instantiate()
 		bullet_instance.global_position = $Marker2D.global_position
@@ -195,3 +240,11 @@ func set_jump(value):	#Change max jumps if needed
 	jump_max = value
 func set_normalSpeed(value): #Change player walk speed
 	normal_SPEED = value
+
+func _on_sprite_top_animation_finished():
+	if sprite_top.animation == "shoot":
+		is_attacking = false
+		sprite_top.play("default")
+	if sprite_top.animation == "punch1":
+		is_attacking = false
+		sprite_top.play("default_no_gun")

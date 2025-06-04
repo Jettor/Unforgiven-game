@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=83 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/mc.gd" id="1_tt4rc"]
 [ext_resource type="Shader" uid="uid://bef32hgvxjsqu" path="res://shaders/mc.gdshader" id="2_6iiml"]
@@ -580,6 +580,9 @@ _data = {
 &"zoom_out": SubResource("Animation_ekbpb")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlm4k"]
+size = Vector2(29, 15)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_tt4rc")
 
@@ -599,12 +602,10 @@ frame = 5
 frame_progress = 1.0
 
 [node name="player_hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_3aqem")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-visible = false
 position = Vector2(31, 5)
 
 [node name="Death_stuff" parent="." instance=ExtResource("5_ocdsp")]
@@ -634,7 +635,6 @@ stream = ExtResource("8_5krv6")
 volume_db = -10.0
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 1)
@@ -713,6 +713,13 @@ color = Color(0.999998, 0.538496, 0.334466, 1)
 energy = 1.78
 shadow_enabled = true
 texture = ExtResource("12_7lxtn")
+
+[node name="punch" type="Area2D" parent="." groups=["melee"]]
+position = Vector2(31, -4)
+
+[node name="punch_hurtbox" type="CollisionShape2D" parent="punch" groups=["melee"]]
+position = Vector2(-5.5, 0.5)
+shape = SubResource("RectangleShape2D_dlm4k")
 
 [connection signal="animation_finished" from="Sprite_top" to="." method="_on_sprite_top_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

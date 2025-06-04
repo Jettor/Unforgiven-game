@@ -2030,6 +2030,5 @@ shape = SubResource("RectangleShape2D_gduly")
 debug_color = Color(0.0938, 0.648576, 1.92523e-07, 0.42)
 
 [connection signal="timeout" from="lvl_finished" to="." method="_on_lvl_finished_timeout"]
-[connection signal="knockback" from="CharacterBody2D" to="CharacterBody2D2" method="_on_character_body_2d_knockback"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="finish" to="." method="_on_finish_area_entered"]

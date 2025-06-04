@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-signal knockback
-
 var normal_SPEED = 300.0
 const dash_SPEED = 700.0
 const dash_length =  0.3
@@ -12,12 +10,16 @@ var death_scene = load("res://scenes/death_stuff.tscn")
 @onready var sprite_bottom = $Sprite_bottom
 @onready var sprite_top = $Sprite_top
 @onready var marker_2d = $Marker2D
+@onready var punch_hurtbox = $punch/punch_hurtbox
 @onready var death_stuff = $Death_stuff
 @onready var healthbar = $Healthbar
 @onready var camera = $"../Camera2D"
-#var knockback_dir = Vector2()
-#var knockback_wait = 10
+
+var knockback: Vector2 = Vector2.ZERO
+var knockback_timer: float = 0.0
+
 var shake = false
+var SPEED: float
 var shake_time = 0
 var face_direction = Vector2.RIGHT
 var can_fire = true
@@ -50,6 +52,7 @@ func damagee():
 func _ready():
 	top_level = true
 	healthbar.init_health(healthp)
+	punch_hurtbox.disabled = true
 	
 func death():
 	$DeathSound.play()
@@ -66,7 +69,6 @@ func death():
 	$WaitForLoseScreen.start()
 	
 func _physics_process(delta):
-	
 	if Global.has_gun == false:
 		can_fire = false
 		#can_punch = true
@@ -80,7 +82,7 @@ func _physics_process(delta):
 
 	var is_moving = abs(velocity.x) > 0.1
 	var has_gun = Global.has_gun
-
+	
 	if not is_on_floor():
 		sprite_bottom.play("jumping")
 		if is_attacking:
@@ -138,29 +140,55 @@ func _physics_process(delta):
 		camera.offset = lerp(camera. offset, final_pos, 0.2)
 	elif shake_time:
 		shake_time = 0
-		
-	if Input.is_action_pressed('ui_left'): # FLIP
-		face_direction = Vector2.LEFT
-		direction = 1
-	elif Input.is_action_pressed('ui_right'):
-		face_direction = Vector2.RIGHT
-		direction = -1
-	if Input.is_action_just_pressed("dash"): # Dash
+
+	var dir = Input.get_axis("ui_left", "ui_right")
+
+	if dash.is_dashing():
+		SPEED = dash_SPEED
+	else:
+		SPEED = normal_SPEED
+	# Handle horizontal movement
+	if dir != 0:
+		velocity.x = dir * SPEED
+		var is_facing_left = dir < 0
+		if is_facing_left:
+			face_direction = Vector2.LEFT
+			sprite_bottom.flip_h = true
+			sprite_top.flip_h = true
+			$Marker2D.position = Vector2(-31, 5)
+			punch_hurtbox.position.x = -62
+		else:
+			face_direction = Vector2.RIGHT
+			sprite_bottom.flip_h = false
+			sprite_top.flip_h = false
+			$Marker2D.position = Vector2(31, 5)
+			punch_hurtbox.position.x = 0
+	else:
+		# Smooth deceleration to zero when no input
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	# Handle dash input
+	if Input.is_action_just_pressed("dash"):
 		dash.start_dash(dash_length)
 		can_take_damage = false
 		await get_tree().create_timer(dash_length).timeout
 		can_take_damage = true
-		
-	var SPEED = dash_SPEED if dash.is_dashing() else normal_SPEED # Dash speed handler
 	
-	if Input.is_action_just_pressed("melee"):
+	move_and_slide()
+
+	if Input.is_action_just_pressed("melee") and can_punch:
 		is_attacking = true
+		can_punch = false
 		sprite_top.play("punch1")
+		punch_hurtbox.disabled = false
 		$PunchSound.pitch_scale = randf_range(0.8, 1.2)
 		$PunchSound.play()
-		can_fire = false
-		await get_tree().create_timer(0.5).timeout
-		can_fire = true
+		# Turn off hurtbox after short duration (e.g. 0.2 seconds)
+		await get_tree().create_timer(0.2).timeout
+		punch_hurtbox.disabled = true
+		# Wait for cooldown to allow next punch
+		await get_tree().create_timer(0.4).timeout  # 0.2s hurtbox + 0.4s cooldown = 0.6s total
+		can_punch = true
+		is_attacking = false
 	
 	if Input.is_action_just_pressed("fire") and can_fire: # SHOOTING
 		is_attacking = true
@@ -191,24 +219,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and jump_count < jump_max: # Handle jump
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
-
-	var direction = Input.get_axis("ui_left", "ui_right") # Handle movement
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
-
-	if Input.is_action_just_pressed('ui_left'):
-		sprite_bottom.flip_h = true
-		sprite_top.flip_h = true
-		$Marker2D.position = Vector2(-31, 5)
-	if Input.is_action_just_pressed('ui_right'):
-		sprite_bottom.flip_h = false
-		sprite_top.flip_h = false
-		$Marker2D.position = Vector2(31, 5)
-		
 	
 func _on_area_2d_area_entered(area): # TAKING DAMAGE
 	if area.is_in_group("Wrog") and can_take_damage == true:
@@ -248,3 +258,8 @@ func _on_sprite_top_animation_finished():
 	if sprite_top.animation == "punch1":
 		is_attacking = false
 		sprite_top.play("default_no_gun")
+		
+func apply_knockback(direction: Vector2, force: float, knockback_duration: float) -> void:
+	knockback = direction.normalized() * force
+	knockback_timer = knockback_duration
+	print("knocked")

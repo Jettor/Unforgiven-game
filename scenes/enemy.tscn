@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b146hb34lplj"]
+[gd_scene load_steps=11 format=3 uid="uid://b146hb34lplj"]
 
 [ext_resource type="Script" uid="uid://cbqr802i45acx" path="res://code/Enemy.gd" id="1_11i7g"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="2_vm06k"]
@@ -17,6 +17,42 @@ height = 60.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p6537"]
 polygon = PackedVector2Array(10, -12, 14, -8, 14, -4, 14, 3, 11, 6, 10, 9, 9, 16, 7, 27, 4, 30, 1, 30, -5, 25, -6, 23, -7, 8, -11, 5, -13, 1, -18, 2, -23, 4, -26, 1, -26, -3, -24, -4, -10, -5, -6, -6, -6, -8, -5, -8, -5, -10, -1, -10, 2, -10, 3, -11, 5, -14, 6, -15, 9, -17)
+
+[sub_resource type="Animation" id="Animation_5uy6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ra3w"]
+resource_name = "radius_entered"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.466667, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.32, 0.32, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c4w8v"]
+_data = {
+&"RESET": SubResource("Animation_5uy6h"),
+&"radius_entered": SubResource("Animation_4ra3w")
+}
 
 [node name="CharacterBody2D2" type="CharacterBody2D"]
 collision_layer = 2
@@ -56,6 +92,11 @@ occluder = SubResource("OccluderPolygon2D_p6537")
 [node name="Enemy_death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_eeujb")
 volume_db = -7.048
+
+[node name="in_radius" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c4w8v")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="knockback_speed_return" to="." method="_on_knockback_speed_return_timeout"]

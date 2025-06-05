@@ -25,7 +25,9 @@ var melee_damage = 5
 var best_kill_count = 0
 var best_gained_time = 0
 var lvl_id = 0
-var has_gun = false
+var has_gun = true
+
+var knockback_force = 200
 
 var lvl1_playing = false
 var lvl2_playing = false

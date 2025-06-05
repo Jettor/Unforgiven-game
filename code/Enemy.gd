@@ -9,15 +9,13 @@ var particle_handler = load("uid://c44pwmfk4ihob")
 var alive = true
 var motion = Vector2()
 var health = 10
+var k_force = Global.knockback_force
 var can_take_damage = true
 var direction
 signal enemy_scream
-
 var knockback_duration: float = 0.3  # seconds
 var knockback_timer: float = 0.0
 var knockback_force:Vector2 = Vector2.ZERO
-
-
 
 func _ready():
 	$Timer.timeout.connect(self._on_timer_timeout)
@@ -29,7 +27,6 @@ func _physics_process(delta):
 		knockback_timer -= delta
 		move_and_slide()
 		return  # Skip normal movement during knockback
-
 	# Regular movement
 	direction = (nav.get_next_path_position() - global_position).normalized()
 	translate(direction * Global.speed_plus * delta)
@@ -64,8 +61,7 @@ func Melee_damage_handler():
 					death()  
 					queue_free()
 			elif health > 0:
-				var direction = global_position - target.global_position
-				await apply_knockback(direction, 60)
+				await apply_knockback(global_position - target.global_position, k_force)
 				print(health)
 	
 func Bullet_damage_handler():
@@ -79,9 +75,10 @@ func Bullet_damage_handler():
 					death()  
 					queue_free()
 			elif health > 0:
+				await apply_knockback(global_position - target.global_position, k_force)
 				print(health)
 
-func _on_area_2d_area_entered(area):
+func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
 		Global.bullet_name = "normal"
 		print(Global.bullet_name, "bullet has hit enemy")
@@ -89,6 +86,8 @@ func _on_area_2d_area_entered(area):
 	elif area.is_in_group("melee"):
 		print("fist has hit enemy")
 		Melee_damage_handler()
+	if area.name == "punch_r":
+		$in_radius.play("radius_entered")
 	else:
 		return
 		

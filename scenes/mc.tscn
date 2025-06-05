@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=87 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/mc.gd" id="1_tt4rc"]
 [ext_resource type="Shader" uid="uid://bef32hgvxjsqu" path="res://shaders/mc.gdshader" id="2_6iiml"]
@@ -151,6 +151,26 @@ region = Rect2(252, 0, 63, 64)
 atlas = ExtResource("4_yxip8")
 region = Rect2(0, 128, 63, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qm7ti"]
+atlas = ExtResource("4_yxip8")
+region = Rect2(252, 256, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vcj8"]
+atlas = ExtResource("4_yxip8")
+region = Rect2(315, 256, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd2wo"]
+atlas = ExtResource("4_yxip8")
+region = Rect2(378, 256, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3fyu"]
+atlas = ExtResource("4_yxip8")
+region = Rect2(441, 256, 63, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yr8g"]
+atlas = ExtResource("4_yxip8")
+region = Rect2(504, 256, 63, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0j0e"]
 atlas = ExtResource("4_yxip8")
 region = Rect2(252, 192, 63, 64)
@@ -170,10 +190,6 @@ region = Rect2(441, 192, 63, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xj775"]
 atlas = ExtResource("4_yxip8")
 region = Rect2(504, 192, 63, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qm7ti"]
-atlas = ExtResource("4_yxip8")
-region = Rect2(567, 192, 63, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_emji5"]
 atlas = ExtResource("4_yxip8")
@@ -309,6 +325,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qm7ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vcj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd2wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3fyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yr8g")
+}],
+"loop": false,
+"name": &"melee_with_gun",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_p0j0e")
 }, {
 "duration": 1.0,
@@ -322,9 +358,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xj775")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qm7ti")
 }],
 "loop": false,
 "name": &"punch1",
@@ -445,9 +478,6 @@ shadow_offset = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ba2oa"]
 bg_color = Color(0.917647, 0.917647, 0.917647, 1)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ouph0"]
-polygon = PackedVector2Array(-5, -25, -9, -24, -12, -23, -13, -22, -15, -22, -21, -17, -21, -13, -18, -10, -15, -10, -15, -9, -13, -8, -12, -7, -13, -6, -13, -5, -11, -4, -6, -3, -8, -2, -14, 3, -14, 6, -17, 6, -17, 13, -15, 13, -15, 12, -12, 12, -10, 14, -6, 14, -6, 18, -7, 18, -7, 20, -9, 20, -9, 21, -14, 21, -14, 30, -11, 30, -11, 29, -10, 29, -10, 26, -1, 26, -1, 25, 0, 25, 0, 24, 1, 24, 1, 21, 6, 21, 6, 23, 7, 23, 7, 29, 17, 29, 17, 26, 16, 25, 13, 25, 13, 17, 11, 15, 8, 14, 7, 14, 7, 10, 11, 12, 17, 12, 20, 11, 22, 10, 23, 9, 24, 8, 24, 7, 12, 4, 12, 3, 7, -2, 4, -2, 4, -3, 6, -3, 8, -5, 11, -5, 11, -6, 9, -8, 8, -8, 8, -11, 10, -10, 11, -10, 11, -13, 14, -13, 15, -14, 16, -15, 18, -18, 18, -20, 14, -24, 11, -25, 5, -25, 1, -25)
 
 [sub_resource type="Animation" id="Animation_ckpnf"]
 length = 0.001
@@ -581,7 +611,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlm4k"]
-size = Vector2(29, 15)
+size = Vector2(30, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwif6"]
+size = Vector2(80, 23)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_tt4rc")
@@ -596,9 +629,9 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_61ipx")
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_k74gw")
-animation = &"punch1"
+animation = &"melee_with_gun"
 autoplay = "default"
-frame = 5
+frame = 4
 frame_progress = 1.0
 
 [node name="player_hitbox" type="CollisionShape2D" parent="."]
@@ -676,10 +709,6 @@ metadata/_edit_use_anchors_ = true
 wait_time = 0.4
 one_shot = true
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-visible = false
-occluder = SubResource("OccluderPolygon2D_ouph0")
-
 [node name="immortality" type="Timer" parent="."]
 wait_time = 2.0
 
@@ -718,8 +747,14 @@ texture = ExtResource("12_7lxtn")
 position = Vector2(31, -4)
 
 [node name="punch_hurtbox" type="CollisionShape2D" parent="punch" groups=["melee"]]
-position = Vector2(-5.5, 0.5)
+position = Vector2(-5, 1.5)
 shape = SubResource("RectangleShape2D_dlm4k")
+
+[node name="punch_r" type="Area2D" parent="."]
+
+[node name="punch_radius" type="CollisionShape2D" parent="punch_r"]
+position = Vector2(1, -2.5)
+shape = SubResource("RectangleShape2D_jwif6")
 
 [connection signal="animation_finished" from="Sprite_top" to="." method="_on_sprite_top_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

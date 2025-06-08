@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://kyilkjpxbnv2"]
+
+[ext_resource type="Texture2D" uid="uid://bfw2fcbda41cl" path="res://images/stun_sprite.png" id="1_xfdhh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tsiv"]
+atlas = ExtResource("1_xfdhh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x3l2"]
+atlas = ExtResource("1_xfdhh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr6se"]
+atlas = ExtResource("1_xfdhh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grral"]
+atlas = ExtResource("1_xfdhh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_85ypx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tsiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x3l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr6se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grral")
+}],
+"loop": true,
+"name": &"stun_stars",
+"speed": 7.0
+}]
+
+[node name="stun_animation" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_85ypx")
+animation = &"stun_stars"
+frame_progress = 0.212624

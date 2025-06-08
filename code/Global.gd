@@ -13,7 +13,7 @@ var x2
 var score_reward = 100
 var normal_addition = 1.2
 var speed_plus = 180
-var healthp = 100
+var healthp: int = 100 #player hp
 var player_alive = true;
 var enemy_dead = false
 var death_sound: AudioStreamPlayer

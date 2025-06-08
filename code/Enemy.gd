@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Enemy
 var particle_handler = load("uid://c44pwmfk4ihob")
+var instance = particle_handler.instantiate()
 @onready var target = $"../CharacterBody2D"
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var timer = $Timer
@@ -9,7 +10,9 @@ var particle_handler = load("uid://c44pwmfk4ihob")
 var alive = true
 var motion = Vector2()
 var health = 10
+var damage: int = 20
 var k_force = Global.knockback_force
+var current_speed = Global.speed_plus
 var can_take_damage = true
 var direction
 signal enemy_scream
@@ -29,7 +32,7 @@ func _physics_process(delta):
 		return  # Skip normal movement during knockback
 	# Regular movement
 	direction = (nav.get_next_path_position() - global_position).normalized()
-	translate(direction * Global.speed_plus * delta)
+	translate(direction * current_speed * delta)
 
 	# Flip sprite based on direction
 	if direction.x < 0:
@@ -44,11 +47,13 @@ func death():
 	Global.gained_time += 0.5
 	Global.score += Global.score_reward
 	enemy.visible = false
-	var instance = particle_handler.instantiate()
 	instance.play_death_enemy()
 	instance.play_damage_enemy()
 	get_tree().get_root().add_child(instance)
 	instance.position = enemy.global_position
+	
+func give_damage() -> int:
+	return damage
 	
 func Melee_damage_handler():
 	if can_take_damage:
@@ -62,6 +67,13 @@ func Melee_damage_handler():
 					queue_free()
 			elif health > 0:
 				await apply_knockback(global_position - target.global_position, k_force)
+				current_speed = 0
+				instance.position = enemy.global_position
+				instance.play_stun()
+				get_tree().get_root().add_child(instance)
+				$Enemy/stun_animation.show()
+				$Enemy/stun_animation.play("stun_stars")
+				$stun_timer.start()
 				print(health)
 	
 func Bullet_damage_handler():
@@ -96,8 +108,10 @@ func apply_knockback(direction: Vector2, force: float):
 	knockback_force = direction.normalized() * force
 	knockback_timer = knockback_duration
 
-func _on_knockback_speed_return_timeout():
-	Global.speed_plus += 1
-
 func _on_timer_timeout()-> void:
 	nav.target_position = target.position
+
+func _on_stun_timer_timeout():
+	$Enemy/stun_animation.hide()
+	$Enemy/stun_animation.stop()
+	current_speed = Global.speed_plus

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c44pwmfk4ihob"]
+[gd_scene load_steps=15 format=3 uid="uid://c44pwmfk4ihob"]
 
 [ext_resource type="Script" uid="uid://5ysdi0sv6oma" path="res://code/Death_stuff.gd" id="1_tqpyj"]
 [ext_resource type="Texture2D" uid="uid://cn4jjh7bysyw2" path="res://images/death.png" id="2_ni7ni"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="3_gynlv"]
+[ext_resource type="Texture2D" uid="uid://dqaakiu57u4c0" path="res://images/stun_particle.png" id="4_dr4xt"]
 
 [sub_resource type="Curve" id="Curve_h2y2d"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -62,6 +63,10 @@ hue_variation_max = -2.23517e-08
 anim_speed_max = 1.1
 anim_speed_curve = SubResource("CurveTexture_kcfv7")
 
+[sub_resource type="Gradient" id="Gradient_760ei"]
+offsets = PackedFloat32Array(0.604317, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="Death_stuff" type="Node2D"]
 script = ExtResource("1_tqpyj")
 
@@ -105,3 +110,21 @@ one_shot = true
 explosiveness = 1.0
 randomness = 0.15
 process_material = SubResource("ParticleProcessMaterial_vu8yq")
+
+[node name="stun" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 1
+texture = ExtResource("4_dr4xt")
+lifetime = 1.5
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 0.3
+spread = 180.0
+gravity = Vector2(0, 50)
+initial_velocity_max = 100.0
+angular_velocity_min = 0.5
+angular_velocity_max = 1.0
+angle_min = -20.0
+angle_max = 20.0
+color_ramp = SubResource("Gradient_760ei")

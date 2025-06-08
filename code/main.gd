@@ -15,15 +15,17 @@ func _ready():
 	Global.score = 0
 	$Timer.start()
 	Global.lvl_id = 1
-	Global.time = 100
+	Global.time = 10
 	Global.kill_count = 0
 	Global.gained_time = 0
 	Global.speed_plus = 95
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
 	if Global.player_alive == false:
 		$finish/shape.disabled = true
+	if !Global.player_alive:
+		$theme.stop()
 
 func _on_timer_timeout():         #SPAWNING ENEMIES
 	for i in range(4):

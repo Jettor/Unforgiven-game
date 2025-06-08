@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b146hb34lplj"]
+[gd_scene load_steps=12 format=3 uid="uid://b146hb34lplj"]
 
 [ext_resource type="Script" uid="uid://cbqr802i45acx" path="res://code/Enemy.gd" id="1_11i7g"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="2_vm06k"]
+[ext_resource type="PackedScene" uid="uid://kyilkjpxbnv2" path="res://stun_animation.tscn" id="3_5uy6h"]
 [ext_resource type="AudioStream" uid="uid://d26c66olj7ijn" path="res://music/enemy_damage.mp3" id="3_eeujb"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5dnoo"]
@@ -65,6 +66,12 @@ script = ExtResource("1_11i7g")
 texture_filter = 1
 texture = SubResource("CanvasTexture_5dnoo")
 
+[node name="stun_animation" parent="Enemy" instance=ExtResource("3_5uy6h")]
+visible = false
+position = Vector2(5, -25)
+frame = 2
+frame_progress = 0.679715
+
 [node name="enemy_hitbox" type="CollisionShape2D" parent="."]
 texture_filter = 1
 position = Vector2(-4, 2)
@@ -76,8 +83,9 @@ shape = SubResource("CapsuleShape2D_ahmst")
 wait_time = 0.1
 autostart = true
 
-[node name="knockback_speed_return" type="Timer" parent="."]
-wait_time = 0.1
+[node name="stun_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="Area2D" type="Area2D" parent="." groups=["Wrog"]]
 
@@ -99,5 +107,5 @@ libraries = {
 }
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="knockback_speed_return" to="." method="_on_knockback_speed_return_timeout"]
+[connection signal="timeout" from="stun_timer" to="." method="_on_stun_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

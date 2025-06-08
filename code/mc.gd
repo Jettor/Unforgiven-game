@@ -29,18 +29,37 @@ var jump_max = 2
 var enemy_instance
 var direction = 1
 var jump_count = 0
-var healthp = Global.healthp
-var damage_takenp = 20;
+var healthp: int = Global.healthp
+var damage_taken: int
 var can_take_damage = true
 var is_attacking = false
 #Gravity from project settings
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _on_area_2d_area_entered(area): # TAKING DAMAGE
+	if area.is_in_group("Wrog") and can_take_damage:
+		if area.has_method("get_damage"):
+			damage_taken = area.get_damage()
+		elif "damage" in area:
+			damage_taken = area.damage
+		else:
+			damage_taken = 20  # fallback value
+		$DamageSound.play()
+		$Camera2D/zoom_animation.play("cam_shake")
+		if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD:
+			Input.start_joy_vibration(0,0.5,0.2,0.2)
+		damagee()
+		healthbar.health = healthp
+		if healthp <= 0:
+			healthbar.hide()
+		print("zgon")
+		$damage.play("damage")
+
 func damagee():
 	if can_take_damage:
 		if healthp > 0:
 			can_take_damage = false
-			healthp = healthp - damage_takenp
+			healthp = healthp - damage_taken
 			if healthp <= 0:
 				Global.player_alive = false
 				if not Global.player_alive:
@@ -55,6 +74,8 @@ func _ready():
 	punch_hurtbox.disabled = true
 	
 func death():
+	Engine.time_scale = 0.05
+	$death_slowmo.start()
 	$DeathSound.play()
 	sprite_bottom.visible = false
 	sprite_top.visible = false
@@ -209,23 +230,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and jump_count < jump_max: # Handle jump
 		velocity.y = JUMP_VELOCITY
 		jump_count += 1
-	
-func _on_area_2d_area_entered(area): # TAKING DAMAGE
-	if area.is_in_group("Wrog") and can_take_damage == true:
-		damage_takenp = 20
-		$DamageSound.play()
-		$Camera2D/zoom_animation.play("cam_shake")
-		if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD:
-			Input.start_joy_vibration(0,0.5,0.2,0.2)
-		damagee()
-		healthbar.health = healthp
-		if healthp <= 0:
-			healthbar.hide()
-		print("wrog dotkniety")
-		$damage.play("damage")
-		#emit_signal("knockback")
-	else:
-		return
 		
 func _on_wait_for_lose_screen_timeout():
 	get_tree().change_scene_to_file("res://scenes/loser.tscn")
@@ -256,3 +260,6 @@ func apply_knockback(direction: Vector2, force: float, knockback_duration: float
 	knockback = direction.normalized() * force
 	knockback_timer = knockback_duration
 	print("knocked")
+
+func _on_death_slowmo_timeout():
+	Engine.time_scale = 1.0

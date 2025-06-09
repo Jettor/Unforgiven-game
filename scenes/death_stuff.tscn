@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c44pwmfk4ihob"]
+[gd_scene load_steps=16 format=3 uid="uid://c44pwmfk4ihob"]
 
 [ext_resource type="Script" uid="uid://5ysdi0sv6oma" path="res://code/Death_stuff.gd" id="1_tqpyj"]
 [ext_resource type="Texture2D" uid="uid://cn4jjh7bysyw2" path="res://images/death.png" id="2_ni7ni"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="3_gynlv"]
 [ext_resource type="Texture2D" uid="uid://dqaakiu57u4c0" path="res://images/stun_particle.png" id="4_dr4xt"]
+[ext_resource type="Texture2D" uid="uid://bdgnmmfm4l3i4" path="res://images/gun.png" id="5_760ei"]
 
 [sub_resource type="Curve" id="Curve_h2y2d"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -77,13 +78,15 @@ amount = 1
 texture = ExtResource("2_ni7ni")
 lifetime = 3.0
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.9
 spread = 180.0
 gravity = Vector2(0, 400)
 initial_velocity_max = 100.0
 angular_velocity_min = 0.5
 angular_velocity_max = 1.0
 angular_velocity_curve = SubResource("Curve_h2y2d")
+scale_amount_min = 1.2
+scale_amount_max = 1.2
 scale_amount_curve = SubResource("Curve_3mpka")
 
 [node name="enemy_dead" type="CPUParticles2D" parent="."]
@@ -128,3 +131,22 @@ angular_velocity_max = 1.0
 angle_min = -20.0
 angle_max = 20.0
 color_ramp = SubResource("Gradient_760ei")
+
+[node name="gun" type="CPUParticles2D" parent="."]
+visibility_layer = 4
+emitting = false
+amount = 1
+texture = ExtResource("5_760ei")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, 380)
+initial_velocity_max = 100.0
+angular_velocity_min = 0.5
+angular_velocity_max = 1.0
+angular_velocity_curve = SubResource("Curve_h2y2d")
+scale_amount_min = 1.2
+scale_amount_max = 1.2
+scale_amount_curve = SubResource("Curve_3mpka")

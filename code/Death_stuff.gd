@@ -13,6 +13,8 @@ func play_damage_enemy():
 	$enemy_damage.emitting = true
 func play_stun():
 	$stun.emitting = true
+func play_drop_gun():
+	$gun.emitting = true
 
 func _process(delta):
 	pass

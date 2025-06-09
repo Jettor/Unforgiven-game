@@ -41,6 +41,7 @@ func _physics_process(delta):
 		enemy.scale.x = -1
 		
 func death():
+	instance.position = enemy.global_position
 	print("enemy has died")
 	Global.time += 0.5
 	print("+0.5 second")
@@ -50,7 +51,6 @@ func death():
 	instance.play_death_enemy()
 	instance.play_damage_enemy()
 	get_tree().get_root().add_child(instance)
-	instance.position = enemy.global_position
 	
 func give_damage() -> int:
 	return damage
@@ -68,6 +68,7 @@ func Melee_damage_handler():
 			elif health > 0:
 				await apply_knockback(global_position - target.global_position, k_force)
 				current_speed = 0
+				$Area2D/CollisionShape2D.disabled = true
 				instance.position = enemy.global_position
 				instance.play_stun()
 				get_tree().get_root().add_child(instance)
@@ -112,6 +113,7 @@ func _on_timer_timeout()-> void:
 	nav.target_position = target.position
 
 func _on_stun_timer_timeout():
+	$Area2D/CollisionShape2D.disabled = false
 	$Enemy/stun_animation.hide()
 	$Enemy/stun_animation.stop()
 	current_speed = Global.speed_plus

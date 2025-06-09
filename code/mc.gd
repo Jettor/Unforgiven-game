@@ -81,6 +81,7 @@ func death():
 	sprite_top.visible = false
 	var instance = death_scene.instantiate()
 	instance.play_death()
+	instance.play_drop_gun()
 	$player_hitbox.disabled = true
 	$Area2D/CollisionShape2D.disabled = true
 	get_tree().get_root().add_child(instance)

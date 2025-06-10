@@ -15,6 +15,8 @@ func play_stun():
 	$stun.emitting = true
 func play_drop_gun():
 	$gun.emitting = true
+func play_blood_spill():
+	$mc_blood_spill.emitting = true
 
 func _process(delta):
 	pass

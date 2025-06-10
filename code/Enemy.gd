@@ -53,7 +53,11 @@ func death():
 	get_tree().get_root().add_child(instance)
 	
 func give_damage() -> int:
+	if $stun_timer.time_left > 0:
+		print("Give damage = 0")
+		return 0
 	return damage
+	print("Give damage = 20")
 	
 func Melee_damage_handler():
 	if can_take_damage:
@@ -68,7 +72,6 @@ func Melee_damage_handler():
 			elif health > 0:
 				await apply_knockback(global_position - target.global_position, k_force)
 				current_speed = 0
-				$Area2D/CollisionShape2D.disabled = true
 				instance.position = enemy.global_position
 				instance.play_stun()
 				get_tree().get_root().add_child(instance)
@@ -101,8 +104,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		Melee_damage_handler()
 	if area.name == "punch_r":
 		$in_radius.play("radius_entered")
-	else:
-		return
+		
+func _on_area_2d_area_exited(area: Area2D) -> void:
+	if area.name == "punch_r":
+		$in_radius.stop()
 		
 func apply_knockback(direction: Vector2, force: float):
 	await get_tree().create_timer(0.1).timeout
@@ -113,7 +118,6 @@ func _on_timer_timeout()-> void:
 	nav.target_position = target.position
 
 func _on_stun_timer_timeout():
-	$Area2D/CollisionShape2D.disabled = false
+	damage = 20
 	$Enemy/stun_animation.hide()
-	$Enemy/stun_animation.stop()
 	current_speed = Global.speed_plus

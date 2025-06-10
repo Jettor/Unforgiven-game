@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c44pwmfk4ihob"]
+[gd_scene load_steps=17 format=3 uid="uid://c44pwmfk4ihob"]
 
 [ext_resource type="Script" uid="uid://5ysdi0sv6oma" path="res://code/Death_stuff.gd" id="1_tqpyj"]
 [ext_resource type="Texture2D" uid="uid://cn4jjh7bysyw2" path="res://images/death.png" id="2_ni7ni"]
@@ -15,58 +15,84 @@ point_count = 2
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.992509, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_pryas"]
-_limits = [0.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_kcfv7"]
-curve = SubResource("Curve_pryas")
-
 [sub_resource type="Gradient" id="Gradient_eatwl"]
-offsets = PackedFloat32Array(0.0882353, 0.794118, 1)
-colors = PackedColorArray(0.347817, 0.347817, 0.347817, 1, 1, 1, 1, 1, 1, 1, 1, 0.0156863)
+offsets = PackedFloat32Array(0.0462185, 0.567227, 1)
+colors = PackedColorArray(0.270222, 0.270222, 0.270222, 1, 0.481789, 0.481789, 0.481789, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_onwuh"]
 gradient = SubResource("Gradient_eatwl")
 
-[sub_resource type="Curve" id="Curve_kgb8u"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 6.43185), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_nwb33"]
-curve = SubResource("Curve_kgb8u")
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vu8yq"]
 lifetime_randomness = 0.25
 particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 2.73
 angle_min = 1.07288e-05
 angle_max = 23.6
 spread = 180.0
 flatness = 1.0
 initial_velocity_min = 134.42
 initial_velocity_max = 339.2
-orbit_velocity_min = -0.144
-orbit_velocity_max = 0.131
-gravity = Vector3(0, 0, 0)
-damping_min = 93.77
+angular_velocity_min = -200.26
+angular_velocity_max = 381.46
+orbit_velocity_min = -0.318
+orbit_velocity_max = 0.132
+gravity = Vector3(0, 100, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 100.0
+damping_min = 90.127
 damping_max = 98.338
-damping_curve = SubResource("CurveTexture_nwb33")
-scale_min = 2.73
-scale_max = 10.37
+scale_max = 14.24
+scale_over_velocity_max = 443.71
 color = Color(0.720467, 0.720468, 0.720467, 1)
 color_ramp = SubResource("GradientTexture1D_onwuh")
-hue_variation_min = -2.23517e-08
-hue_variation_max = -2.23517e-08
-anim_speed_max = 1.1
-anim_speed_curve = SubResource("CurveTexture_kcfv7")
+turbulence_noise_strength = 15.44
+turbulence_noise_scale = 10.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.131
+turbulence_initial_displacement_min = -100.0
+turbulence_initial_displacement_max = 100.0
 
 [sub_resource type="Gradient" id="Gradient_760ei"]
 offsets = PackedFloat32Array(0.604317, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_1inui"]
+offsets = PackedFloat32Array(0.336134, 0.94958, 1)
+colors = PackedColorArray(0.365403, 1.95531e-07, 1.68458e-07, 1, 0.81502, 3.58574e-06, 7.70092e-07, 1, 0.82, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ec16i"]
+gradient = SubResource("Gradient_1inui")
+
+[sub_resource type="Curve" id="Curve_760ei"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 129.674, 0, 0, Vector2(1, 1), 67.2656, -482.092, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1inui"]
+curve = SubResource("Curve_760ei")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_760ei"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 55.8
+spread = 180.0
+initial_velocity_min = 185.43
+initial_velocity_max = 337.74
+angular_velocity_min = -71.52
+angular_velocity_max = 300.4
+gravity = Vector3(0, 1000, 0)
+linear_accel_min = -11.26
+linear_accel_max = 100.0
+damping_max = 53.311
+damping_curve = SubResource("CurveTexture_1inui")
+scale_max = 10.93
+color_ramp = SubResource("GradientTexture1D_ec16i")
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 10.0
+turbulence_influence_min = 0.0
+turbulence_influence_max = 0.064
+turbulence_initial_displacement_min = -100.0
+turbulence_initial_displacement_max = -70.1
 
 [node name="Death_stuff" type="Node2D"]
 script = ExtResource("1_tqpyj")
@@ -150,3 +176,13 @@ angular_velocity_curve = SubResource("Curve_h2y2d")
 scale_amount_min = 1.2
 scale_amount_max = 1.2
 scale_amount_curve = SubResource("Curve_3mpka")
+
+[node name="mc_blood_spill" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+lifetime = 3.0
+one_shot = true
+speed_scale = 0.61
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_760ei")

@@ -38,35 +38,30 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _on_area_2d_area_entered(area): # TAKING DAMAGE
 	if area.is_in_group("Wrog") and can_take_damage:
-		if area.has_method("get_damage"):
-			damage_taken = area.get_damage()
-		elif "damage" in area:
-			damage_taken = area.damage
-		else:
-			damage_taken = 20  # fallback value
-		$DamageSound.play()
-		$Camera2D/zoom_animation.play("cam_shake")
-		if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD:
-			Input.start_joy_vibration(0,0.5,0.2,0.2)
-		damagee()
-		healthbar.health = healthp
-		if healthp <= 0:
-			healthbar.hide()
-		print("zgon")
-		$damage.play("damage")
+		if area.get_parent().has_method("give_damage"):
+			damage_taken = area.get_parent().give_damage()
+			if area.get_parent().give_damage() > 0:
+				$DamageSound.play()
+				$Camera2D/zoom_animation.play("cam_shake")
+				if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD:
+					Input.start_joy_vibration(0,0.5,0.2,0.2)
+				damagee()
+				healthbar.health = healthp
+				print("zgon")
+				$damage.play("damage")
 
 func damagee():
-	if can_take_damage:
-		if healthp > 0:
-			can_take_damage = false
-			healthp = healthp - damage_taken
-			if healthp <= 0:
-				Global.player_alive = false
-				if not Global.player_alive:
-					death()
-			elif healthp > 0:
-				$immortality.start()
-				print(healthp)
+	if healthp > 0:
+		can_take_damage = false
+		healthp = healthp - damage_taken
+		if healthp <= 0:
+			healthbar.hide()
+			Global.player_alive = false
+			if not Global.player_alive:
+				death()
+		elif healthp > 0:
+			$immortality.start()
+			print(healthp)
 	
 func _ready():
 	top_level = true
@@ -80,6 +75,7 @@ func death():
 	sprite_bottom.visible = false
 	sprite_top.visible = false
 	var instance = death_scene.instantiate()
+	instance.play_blood_spill()
 	instance.play_death()
 	instance.play_drop_gun()
 	$player_hitbox.disabled = true

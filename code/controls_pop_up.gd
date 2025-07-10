@@ -12,7 +12,7 @@ func _on_subtimer_1_timeout():
 	
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().change_scene_to_file("res://scenes/main.tscn")
+		get_tree().change_scene_to_file("res://scenes/Locations/main.tscn")
 	if Input.is_action_just_pressed("kill_game"):
 		get_tree().quit()
 	
@@ -76,4 +76,4 @@ func _on_cutscene_3_timer_timeout(): # Cutscene3 timer
 	$subtimer1.start()
 
 func _on_cutscene_4_timer_timeout():
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/Locations/main.tscn")

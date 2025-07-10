@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bebgc377ul7xm"
+path="res://.godot/imported/Abandoned Cathedra(demo-V2).mp3-073c6928db81cf41857427ec82680c4a.mp3str"
+
+[deps]
+
+source_file="res://music/Soundtrack/Abandoned Cathedra(demo-V2).mp3"
+dest_files=["res://.godot/imported/Abandoned Cathedra(demo-V2).mp3-073c6928db81cf41857427ec82680c4a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

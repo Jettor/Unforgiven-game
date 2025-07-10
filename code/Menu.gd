@@ -14,7 +14,7 @@ func _on_graj_pressed():
 	Engine.time_scale = 1
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/cutscene.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/cutscene.tscn")
 	
 
 func _on_wyjdz_pressed():
@@ -25,7 +25,7 @@ func _on_wyjdz_pressed():
 func _on_tworcy_pressed():
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/creators.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/creators.tscn")
 
 func _on_graj_mouse_entered():
 	$hover.play()

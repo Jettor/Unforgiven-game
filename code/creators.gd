@@ -12,12 +12,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("kill_game"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/UI_scenes/menu.tscn")
 
 func _on_button_pressed():
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/menu.tscn")
 
 func _on_button_mouse_entered():
 	$hover.play()

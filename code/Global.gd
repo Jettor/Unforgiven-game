@@ -19,13 +19,15 @@ var enemy_dead = false
 var death_sound: AudioStreamPlayer
 var best_score = 0
 var bullet_name = ""
+
 var bullet_damage = 10
 var melee_damage = 5
+
 #var gun_melee_damage = 5
 var best_kill_count = 0
 var best_gained_time = 0
 var lvl_id = 0
-var has_gun = true
+var has_gun = false
 
 var knockback_force = 200
 
@@ -36,7 +38,7 @@ var lvl3_playing = false
 func _ready():
 	death_sound = AudioStreamPlayer.new()
 	add_child(death_sound)
-	death_sound.stream = preload("res://music/enemy_damage.mp3")
+	death_sound.stream = preload("res://music/SFX/enemy_damage.mp3")
 
 func save():
 	var file = FileAccess.open(path, FileAccess.WRITE)

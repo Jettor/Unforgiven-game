@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy_scene = preload("res://scenes/enemy.tscn")
+var enemy_scene = preload("res://scenes/Entities/enemy.tscn")
 var penta_scene = preload("res://scenes/pentagram.tscn")
 var rngX = RandomNumberGenerator.new()
 var rngY = RandomNumberGenerator.new()
@@ -54,4 +54,4 @@ func _on_finish_area_entered(area):
 	
 func _on_lvl_finished_timeout():
 	_stop()
-	get_tree().change_scene_to_file("res://scenes/winner.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/winner.tscn")

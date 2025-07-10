@@ -10,7 +10,7 @@ func _ready():
 	
 	# Display current match stats
 	$Panel/current_stats/score.text = "Score: " + str(Global.score)
-	$Panel/current_stats/czas.text = "Gained time: " + str(Global.gained_time) + " sec"
+	$Panel/current_stats/czas.text = "Saved time: " + str(Global.gained_time) + " sec"
 	$Panel/current_stats/kill_count.text = "Kill count: " + str(Global.kill_count)
 	var new_best = false
 	
@@ -33,7 +33,7 @@ func _ready():
 	
 	# Display best stats
 	$Panel/best_stats/score.text = "Score: " + str(Global.best_score)
-	$Panel/best_stats/czas.text = "Gained time: " + str(Global.best_gained_time) + " sec"
+	$Panel/best_stats/czas.text = "Saved time: " + str(Global.best_gained_time) + " sec"
 	$Panel/best_stats/kill_count.text = "Kill count: " + str(Global.best_kill_count)
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,12 +44,12 @@ func _process(delta):
 func _on_button_pressed():
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/menu.tscn")
 
 func _on_restart_pressed():
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/Locations/main.tscn")
 
 func _on_button_mouse_entered():
 	$hover.play()

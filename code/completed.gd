@@ -44,18 +44,18 @@ func _process(delta):
 func _on_button_pressed(): #MENU
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/menu.tscn")
 	#get_tree().reload_current_scene()
 
 func _on_restart_pressed(): #RESTART
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/Locations/main.tscn")
 	
 func _on_next_pressed(): #CREDITS
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/creators.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/creators.tscn")
 
 func _on_button_mouse_entered():
 	$hover.play()

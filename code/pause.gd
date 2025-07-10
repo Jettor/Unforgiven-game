@@ -31,7 +31,7 @@ func _on_menu_pressed():
 	$press.play()
 	await $press.finished
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/UI_scenes/menu.tscn")
 
 func _on_restart_pressed():
 	$press.play()

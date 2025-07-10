@@ -10,7 +10,7 @@ func _ready():
 	
 	# Display current match stats
 	$Panel/current_stats/score.text = "Score: " + str(Global.score)
-	$Panel/current_stats/czas.text = "Gained time: " + str(Global.gained_time) + " sec"
+	$Panel/current_stats/czas.text = "Saved time: " + str(Global.gained_time) + " sec"
 	$Panel/current_stats/kill_count.text = "Kill count: " + str(Global.kill_count)
 	var new_best = false
 	

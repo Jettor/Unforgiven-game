@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b146hb34lplj"]
+[gd_scene load_steps=14 format=3 uid="uid://b146hb34lplj"]
 
 [ext_resource type="Script" uid="uid://cbqr802i45acx" path="res://code/Ghost1.gd" id="1_j04kq"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="2_k22qx"]
 [ext_resource type="PackedScene" uid="uid://kyilkjpxbnv2" path="res://scenes/stun_animation.tscn" id="3_il4pi"]
 [ext_resource type="AudioStream" uid="uid://d26c66olj7ijn" path="res://music/SFX/enemy_damage.mp3" id="4_db11g"]
+[ext_resource type="AudioStream" uid="uid://che3gct20dkbb" path="res://music/SFX/enemy_hit_scream.wav" id="5_k22qx"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_5dnoo"]
 diffuse_texture = ExtResource("2_k22qx")
@@ -34,6 +35,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_4ra3w"]
 resource_name = "radius_entered"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -93,7 +95,6 @@ frame = 2
 frame_progress = 0.679715
 
 [node name="enemy_hitbox" type="CollisionShape2D" parent="."]
-visible = false
 texture_filter = 1
 position = Vector2(-4, 2)
 shape = SubResource("CapsuleShape2D_ahmst")
@@ -109,16 +110,18 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Area2D" type="Area2D" parent="." groups=["Wrog"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2(-4, 2)
 shape = SubResource("CapsuleShape2D_af7kp")
 
 [node name="Enemy_death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_db11g")
 volume_db = -7.048
+
+[node name="Enemy_hit_scream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_k22qx")
+volume_db = -7.0
 
 [node name="in_radius" type="AnimationPlayer" parent="."]
 libraries = {
@@ -128,6 +131,7 @@ libraries = {
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_xwavj")
 offset_left = -29.0
 offset_top = -34.0

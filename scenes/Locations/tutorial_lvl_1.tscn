@@ -588,7 +588,7 @@ tile_map_data = PackedByteArray("AAAAACAAAAAEAAIAAAAAACEAAAAEAAMAAAABACAAAAAEAAI
 tile_set = SubResource("TileSet_lnukm")
 
 [node name="CharacterBody2D" parent="layer_holder/ground" instance=ExtResource("8_yf51l")]
-position = Vector2(1850, 990)
+position = Vector2(1572, 990)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ko7ks")
@@ -619,6 +619,7 @@ libraries = {
 }
 
 [node name="black" type="ColorRect" parent="CanvasLayer/fader"]
+visible = false
 offset_left = 1.0
 offset_top = -2.0
 offset_right = 1932.0

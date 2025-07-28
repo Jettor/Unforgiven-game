@@ -552,6 +552,8 @@ theme_override_colors/font_color = Color(0.921569, 0.870588, 0, 1)
 theme_override_fonts/font = ExtResource("6_l7s2a")
 theme_override_font_sizes/font_size = 30
 text = "Volodya \"Pravetz\" Didur
+
+Tymoteusz Bielski
 "
 horizontal_alignment = 1
 

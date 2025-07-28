@@ -10,8 +10,7 @@ var k_force = Global.knockback_force
 var can_take_damage = true
 var direction
 @onready var enemy
-
-var particle_handler = load("uid://c44pwmfk4ihob")
+var particle_handler = load("uid://c44pwmfk4ihob") #death_stuff
 var particle_spawner = particle_handler.instantiate()
 
 var knockback_duration: float = 0.3  # seconds
@@ -40,13 +39,15 @@ func Melee_damage_handler():
 				death()  
 				queue_free()
 			elif health > 0:
-				await apply_knockback(global_position - target.global_position, k_force)
-				current_speed = 0
-				particle_spawner.position = enemy.global_position
-				particle_spawner.play_stun()
-				get_tree().get_root().add_child(particle_spawner)
-				play_stun_effect()
-				$stun_timer.start()
+				await apply_knockback(global_position - target.global_position, k_force-80, 0.1)
+				#current_speed = lerp(0.0, 180, 20*delta)
+				if Global.combo_counter >= 3:
+					await apply_knockback(global_position - target.global_position, k_force, 0.1)
+					particle_spawner.position = enemy.global_position
+					particle_spawner.play_stun()
+					get_tree().get_root().add_child(particle_spawner)
+					play_stun_effect()
+					$stun_timer.start()
 				print(health)
 
 func play_death_particles():
@@ -58,10 +59,12 @@ func give_damage() -> int:
 		return 0
 	return damage
 	
-func apply_knockback(direction: Vector2, force: float):
+func apply_knockback(direction: Vector2, force: float, duration: float):
 	await get_tree().create_timer(0.1).timeout
+	direction = direction.normalized()
+	direction.y *= 0.3
 	knockback_force = direction.normalized() * force
 	knockback_timer = knockback_duration
 
-func play_stun_effect():
+func play_stun_effect(): #gets overwritten
 	pass

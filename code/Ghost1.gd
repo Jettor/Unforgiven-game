@@ -1,11 +1,11 @@
 extends Enemy_class
 class_name Ghost1
-
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
 @onready var timer = $Timer
 signal enemy_scream
 
 func _ready():
+	var player = get_node("res://scenes/Entities/mc.tscn")
 	health = 10
 	damage = 20
 	enemy = $Enemy
@@ -39,7 +39,7 @@ func Bullet_damage_handler():
 					death()  
 					queue_free()
 			elif health > 0:
-				#await apply_knockback(global_position - target.global_position, k_force)
+				await apply_knockback(global_position - target.global_position, k_force, 0.1)
 				print(health)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
@@ -48,6 +48,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		print(Global.bullet_name, "bullet has hit enemy")
 		Bullet_damage_handler()
 	elif area.is_in_group("melee"):
+		emit_signal("enemy_punched")
+		$Enemy_hit_scream.pitch_scale = randf_range(0.8, 1.2)
+		$Enemy_hit_scream.play()
 		print("fist has hit enemy")
 		Melee_damage_handler()
 	if area.name == "punch_r":

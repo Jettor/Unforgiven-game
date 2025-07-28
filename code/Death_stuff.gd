@@ -17,6 +17,8 @@ func play_drop_gun():
 	$gun.emitting = true
 func play_blood_spill():
 	$mc_blood_spill.emitting = true
+func play_impact_particles():
+	$hit_particles.emitting = true
 
 func _process(delta):
 	pass

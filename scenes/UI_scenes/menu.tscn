@@ -326,6 +326,7 @@ color = Color(0, 0, 0, 1)
 stream = ExtResource("11_8fdho")
 volume_db = -5.0
 autoplay = true
+parameters/looping = true
 
 [node name="logo_wave" type="AnimationPlayer" parent="."]
 root_node = NodePath("../CanvasLayer/moving/HBoxContainer/Sprite2D")

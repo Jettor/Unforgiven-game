@@ -133,8 +133,8 @@ func temporary_boost(boost):
 	player.normal_SPEED = move_toward(player.normal_SPEED, 0, 400)
 	
 func play_punch_sound():
-	player.get_node("PunchSound").pitch_scale = randf_range(0.8, 1.2)
-	player.get_node("PunchSound").play()
+	player.get_node("Audio/PunchSound").pitch_scale = randf_range(0.8, 1.2)
+	player.get_node("Audio/PunchSound").play()
 	
 func find_punch_push_direction():
 	if player.face_direction == Vector2.LEFT:

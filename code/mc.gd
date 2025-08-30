@@ -9,10 +9,11 @@ var death_scene = load("res://scenes/death_stuff.tscn")
 enum PlayerState {IDLE, SHOOTING, MELEE}
 var state: PlayerState = PlayerState.IDLE
 
-@onready var punch_sound = $PunchSound
-@onready var shoot_sound = $ShootSound
+@onready var punch_sound = $Audio/PunchSound
+@onready var shoot_sound = $Audio/ShootSound
 @onready var dash = $Dash
-@onready var walk_sound = $WalkSound
+@onready var hint = $Hint_message
+@onready var walk_sound = $Audio/WalkSound
 @onready var sprite_bottom = $Sprite_bottom
 @onready var sprite_top = $Sprite_top
 @onready var marker_2d = $Marker2D
@@ -22,6 +23,7 @@ var state: PlayerState = PlayerState.IDLE
 @onready var camera = $"../Camera2D"
 @onready var combo_timer = $Timers/ComboTimer
 @onready var shoot_timer = $Timers/ShootingTimer
+@onready var raycast = $RayCast2D
 
 @onready var input_handler = PlayerInput.new()
 @onready var visual_handler = VisualEffects.new()
@@ -58,7 +60,7 @@ func _on_area_2d_area_entered(area): # TAKING DAMAGE
 		if area.get_parent().has_method("give_damage"):
 			damage_taken = area.get_parent().give_damage()
 			if area.get_parent().give_damage() > 0:
-				$DamageSound.play()
+				$Audio/DamageSound.play()
 				$Camera2D/zoom_animation.play("cam_shake")
 				if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD:
 					Input.start_joy_vibration(0,0.5,0.2,0.2)
@@ -66,6 +68,9 @@ func _on_area_2d_area_entered(area): # TAKING DAMAGE
 				healthbar.health = healthp
 				print("zgon")
 				$damage.play("damage")
+	elif area.is_in_group("Hint"): # HANDLE HINTS
+		hint.hint_manager(area.name)
+		area.queue_free()
 			
 func damagee():
 	if healthp > 0:
@@ -81,6 +86,7 @@ func damagee():
 			print(healthp)
 	
 func _ready():
+	Global.player = self
 	input_handler.player = self
 	visual_handler.player = self
 	top_level = true
@@ -102,7 +108,7 @@ func death():
 	$Area2D/CollisionShape2D.disabled = true
 	get_tree().get_root().add_child(main_instance)
 	$Timers/WaitForLoseScreen.start()
-
+	self.global_position = Vector2(-10,10)
 	
 func _physics_process(delta):
 	input_handler.process_input()
@@ -130,6 +136,7 @@ func _physics_process(delta):
 			face_direction = Vector2.LEFT
 			sprite_bottom.flip_h = true
 			sprite_top.flip_h = true
+			raycast.target_position = Vector2(-39,0)
 			$Marker2D.position = Vector2(-31, 5)
 			$Impact_effect.position = Vector2(-30, -2)
 			punch_hurtbox.position.x = -62
@@ -137,6 +144,7 @@ func _physics_process(delta):
 			face_direction = Vector2.RIGHT
 			sprite_bottom.flip_h = false
 			sprite_top.flip_h = false
+			raycast.target_position = Vector2(41,0)
 			$Marker2D.position = Vector2(31, 5)
 			$Impact_effect.position = Vector2(30, -2)
 			punch_hurtbox.position.x = 0
@@ -193,14 +201,14 @@ func _on_punch_area_entered(area):
 		print("Enemy hit")
 		$Impact_effect.visible = true
 		if Global.combo_counter == 1 or Global.combo_counter == 0:
-			$Punch_impact1.play()
+			$Audio/Punch_impact1.play()
 			$Impact_effect/animator.play("punch0")
 		elif Global.combo_counter == 2:
-			$Punch_impact1.pitch_scale = randf_range(0.8, 1.2)
-			$Punch_impact1.play()
+			$Audio/Punch_impact1.pitch_scale = randf_range(0.8, 1.2)
+			$Audio/Punch_impact1.play()
 			$Impact_effect/animator.play("punch1")
 		elif Global.combo_counter == 3:
-			$Kick_impact1.play()
+			$Audio/Kick_impact1.play()
 			$Impact_effect/animator.play("punch2")
 			#Engine.time_scale = 0.05
 			#await get_tree().create_timer(0.05).timeout

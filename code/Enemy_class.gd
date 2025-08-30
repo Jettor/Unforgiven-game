@@ -12,7 +12,6 @@ var direction
 @onready var enemy
 var particle_handler = load("uid://c44pwmfk4ihob") #death_stuff
 var particle_spawner = particle_handler.instantiate()
-
 var knockback_duration: float = 0.3  # seconds
 var knockback_timer: float = 0.0
 var knockback_force:Vector2 = Vector2.ZERO

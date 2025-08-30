@@ -36,6 +36,9 @@ var lvl1_playing = false
 var lvl2_playing = false
 var lvl3_playing = false
 
+### DIALOGUE & QUEST ###
+var player: Node = null
+
 func _ready():
 	death_sound = AudioStreamPlayer.new()
 	add_child(death_sound)

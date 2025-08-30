@@ -4,14 +4,19 @@ var enemy_scene = preload("res://scenes/Entities/enemy.tscn")
 var penta_scene = preload("res://scenes/pentagram.tscn")
 var rngX = RandomNumberGenerator.new()
 var rngY = RandomNumberGenerator.new()
+@onready var player = $CharacterBody2D
+@onready var zoom_animation = $CharacterBody2D/Camera2D/zoom_animation
 
 func _ready():
+	#player.position = Vector2(904, -78) #ERROR
+	#print(player.global_position)
+	Engine.time_scale = 1.0
 	Global.lvl1_playing = true
 	Global.x2 = false
 	Global.score_reward = 100
 	$fall.play()
 	Global.player_alive = true
-	$CharacterBody2D/Camera2D/zoom_animation.play("zoom_out")
+	zoom_animation.play("zoom_out")
 	Global.score = 0
 	$Timer.start()
 	Global.lvl_id = 1
@@ -19,6 +24,11 @@ func _ready():
 	Global.kill_count = 0
 	Global.gained_time = 0
 	Global.speed_plus = 95
+	await get_tree().create_timer(3).timeout
+	player.hint.give_hint("Use double jump")
+	
+	#await get_tree().create_timer(0.1).timeout
+	#print(player.global_position)    FOR SOME REASON SPAWNS AT (1006.924, -70.37778)
 
 func _physics_process(_delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
@@ -30,7 +40,7 @@ func _physics_process(_delta):
 func _on_timer_timeout():         #SPAWNING ENEMIES
 	for i in range(4):
 		var position = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
-		while position.distance_to($CharacterBody2D.position) < 300:
+		while position.distance_to(player.position) < 300:
 			position = Vector2(rngX.randf_range(77, 1843), rngY.randf_range(88, 850))
 		spawn_enemy(position)
 		await get_tree().create_timer(1.5).timeout
@@ -55,8 +65,8 @@ func _stop() -> void:
 func _on_finish_area_entered(area):
 	print("ENTERED!!")
 	Global.lvl1_playing = false
-	$CharacterBody2D/Camera2D/zoom_animation.play("limit_break")
-	$CharacterBody2D.hide()
+	zoom_animation.play("limit_break")
+	player.hide()
 	$lvl_finished.start()
 
 func _on_lvl_finished_timeout():

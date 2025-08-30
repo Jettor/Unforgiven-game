@@ -1882,7 +1882,7 @@ libraries = {
 }
 
 [node name="CharacterBody2D" parent="." groups=["Player"] instance=ExtResource("9_7xkby")]
-position = Vector2(946, -78)
+position = Vector2(839, 144)
 
 [node name="CharacterBody2D2" parent="." groups=["Enemy"] instance=ExtResource("10_pknyk")]
 position = Vector2(353, 474)

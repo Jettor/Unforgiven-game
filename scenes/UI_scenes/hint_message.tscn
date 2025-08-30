@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://dasec5bk632gf"]
+
+[ext_resource type="Script" uid="uid://cbuhxslcjbo1u" path="res://code/hint_message_code.gd" id="1_cnsyr"]
+[ext_resource type="Texture2D" uid="uid://bsy0p6flsyxe5" path="res://images/message_paper.png" id="1_m3kha"]
+[ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="2_cnsyr"]
+
+[sub_resource type="Animation" id="Animation_yspm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(58, -95.915)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("paper:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0907571]
+}
+
+[sub_resource type="Animation" id="Animation_5pjyt"]
+resource_name = "hint_hide"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(120, 41), Vector2(120, 45), Vector2(80, -95)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("paper:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0837758, 0.0907571, -0.0907571]
+}
+
+[sub_resource type="Animation" id="Animation_cnsyr"]
+resource_name = "hint_show"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("paper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(80, -95), Vector2(120, 45), Vector2(120, 41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("paper:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0907571, 0.0907571, 0.0837758]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pjyt"]
+_data = {
+&"RESET": SubResource("Animation_yspm1"),
+&"hint_hide": SubResource("Animation_5pjyt"),
+&"hint_show": SubResource("Animation_cnsyr")
+}
+
+[node name="hint_message" type="CanvasLayer"]
+script = ExtResource("1_cnsyr")
+
+[node name="paper" type="Sprite2D" parent="."]
+position = Vector2(58, -95.915)
+rotation = -0.0907571
+scale = Vector2(3, 3)
+texture = ExtResource("1_m3kha")
+
+[node name="hint_text" type="Label" parent="paper"]
+offset_left = -31.9676
+offset_top = -9.68617
+offset_right = 104.032
+offset_bottom = 25.3138
+theme_override_colors/font_color = Color(0.648933, 0.508126, 0.34777, 1)
+theme_override_fonts/font = ExtResource("2_cnsyr")
+theme_override_font_sizes/font_size = 10
+text = "TEXT
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="time_on_screen" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="hint_animator" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5pjyt")
+}
+
+[connection signal="timeout" from="time_on_screen" to="." method="_on_time_on_screen_timeout"]

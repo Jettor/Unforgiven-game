@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=119 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/mc.gd" id="1_tt4rc"]
 [ext_resource type="Shader" uid="uid://bef32hgvxjsqu" path="res://shaders/mc.gdshader" id="2_6iiml"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="12_7lxtn"]
 [ext_resource type="AudioStream" uid="uid://clqm8f0515dtl" path="res://music/SFX/kick1.wav" id="12_ob8c1"]
 [ext_resource type="PackedScene" uid="uid://cjekenqfixsm2" path="res://scenes/impact_effect.tscn" id="14_ync4d"]
+[ext_resource type="PackedScene" uid="uid://dasec5bk632gf" path="res://scenes/UI_scenes/hint_message.tscn" id="17_ob8c1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dlm4k"]
 shader = ExtResource("2_6iiml")
@@ -809,6 +810,22 @@ tracks/0/keys = {
 "values": [1080, 2300]
 }
 
+[sub_resource type="Animation" id="Animation_i0nfk"]
+resource_name = "zoom_corridors"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.5, 2.5)]
+}
+
 [sub_resource type="Animation" id="Animation_ekbpb"]
 resource_name = "zoom_out"
 tracks/0/type = "value"
@@ -829,6 +846,7 @@ _data = {
 &"RESET": SubResource("Animation_m6f18"),
 &"cam_shake": SubResource("Animation_g7e8f"),
 &"limit_break": SubResource("Animation_ds1sp"),
+&"zoom_corridors": SubResource("Animation_i0nfk"),
 &"zoom_out": SubResource("Animation_ekbpb")
 }
 
@@ -839,6 +857,7 @@ size = Vector2(30, 23)
 size = Vector2(80, 23)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(-1, 3)
 script = ExtResource("1_tt4rc")
 
 [node name="Sprite_bottom" type="AnimatedSprite2D" parent="."]
@@ -889,31 +908,33 @@ one_shot = true
 [node name="ShootingTimer" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="WalkSound" type="AudioStreamPlayer" parent="."]
+[node name="Audio" type="Node" parent="."]
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("7_dlm4k")
 volume_db = 2.0
 
-[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+[node name="ShootSound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("6_ggplk")
 volume_db = -6.7
 pitch_scale = 0.93
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("8_dlm4k")
 volume_db = 5.0
 
-[node name="PunchSound" type="AudioStreamPlayer" parent="."]
+[node name="PunchSound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("9_dlm4k")
 
-[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+[node name="DamageSound" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("8_5krv6")
 volume_db = -10.0
 
-[node name="Punch_impact1" type="AudioStreamPlayer" parent="."]
+[node name="Punch_impact1" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("11_i0nfk")
 volume_db = -5.0
 
-[node name="Kick_impact1" type="AudioStreamPlayer" parent="."]
+[node name="Kick_impact1" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("12_ob8c1")
 volume_db = -5.0
 
@@ -1002,6 +1023,13 @@ shape = SubResource("RectangleShape2D_jwif6")
 [node name="Impact_effect" parent="." instance=ExtResource("14_ync4d")]
 visible = false
 position = Vector2(30, -2)
+
+[node name="Hint_message" parent="." instance=ExtResource("17_ob8c1")]
+visible = false
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(41, 0)
+collide_with_areas = true
 
 [connection signal="animation_finished" from="Sprite_top" to="." method="_on_sprite_top_animation_finished"]
 [connection signal="timeout" from="Timers/immortality" to="." method="_on_immortality_timeout"]

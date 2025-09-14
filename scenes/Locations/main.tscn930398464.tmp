@@ -1815,6 +1815,7 @@ theme_override_font_sizes/font_size = 13
 text = "SCORE:0"
 
 [node name="x2" type="Sprite2D" parent="CanvasL"]
+visible = false
 position = Vector2(1682, 124)
 scale = Vector2(2.25002, 2.25002)
 texture = ExtResource("4_vqbxa")

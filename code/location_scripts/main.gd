@@ -1,7 +1,7 @@
 extends Node
 
 var enemy_scene = preload("res://scenes/Entities/enemy.tscn")
-var penta_scene = preload("res://scenes/pentagram.tscn")
+var penta_scene = preload("res://scenes/Visual_effects/pentagram.tscn")
 var rngX = RandomNumberGenerator.new()
 var rngY = RandomNumberGenerator.new()
 @onready var player = $CharacterBody2D

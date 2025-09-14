@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=4 uid="uid://dsukx1wet7d6e"]
 
-[ext_resource type="Script" uid="uid://52jtjo8k40hl" path="res://code/tutorial_lvl_1.gd" id="1_r74ep"]
+[ext_resource type="Script" uid="uid://52jtjo8k40hl" path="res://code/location_scripts/tutorial_lvl_1.gd" id="1_r74ep"]
 [ext_resource type="Shader" uid="uid://g0fst7nuc3y6" path="res://shaders/sky_surface.gdshader" id="2_4gmei"]
 [ext_resource type="Texture2D" uid="uid://0sqbrnk0dra4" path="res://images/night_sky.png" id="3_qm4mq"]
 [ext_resource type="Texture2D" uid="uid://cxhlwoxypo5bh" path="res://images/surface_tilemap.png" id="4_gdyr1"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bkoweo4wyyvik" path="res://scenes/Entities/mc.tscn" id="8_yf51l"]
 [ext_resource type="AudioStream" uid="uid://com57kvid4cl" path="res://music/Soundtrack/Pravetz - Quiet Place_wind.wav" id="9_ko7ks"]
 [ext_resource type="AudioStream" uid="uid://dq4a0jotfq07o" path="res://music/SFX/crow.wav" id="10_swqyf"]
-[ext_resource type="PackedScene" uid="uid://beph3d3i7fi7" path="res://scenes/Fog.tscn" id="11_g104o"]
+[ext_resource type="PackedScene" uid="uid://beph3d3i7fi7" path="res://scenes/Visual_effects/Fog.tscn" id="11_g104o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbtu8"]
 resource_local_to_scene = true

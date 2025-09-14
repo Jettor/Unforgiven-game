@@ -4,11 +4,12 @@ var normal_SPEED = 300.0
 const dash_SPEED = 700.0
 const dash_length =  0.3
 const JUMP_VELOCITY = -500.0
-var death_scene = load("res://scenes/death_stuff.tscn")
+var death_scene = load("res://scenes/Visual_effects/death_stuff.tscn")
 
 enum PlayerState {IDLE, SHOOTING, MELEE}
 var state: PlayerState = PlayerState.IDLE
 
+@onready var quest_manager = $QuestManager
 @onready var punch_sound = $Audio/PunchSound
 @onready var shoot_sound = $Audio/ShootSound
 @onready var dash = $Dash
@@ -96,7 +97,7 @@ func _ready():
 func death():
 	Engine.time_scale = 0.05
 	$Timers/death_slowmo.start()
-	$DeathSound.play()
+	$Audio/DeathSound.play()
 	main_instance.position = sprite_bottom.global_position
 	main_instance.position = sprite_top.global_position
 	sprite_bottom.visible = false
@@ -127,27 +128,27 @@ func _physics_process(delta):
 	if punch_push_timer > 0.0: #PUNCH
 		punch_push_timer -= delta
 		velocity.x = punch_push_velocity
-		
 	# Handle horizontal movement
 	elif dir != 0:
-		velocity.x = dir * SPEED
-		var is_facing_left = dir < 0
-		if is_facing_left:
-			face_direction = Vector2.LEFT
-			sprite_bottom.flip_h = true
-			sprite_top.flip_h = true
-			raycast.target_position = Vector2(-39,0)
-			$Marker2D.position = Vector2(-31, 5)
-			$Impact_effect.position = Vector2(-30, -2)
-			punch_hurtbox.position.x = -62
-		else:
-			face_direction = Vector2.RIGHT
-			sprite_bottom.flip_h = false
-			sprite_top.flip_h = false
-			raycast.target_position = Vector2(41,0)
-			$Marker2D.position = Vector2(31, 5)
-			$Impact_effect.position = Vector2(30, -2)
-			punch_hurtbox.position.x = 0
+		if Global.can_move:
+			velocity.x = dir * SPEED
+			var is_facing_left = dir < 0
+			if is_facing_left:
+				face_direction = Vector2.LEFT
+				sprite_bottom.flip_h = true
+				sprite_top.flip_h = true
+				raycast.target_position = Vector2(-39,0)
+				$Marker2D.position = Vector2(-31, 5)
+				$Impact_effect.position = Vector2(-30, -2)
+				punch_hurtbox.position.x = -62
+			else:
+				face_direction = Vector2.RIGHT
+				sprite_bottom.flip_h = false
+				sprite_top.flip_h = false
+				raycast.target_position = Vector2(41,0)
+				$Marker2D.position = Vector2(31, 5)
+				$Impact_effect.position = Vector2(30, -2)
+				punch_hurtbox.position.x = 0
 			
 	elif is_attacking and punch_push_velocity != 0:
 		velocity.x = punch_push_velocity
@@ -195,7 +196,6 @@ func _on_combo_timer_timeout():
 	can_punch = true
 	state = PlayerState.IDLE
 	can_fire = true
-
 func _on_punch_area_entered(area):
 	if area.is_in_group("Wrog"):
 		print("Enemy hit")
@@ -219,3 +219,16 @@ func _on_shooting_timer_timeout():
 	is_attacking = false
 	print("Shooting timeout")
 	visual_handler.attack_animation_handler("shoot")
+
+func _input(event):            #INTERRACTION WITH NPC
+	if event.is_action_pressed("interract"):
+		var target = raycast.get_collider()
+		if target != null:
+			if target.is_in_group("NPCs"):
+				print("NPC talk")
+				Global.can_move = false
+				target.start_dialogue()
+			elif target.is_in_group("Items"):
+				print("I see item")
+				#remove it
+				target.start_interraction()

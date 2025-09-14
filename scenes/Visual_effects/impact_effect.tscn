@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjekenqfixsm2"]
 
-[ext_resource type="Texture2D" uid="uid://btwl3qsum7802" path="res://images/impact_circle.png" id="1_3p2ax"]
+[ext_resource type="Texture2D" uid="uid://btwl3qsum7802" path="res://images/impact_circle.png" id="1_crp06"]
 
 [sub_resource type="Animation" id="Animation_ungqy"]
 length = 0.001
@@ -197,12 +197,12 @@ color_ramp = SubResource("GradientTexture1D_h7svo")
 
 [node name="circle" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_3p2ax")
+texture = ExtResource("1_crp06")
 
 [node name="circle2" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.2, 0.05)
-texture = ExtResource("1_3p2ax")
+texture = ExtResource("1_crp06")
 
 [node name="animator" type="AnimationPlayer" parent="."]
 libraries = {

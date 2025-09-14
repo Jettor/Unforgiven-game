@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://cactrb80jrlwa"]
+
+[ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="1_8djo3"]
+[ext_resource type="Script" uid="uid://blcupxwk4cso" path="res://code/dialogue_scripts/dialogue_ui.gd" id="1_n0ljt"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_blmq2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c26yf"]
+bg_color = Color(0.1628, 0.25058, 0.44, 0.784314)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.688938, 0.824777, 0.893227, 1)
+
+[node name="DialogueUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n0ljt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c26yf")
+
+[node name="dialogue_box" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="D_speaker" type="Label" parent="CanvasLayer/Panel/dialogue_box"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0, 1)
+theme_override_fonts/font = ExtResource("1_8djo3")
+theme_override_font_sizes/font_size = 35
+text = "NPC Name"
+
+[node name="D_text" type="Label" parent="CanvasLayer/Panel/dialogue_box"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_8djo3")
+theme_override_font_sizes/font_size = 25
+text = "NPC speaking something important or not"
+
+[node name="D_options" type="HBoxContainer" parent="CanvasLayer/Panel/dialogue_box"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="close_dialogue" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_blmq2")
+theme_override_font_sizes/font_size = 24
+text = "X"
+alignment = 2
+
+[connection signal="pressed" from="CanvasLayer/Panel/close_dialogue" to="." method="_on_close_dialogue_pressed"]

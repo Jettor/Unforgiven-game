@@ -124,4 +124,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_5pjyt")
 }
 
+[node name="sound" type="AudioStreamPlayer" parent="."]
+
 [connection signal="timeout" from="time_on_screen" to="." method="_on_time_on_screen_timeout"]

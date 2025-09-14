@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://6byyxdvbveuy"]
+[gd_scene load_steps=13 format=4 uid="uid://6byyxdvbveuy"]
 
-[ext_resource type="Script" uid="uid://ciid3hgnq8yev" path="res://code/corridors_test.gd" id="1_rwn2q"]
+[ext_resource type="Script" uid="uid://ciid3hgnq8yev" path="res://code/location_scripts/corridors_test.gd" id="1_rwn2q"]
 [ext_resource type="Texture2D" uid="uid://dtg8oss8pr3s3" path="res://images/bg_bricks_new.png" id="2_w7ety"]
 [ext_resource type="PackedScene" uid="uid://bkoweo4wyyvik" path="res://scenes/Entities/mc.tscn" id="3_6uh2i"]
+[ext_resource type="PackedScene" uid="uid://f62tgmhvhxr2" path="res://scenes/Entities/test_NPC.tscn" id="4_ookox"]
 [ext_resource type="PackedScene" uid="uid://b146hb34lplj" path="res://scenes/Entities/enemy.tscn" id="4_w7ety"]
+[ext_resource type="PackedScene" uid="uid://drnidjqoo2h4n" path="res://scenes/items/quest_item.tscn" id="5_6uh2i"]
+[ext_resource type="Script" uid="uid://dy7g0i7tadpty" path="res://resources/dialogue/dialogue.gd" id="5_ookox"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_60gh8"]
 texture = ExtResource("2_w7ety")
@@ -552,6 +555,11 @@ texture = ExtResource("2_w7ety")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_08hoh")
 
+[sub_resource type="Resource" id="Resource_7aky1"]
+script = ExtResource("5_ookox")
+dialogues = {}
+metadata/_custom_type_script = "uid://dy7g0i7tadpty"
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_rwn2q")
 
@@ -568,8 +576,23 @@ tile_set = SubResource("TileSet_t3tyx")
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_6uh2i")]
 position = Vector2(353, 33)
 
+[node name="npc1" parent="." instance=ExtResource("4_ookox")]
+position = Vector2(120, 640)
+npc_id = "npc_1"
+dialogue_res = SubResource("Resource_7aky1")
+
+[node name="npc2" parent="." instance=ExtResource("4_ookox")]
+position = Vector2(804, 640)
+npc_id = "npc_2"
+npc_name = "Test dude2"
+dialogue_res = SubResource("Resource_7aky1")
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.830814, 0.84817, 0.841651, 1)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("4_w7ety")]
+visible = false
 position = Vector2(767.8, 641.53)
+
+[node name="QuestItem" parent="." instance=ExtResource("5_6uh2i")]
+position = Vector2(579, 635)

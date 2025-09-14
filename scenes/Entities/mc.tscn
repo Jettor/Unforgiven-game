@@ -1,22 +1,23 @@
-[gd_scene load_steps=119 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=120 format=3 uid="uid://bkoweo4wyyvik"]
 
-[ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/mc.gd" id="1_tt4rc"]
+[ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/entity_scripts/mc.gd" id="1_tt4rc"]
 [ext_resource type="Shader" uid="uid://bef32hgvxjsqu" path="res://shaders/mc.gdshader" id="2_6iiml"]
 [ext_resource type="Texture2D" uid="uid://b3t5g1brn1mr6" path="res://images/moving_spritesheet_bottom.png" id="2_jwif6"]
 [ext_resource type="Texture2D" uid="uid://dn7xh86lecnkx" path="res://images/moving_spritesheet_top.png" id="4_yxip8"]
-[ext_resource type="PackedScene" uid="uid://c44pwmfk4ihob" path="res://scenes/death_stuff.tscn" id="5_ocdsp"]
+[ext_resource type="PackedScene" uid="uid://c44pwmfk4ihob" path="res://scenes/Visual_effects/death_stuff.tscn" id="5_ocdsp"]
 [ext_resource type="AudioStream" uid="uid://c4u78vsnpdtuw" path="res://music/SFX/alt_shot.wav" id="6_ggplk"]
 [ext_resource type="AudioStream" uid="uid://d1lnt08ay2umo" path="res://music/SFX/walk_concrete.wav" id="7_dlm4k"]
 [ext_resource type="AudioStream" uid="uid://bs3xllpaxpcqp" path="res://music/SFX/player_damage.mp3" id="8_5krv6"]
 [ext_resource type="AudioStream" uid="uid://bfs86e58tg32a" path="res://music/SFX/death_sound_new.wav" id="8_dlm4k"]
-[ext_resource type="Script" uid="uid://c8cixb4mugd2o" path="res://code/healthbar.gd" id="9_32chr"]
+[ext_resource type="Script" uid="uid://c8cixb4mugd2o" path="res://code/entity_scripts/healthbar.gd" id="9_32chr"]
 [ext_resource type="AudioStream" uid="uid://cl6c5dpss5knv" path="res://music/SFX/punch_swish.mp3" id="9_dlm4k"]
 [ext_resource type="PackedScene" uid="uid://cuom58gpjk0p6" path="res://scenes/dash.tscn" id="11_cosi0"]
 [ext_resource type="AudioStream" uid="uid://bx7jiufech5hm" path="res://music/SFX/punch1.wav" id="11_i0nfk"]
 [ext_resource type="Texture2D" uid="uid://lo2g36nlaukr" path="res://images/lightmap.png" id="12_7lxtn"]
 [ext_resource type="AudioStream" uid="uid://clqm8f0515dtl" path="res://music/SFX/kick1.wav" id="12_ob8c1"]
-[ext_resource type="PackedScene" uid="uid://cjekenqfixsm2" path="res://scenes/impact_effect.tscn" id="14_ync4d"]
+[ext_resource type="PackedScene" uid="uid://cjekenqfixsm2" path="res://scenes/Visual_effects/impact_effect.tscn" id="14_ync4d"]
 [ext_resource type="PackedScene" uid="uid://dasec5bk632gf" path="res://scenes/UI_scenes/hint_message.tscn" id="17_ob8c1"]
+[ext_resource type="PackedScene" uid="uid://csisxg2fhq0ki" path="res://scenes/Quest/quest_manager.tscn" id="18_32jka"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dlm4k"]
 shader = ExtResource("2_6iiml")
@@ -1030,6 +1031,8 @@ visible = false
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(41, 0)
 collide_with_areas = true
+
+[node name="QuestManager" parent="." instance=ExtResource("18_32jka")]
 
 [connection signal="animation_finished" from="Sprite_top" to="." method="_on_sprite_top_animation_finished"]
 [connection signal="timeout" from="Timers/immortality" to="." method="_on_immortality_timeout"]

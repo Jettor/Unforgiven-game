@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://b146hb34lplj"]
 
-[ext_resource type="Script" uid="uid://cbqr802i45acx" path="res://code/Ghost1.gd" id="1_j04kq"]
+[ext_resource type="Script" uid="uid://cbqr802i45acx" path="res://code/entity_scripts/Ghost1.gd" id="1_j04kq"]
 [ext_resource type="Texture2D" uid="uid://bvub6hmebar00" path="res://images/enemy.png" id="2_k22qx"]
-[ext_resource type="PackedScene" uid="uid://kyilkjpxbnv2" path="res://scenes/stun_animation.tscn" id="3_il4pi"]
+[ext_resource type="PackedScene" uid="uid://kyilkjpxbnv2" path="res://scenes/Visual_effects/stun_animation.tscn" id="3_il4pi"]
 [ext_resource type="AudioStream" uid="uid://d26c66olj7ijn" path="res://music/SFX/enemy_damage.mp3" id="4_db11g"]
 [ext_resource type="AudioStream" uid="uid://che3gct20dkbb" path="res://music/SFX/enemy_hit_scream.wav" id="5_k22qx"]
 

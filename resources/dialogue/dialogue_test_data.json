@@ -1,0 +1,114 @@
+{
+	"npc_1":{
+		"tree":[
+			{
+				"branch_id": "npc_1_1", 
+				"dialogues":[
+					{
+						"state":"start",
+						"text":"Hello, what need?",
+						"options": {
+							"Ask abt":"in_progress",
+							"Take quest":"give_quests",
+							"leave":"exit",
+						}
+					},
+					{
+						"state":"in_progress",
+						"text":"I am talking about something",
+						"options": {
+							"go back":"start",
+							"Take quest":"give_quests",
+							"leave":"exit",
+						}
+					},
+						{
+						"state":"give_quests",
+						"text":"Listen up, I need something...",
+						"options": {
+							"go back":"start",
+							"leave":"exit",
+						}
+					},
+						{
+						"state":"end",
+						"text":"Okay, that's it",
+						"options": {
+							"go back":"start",
+							"leave":"exit",
+						}
+					},
+					{
+						"state":"exit",
+						"text":"Bye",
+						"options": {}
+					}
+				]
+			},
+			{
+				"branch_id": "npc_1_2", 
+				"dialogues":[]
+			},
+			{
+				"branch_id": "npc_1_default", 
+				"dialogues":[]
+			},
+		],
+	},
+	"npc_2":{
+		"tree":[
+			{
+				"branch_id": "npc_2_1", 
+				"dialogues":[
+					{
+						"state":"start",
+						"text":"Sup?",
+						"options": {
+							"Ask abt":"in_progress",
+							"Take quest":"give_quests",
+							"leave":"exit",
+						}
+					},
+					{
+						"state":"in_progress",
+						"text":"I am talking about shit",
+						"options": {
+							"go back":"start",
+							"Take quest":"give_quests",
+							"leave":"exit",
+						}
+					},
+						{
+						"state":"give_quests",
+						"text":"Listen up, I must have something...",
+						"options": {
+							"go back":"start",
+							"leave":"exit",
+						}
+					},
+						{
+						"state":"end",
+						"text":"Okay",
+						"options": {
+							"go back":"start",
+							"leave":"exit",
+						}
+					},
+					{
+						"state":"exit",
+						"text":"goodbye",
+						"options": {}
+					}
+				]
+			},
+			{
+				"branch_id": "npc_2_2", 
+				"dialogues":[]
+			},
+			{
+				"branch_id": "npc_2_default", 
+				"dialogues":[]
+			},
+		],
+	},
+}

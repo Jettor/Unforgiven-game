@@ -29,6 +29,7 @@ var best_kill_count = 0
 var best_gained_time = 0
 var lvl_id = 0
 var has_gun = true
+var can_move = true
 
 var knockback_force = 260
 

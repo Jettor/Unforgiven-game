@@ -1,0 +1,136 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtj533ht00uyh"]
+
+[ext_resource type="Script" uid="uid://cya4q6do0ecbk" path="res://code/quest_scripts/quest_ui.gd" id="1_xru0f"]
+[ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_ol77f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6i74"]
+bg_color = Color(0.1628, 0.25058, 0.44, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ltue"]
+bg_color = Color(0.1628, 0.25058, 0.44, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xru0f"]
+bg_color = Color(0.111, 0.17085, 0.3, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.370925, 0.474771, 0.635339, 1)
+
+[node name="QuestUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xru0f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+visibility_layer = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n6i74")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg_1" type="Panel" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ltue")
+
+[node name="Bg_2" type="Panel" parent="CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xru0f")
+
+[node name="content" type="VBoxContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="Headings" type="HBoxContainer" parent="CanvasLayer/Panel/content"]
+layout_mode = 2
+
+[node name="quest_list_label" type="Label" parent="CanvasLayer/Panel/content/Headings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "AVAILABLE QUESTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quest_details_label" type="Label" parent="CanvasLayer/Panel/content/Headings"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "QUEST DETAILS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Details" type="HBoxContainer" parent="CanvasLayer/Panel/content"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="QuestList" type="VBoxContainer" parent="CanvasLayer/Panel/content/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="QuestDetails" type="VBoxContainer" parent="CanvasLayer/Panel/content/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Quest_title" type="Label" parent="CanvasLayer/Panel/content/Details/QuestDetails"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Quest 1 Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quest_desc" type="Label" parent="CanvasLayer/Panel/content/Details/QuestDetails"]
+layout_mode = 2
+text = "Quest 1 Description"
+
+[node name="Quest_objective" type="VBoxContainer" parent="CanvasLayer/Panel/content/Details/QuestDetails"]
+layout_mode = 2
+
+[node name="Quest_reward" type="VBoxContainer" parent="CanvasLayer/Panel/content/Details/QuestDetails"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="close_dialogue" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_ol77f")
+theme_override_font_sizes/font_size = 24
+text = "X"
+alignment = 2

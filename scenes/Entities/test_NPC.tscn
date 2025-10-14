@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://f62tgmhvhxr2"]
+[gd_scene load_steps=16 format=3 uid="uid://f62tgmhvhxr2"]
 
 [ext_resource type="Texture2D" uid="uid://umjkpj876ifx" path="res://images/diabolist_spritesheet.png" id="1_jkjsy"]
-[ext_resource type="Script" uid="uid://ci0eoht8l6oq8" path="res://scenes/Entities/test_npc.gd" id="1_qgs0v"]
+[ext_resource type="Script" uid="uid://ci0eoht8l6oq8" path="res://code/entity_scripts/Yaegashi.gd" id="1_qgs0v"]
 [ext_resource type="Script" uid="uid://dy7g0i7tadpty" path="res://resources/dialogue/dialogue.gd" id="2_ak47r"]
 [ext_resource type="Script" uid="uid://e65wmti4wh0f" path="res://resources/Quest/quest.gd" id="3_4ym8c"]
 [ext_resource type="Script" uid="uid://cx1u40iqakpux" path="res://resources/Quest/objectives.gd" id="4_shvd7"]
@@ -10,17 +10,29 @@
 
 [sub_resource type="Resource" id="Resource_tc6wm"]
 script = ExtResource("2_ak47r")
-dialogues = {}
 metadata/_custom_type_script = "uid://dy7g0i7tadpty"
 
-[sub_resource type="Resource" id="Resource_wtw4p"]
+[sub_resource type="Resource" id="Resource_4ym8c"]
+script = ExtResource("4_shvd7")
+id = "obj1"
+description = "fuck niggers"
+target_id = "npc2_1"
+target_type = "talk_to"
+metadata/_custom_type_script = "uid://cx1u40iqakpux"
+
+[sub_resource type="Resource" id="Resource_shvd7"]
+script = ExtResource("5_rqw41")
+reward_type = "score"
+reward_amount = 6
+metadata/_custom_type_script = "uid://dnj3rpn3ir261"
+
+[sub_resource type="Resource" id="Resource_rqw41"]
 script = ExtResource("3_4ym8c")
-quest_id = ""
-quest_name = ""
-state = "not_started"
-unlock_id = ""
-objectives = Array[ExtResource("4_shvd7")]([])
-rewards = Array[ExtResource("5_rqw41")]([])
+quest_id = "q1"
+quest_name = "NIGGER"
+unlock_id = "npc_1_1"
+objectives = Array[ExtResource("4_shvd7")]([SubResource("Resource_4ym8c")])
+rewards = Array[ExtResource("5_rqw41")]([SubResource("Resource_shvd7")])
 metadata/_custom_type_script = "uid://e65wmti4wh0f"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qgs0v"]
@@ -55,7 +67,7 @@ script = ExtResource("1_qgs0v")
 npc_id = "test"
 npc_name = "Test dude"
 dialogue_res = SubResource("Resource_tc6wm")
-quests = Array[ExtResource("3_4ym8c")]([SubResource("Resource_wtw4p")])
+quests = Array[ExtResource("3_4ym8c")]([SubResource("Resource_rqw41")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tc6wm")

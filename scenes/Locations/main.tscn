@@ -1815,6 +1815,7 @@ theme_override_font_sizes/font_size = 13
 text = "SCORE:0"
 
 [node name="x2" type="Sprite2D" parent="CanvasL"]
+visible = false
 position = Vector2(1682, 124)
 scale = Vector2(2.25002, 2.25002)
 texture = ExtResource("4_vqbxa")
@@ -1920,7 +1921,7 @@ stream = ExtResource("15_q5c4t")
 volume_db = 4.026
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.517184, 0.517184, 0.517184, 1)
+color = Color(0.39308554, 0.3930855, 0.39308548, 1)
 
 [node name="candle_light" type="PointLight2D" parent="."]
 position = Vector2(802, 809)

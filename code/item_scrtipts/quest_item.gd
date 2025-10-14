@@ -10,9 +10,7 @@ func _ready():
 	if not Engine.is_editor_hint():
 		sprite.texture = item_icon
 		
-func _process(delta):
+func _process(_delta):
 	if Engine.is_editor_hint():
 		sprite.texture = item_icon
 		
-func start_interraction():
-	print("This is item")

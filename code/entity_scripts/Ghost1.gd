@@ -40,18 +40,18 @@ func Bullet_damage_handler():
 					queue_free()
 			elif health > 0:
 				await apply_knockback(global_position - target.global_position, k_force, 0.1)
-				print(health)
+				#print(health)
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
 		Global.bullet_name = "normal"
-		print(Global.bullet_name, "bullet has hit enemy")
+		#print(Global.bullet_name, "bullet has hit enemy")
 		Bullet_damage_handler()
 	elif area.is_in_group("melee"):
 		emit_signal("enemy_punched")
 		$Enemy_hit_scream.pitch_scale = randf_range(0.8, 1.2)
 		$Enemy_hit_scream.play()
-		print("fist has hit enemy")
+		#print("fist has hit enemy")
 		Melee_damage_handler()
 	if area.name == "punch_r":
 		$in_radius.play("radius_entered")

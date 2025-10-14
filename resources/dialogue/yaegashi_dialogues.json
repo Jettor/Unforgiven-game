@@ -1,0 +1,303 @@
+{
+	"npc_1":{
+		"tree":[
+			{
+				"branch_id": "npc_1_1", 
+				"dialogues":[
+					{
+						"state":"start",
+						"trust_required":0,
+						"text":"Um... hello?",
+						"options": {
+							"Who are you?":"talk_first",
+							"leave":"exit_no_quest_zero_trust",
+						}
+					},
+					{
+						"state":"start_zero_trust_1",
+						"trust_required":0,
+						"text":"Oh, it's you again...",
+						"options":{
+							"I have a question":"talk_menu_zero_trust",
+							"leave":"exit_no_quest_zero_trust"
+						}
+					},
+					{
+						"state":"talk_first",
+						"trust_required":0,
+						"text":"M-my name is Yaegashi. I study here... I mean, used to study...",
+						"options": {
+							"Tell me something":"talk_menu_zero_trust",
+							"leave":"exit_no_quest_zero_trust"
+						}
+					},
+					{
+						"state":"talk_menu_zero_trust",
+						"trust_required":0,
+						"text":"Sure, What do you want to know?",
+						"options":{
+							"Why are you here?":"talk_why_here_1",
+							"Can I help?":"give_quests",
+							"leave":"exit_interrupt_zero_trust"
+						}
+					},
+					{
+						"state":"talk_why_here_1",
+						"trust_required":0,
+						"text":"I got here, because me and my friends tried to summon a demon. It went as we wanted it to... sadly",
+						"options":{
+							"next": "talk_why_here_2",
+							"leave": "exit_interrupt_zero_trust"
+						}
+					},
+					{
+						"state":"talk_why_here_2",
+						"trust_required":0,
+						"text":"Then a terrifying scream and... everything went dark. We ran away, I heard screams of my friends, but helping them... would be a suicide.",
+						"options":{
+							"next":"talk_why_here_3",
+							"leave":"exit_interrupt_zero_trust"
+						}
+					},
+					{
+						"state":"talk_why_here_3",
+						"trust_required":0,
+						"text":"I don't know if my friends are alive... I'm cold... Why did we even agree to do that...?",
+						"options":{
+							"Can I help you?":"give_quests",
+							"leave":"exit_no_quest_zero_trust"
+						}
+					},
+					{
+						"state":"in_progress",
+						"text":"ERROR! I SHOULDN'T SAY THIS",
+						"options": {
+							"go back":"start",
+							"Take quest":"give_quests",
+							"leave":"exit",
+						}
+					},
+						{
+						"state":"give_quests",
+						"trust_required":0,
+						"text":"Umm. If so... Could you please bring me my jacket? It's quite cold here. You can find it in the changing room. A black, long jacket with red buttons. I would be grateful",
+						"options": {
+							"I'll think about it":"exit_no_quest_zero_trust",
+							"Sure":"exit_quest_accept",
+						}
+					},
+						{
+						"state":"end",
+						"trust_required":0,
+						"text":"Thank you for bringing me an item!",
+						"options": {
+							"leave":"exit",
+						}
+					},
+						{
+						"state":"exit",
+						"trust_required":0,
+						"text":"ok",
+						"options":{}
+						},
+					{
+						"state":"exit_quest_accept",
+						"trust_required":0,
+						"text":"Thanks. It's kind of you",
+						"options": {
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"exit_interrupt_zero_trust",
+						"text":"Wha-? D-did I say something wrong?",
+						"options":{
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"exit_no_quest_zero_trust",
+						"text":"Oh... okay. Bye",
+						"options":{
+							"leave":"exit"
+						}
+					}
+				]
+			},
+			{
+				"branch_id": "npc_1_2", 
+				"dialogues":[
+					{
+						"state":"start_low_trust_1",
+						"trust_required":2,
+						"text":"Thank you! I didn't think you'll actually bring me my coat!",
+						"options":{
+							"next":"start_low_trust_2",
+							"leave":"exit_interrupt_low_trust"
+						}
+					},
+					{
+						"state":"start_low_trust_2",
+						"trust_required":2,
+						"text":"Now I won't freeze to death in here, haha...",
+						"options":{
+							"Yaegashi, tell me...":"talk_menu_low_trust",
+							"leave":"exit_no_quest_low_trust"
+						}
+					},
+					{
+						"state":"talk_menu_low_trust",
+						"trust_required":2,
+						"text":"Yes?",
+						"options":{
+							"About yourself":"about_self_1",
+							"Why summon demons?":"why_summon_1",
+							"Need something else?":"give_quest_2",
+							"Nevermind":"exit_no_quest_low_trust"
+						}
+					},
+					{
+						"state":"about_self_1",
+						"text":"As you know, I'm Yaegashi. Before the incident, I was studying in this highschool, senior year.",
+						"options":{
+							"Next":"about_self_2",
+							"Nevermind":"exit_interrupt_low_trust"
+						}
+					},
+					{
+						"state":"about_self_2",
+						"text":"Now... I'm just trying to survive in this cursed place. Monsters are everywhere. It's one of only safe places in school, I managed to find.",
+						"options":{
+							"Next":"about_self_3",
+							"Nevermind":"exit_interrupt_low_trust"
+						}
+					},
+					{
+						"state":"about_self_3",
+						"text":"It's been almost a week since the... summoning. I was buying food in vending machines, but my wallet isn't infinite... I just want to go home...",
+						"options":{
+							"Can I help?":"give_quest_2",
+							"And what about...":"talk_menu_low_trust",
+							"Gotta go":"exit_no_quest_low_trust"
+						}
+					},
+					{
+						"state":"why_summon_1",
+						"text":"I... needed a distraction. Tests, teachers and parents got me fed up...I wanted to do something out of ordinary.",
+						"options":{
+							"Next":"why_summon_2",
+							"Nevermind":"exit_interrupt_low_trust"
+						}
+					},
+					{
+						"state":"why_summon_2",
+						"text":"Then suddenly I overheard my classmates talk about summoning a demon at school. This set a sparcle in my heart, so I went with them.",
+						"options":{
+							"Yaegashi...":"talk_menu_low_trust",
+							"Others?":"talk_others_1",
+							"Gotta go":"exit_no_quest_low_trust"
+						}
+					},
+					{
+						"state":"talk_others_1",
+						"text":"Ah, yes. There were five of us. I... don't know if they are still alive at this point. I wish they also survived somehow.",
+						"options":{
+							"Who exactly?":"talk_others_2",
+							"Can I help you?":"give_quest_2",
+							"Gotta go":"exit_no_quest_low_trust"
+						}
+					},
+					{
+						"state":"talk_others_2",
+						"text":"Except me, there were Inoue, Kaoru, Yuuki and Hiromu. I hope all of them made it through, but... Kaoru...",
+						"options":{
+							"Next":"talk_others_3",
+							"Gotta go":"exit_interrupt_low_trust"
+						}
+					},
+					{
+						"state":"talk_others_3",
+						"text":"He has a weak psyche. I don't know why he agreed to come with us. If monsters didn't catch him, he might have... done bad things to himself by now...",
+						"options":{
+							"Tell me...":"talk_menu_low_trust",
+							"Can I help you?":"give_quest_2",
+							"Gotta go":"exit_no_quest_low_trust"
+						}
+					},
+					{
+						"state":"exit_no_quest_low_trust",
+						"text":"Ah, sure...",
+						"options":{
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"give_quest_2",
+						"text":"I am running low on food... Could you check on vending machines... or cafeteria at least? But be careful! Loud noises attract monsters!",
+						"options":{
+							"I'll think about that":"exit_no_quest",
+							"Sure":"exit_quest_accept"
+						}
+					},
+					{
+						"state":"exit_quest_accept",
+						"text":"Oh, you're a lifesaver! I would starve otherwise...",
+						"options":{
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"exit_interrupt_low_trust",
+						"text":"Oh...",
+						"options":{
+							"leave":"exit"
+						}
+					}
+					]
+			},
+			{
+				"branch_id": "npc_1_3", 
+				"dialogues":[
+					{
+						"state":"start_mid_trust",
+						"trust_required":4,
+						"text":"This is mid trust",
+						"options":{
+							
+						}
+					}
+				]
+			},
+			{
+				"branch_id": "npc_1_4", 
+				"dialogues":[
+					{
+						"state":"start_high_trust",
+						"trust_required":6,
+						"text":"This is high trust",
+						"options":{
+							
+						}
+					}
+				]
+			},
+			{
+				"branch_id": "npc_1_5", 
+				"dialogues":[
+					{
+						"state":"start_full_trust",
+						"trust_required":8,
+						"text":"This is full trust",
+						"options":{
+							
+						}
+					}
+				]
+			},
+			{
+				"branch_id": "npc_1_default", 
+				"dialogues":[]
+			},
+		],
+	}
+}

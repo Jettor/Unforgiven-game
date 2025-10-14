@@ -5,10 +5,10 @@ extends Node2D
 signal quest_updated(quest_id: String)
 signal objective_updated(quest_id: String, objective_id: String)
 signal quest_list_updated()
-
 var quests = {}
 
 func add_quest(quest: Quest):
+	print("quest_added")
 	quests[quest.quest_id] = quest
 	quest_updated.emit(quest.quest_id)
 	
@@ -34,13 +34,12 @@ func get_active_quests() -> Array:
 			active_quests.append(i)
 	return active_quests
 	
-func complete_objective(quest_id: String, objective_id: String):
+func complete_objective(quest_id: String, objective_id: String): 
 	var quest = get_quest(quest_id)
 	if quest:
-		quest.complete_objective(objective_id)
+		quest.complete_objective(quest, objective_id)
 		objective_updated.emit(quest_id, objective_id)
 	
 func toggle_log_visibility():
-	quest_ui.toggle_log_visiblity()
-	
+	quest_ui.toggle_log_visibility()
 	

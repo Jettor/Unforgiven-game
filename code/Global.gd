@@ -40,6 +40,10 @@ var lvl3_playing = false
 ### DIALOGUE & QUEST ###
 var player: Node = null
 
+var npc_trust_lvl: Dictionary = {
+	"npc_1":0 #yaegashi
+}
+
 func _ready():
 	death_sound = AudioStreamPlayer.new()
 	add_child(death_sound)
@@ -68,3 +72,11 @@ func _on_enemy_died():
 	if death_sound:
 		death_sound.pitch_scale = randf_range(0.8, 1.2)
 		death_sound.play()
+		
+func add_trust(npc_id: String, amount: int) -> void:
+	print(npc_id," TRUST LEVEL BEFORE: ",npc_trust_lvl[npc_id])
+	if npc_id in  npc_trust_lvl:
+		npc_trust_lvl[npc_id] += amount
+	else:
+		npc_trust_lvl[npc_id] = amount
+	print(npc_id," TRUST LEVEL AFTER: ",npc_trust_lvl[npc_id])

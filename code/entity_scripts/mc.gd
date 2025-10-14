@@ -37,6 +37,7 @@ var knockback_timer: float = 0.0
 @onready var punch_push_timer = 0.1
 
 @onready var punch_queued = false
+var selected_quest: Quest = null
 var shake = false
 var anim_name: String
 var SPEED: float
@@ -48,6 +49,7 @@ var bullet = load("res://scenes/bullet.tscn")
 var jump_max = 2
 var direction = 1
 var jump_count = 0
+var score_amount = 0
 var healthp: int = Global.healthp
 var damage_taken: int
 var can_take_damage = true
@@ -170,8 +172,8 @@ func _on_wait_for_lose_screen_timeout():
 func _on_immortality_timeout():
 	can_take_damage = true
 	
-func _on_sprite_top_animation_finished(anim_name: String):
-	visual_handler.attack_animation_handler(anim_name)
+func _on_sprite_top_animation_finished(animation_name: String):  #anime_name
+	visual_handler.attack_animation_handler(animation_name)
 
 func is_moving() -> bool:
 	return velocity.length() > 0.0
@@ -183,7 +185,6 @@ func set_normalSpeed(value): #Change player walk speed
 
 func _on_death_slowmo_timeout():
 	Engine.time_scale = 1.0
-	
 func _on_combo_timer_timeout():
 	Global.knockback_force = 18
 	print("combo timer 0")
@@ -220,15 +221,64 @@ func _on_shooting_timer_timeout():
 	print("Shooting timeout")
 	visual_handler.attack_animation_handler("shoot")
 
-func _input(event):            #INTERRACTION WITH NPC
+func _input(event):            #INTERRACTION
 	if event.is_action_pressed("interract"):
 		var target = raycast.get_collider()
 		if target != null:
 			if target.is_in_group("NPCs"):
-				print("NPC talk")
+				#print("NPC talk")
 				Global.can_move = false
-				target.start_dialogue()
+				target.start_dialogue(target)
+				check_quest_objectives(target.npc_id, "talk_to")
 			elif target.is_in_group("Items"):
-				print("I see item")
-				#remove it
-				target.start_interraction()
+				#print("I see item")
+				if is_item_needed(target.item_id):
+					check_quest_objectives(target.item_id, "collection", target.item_quantt)
+					target.queue_free()
+				else:
+					print("Item not needed for any active quest")
+
+func is_item_needed(item_id: String) -> bool:   #CHECK IF QUEST ITEM IS REQUIRED
+	if selected_quest != null:
+		print("quest is selected")
+		for objective in selected_quest.objectives:
+			if objective.target_id == item_id and objective.target_type == "collection" and !objective.is_completed:
+				return true
+	return false
+
+func check_quest_objectives(target_id: String, target_type: String, quantity: int = 1):
+	print("check_quest_objectives called ",selected_quest)
+	if selected_quest == null:
+		return
+	var objective_updated = false   #UPDATE OBJECTIVES
+	for objective in selected_quest.objectives:
+		if objective.target_id == target_id:
+			print("target id OK")
+			if objective.target_type == target_type:
+				print("target type OK")
+				if !objective.is_completed:
+					print("Completed objective for quest: ",selected_quest.quest_name)
+					selected_quest.complete_objective(selected_quest, objective.id, quantity)
+					objective_updated = true
+					break
+				else:
+					print("Objective completion ERROR")
+			else:
+				print("target type ERROR")
+		else:
+			print("target id ERROR")
+	if objective_updated:   #GIVE REWARDS
+		if selected_quest.is_completed():
+			handle_quest_completion(selected_quest)
+
+func handle_quest_completion(quest: Quest):
+	print("Quest completed!")
+	for reward in quest.rewards:
+		if reward.reward_type == "score":
+			score_amount += reward.reward_amount
+	quest_manager.complete_objective(quest.quest_id, "completed")
+	for npc_id in quest.trust_rewards.keys():
+			var trust_increase = quest.trust_rewards[npc_id]
+			Global.add_trust(npc_id, trust_increase)
+	hint.give_hint(" Quest\n completed!")
+				

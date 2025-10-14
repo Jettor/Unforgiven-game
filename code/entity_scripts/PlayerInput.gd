@@ -19,7 +19,8 @@ func process_input():
 			print("bullet shot")
 		else:
 			return
-			
+	if Input.is_action_just_pressed("_ui_quest_menu"):
+		player.quest_manager.toggle_log_visibility()
 	if Input.is_action_just_pressed("instant_death"): 
 		player.death()
 		
@@ -120,7 +121,7 @@ func play_kick1():
 		temporary_boost(300)
 		find_punch_push_direction()
 	player.combo_timer.start()
-	print("State: ",player.state)
+	#print("State: ",player.state)
 	
 func enable_hurtbox():
 	player.punch_hurtbox.disabled = false

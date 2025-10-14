@@ -13,7 +13,7 @@ var quest_manager: Node = null
 var talked_before: bool = false
 
 func _ready(): #dialogue_test_data.json      test_npc1.json
-	dialogue_res.load_from_json("res://resources/dialogue/dialogue_test_data.json")
+	dialogue_res.load_from_json("res://resources/dialogue/yaegashi_dialogues.json")
 	dialogue_manager.npc = self
 	quest_manager = Global.player.quest_manager
 	#print("Npc quests loaded: ",quests.size())

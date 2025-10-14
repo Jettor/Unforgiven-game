@@ -107,7 +107,10 @@
 			},
 			{
 				"branch_id": "npc_2_default", 
-				"dialogues":[]
+				"dialogues":[{
+					"text": "I need some stuff"
+				}
+				]
 			},
 		],
 	},

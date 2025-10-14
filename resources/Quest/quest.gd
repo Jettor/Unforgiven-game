@@ -3,26 +3,29 @@ class_name Quest
 
 @export var quest_id: String
 @export var quest_name: String
+@export var quest_description: String
 @export var state: String = "not_started"
 @export var unlock_id: String
 @export var objectives: Array[Objectives] = []
 @export var rewards: Array[Rewards] = []
+@export var trust_rewards: Dictionary = {}
 
 func is_completed() -> bool:   #OBJECTIVE STATE CHECK
 	for i in objectives:
 		if !i.is_completed:
 			return false
 	return true
-
-func complete_objective(objective_id: String, quantity: int = 1):
-	for i in objectives:   # i IS OBJECTIVE
-		if i.id == objective_id:
-			if i.target_type == "collection":
-				i.collected_quantity += quantity
-				if i.collected_quantity >= i.required_quantity:
-					i.is_completed = true
-			elif i.target_type == "talk_to":
-				i.is_completed = true
+	
+func complete_objective(quest: Quest, objective_id: String, quantity: int = 1):
+	for objective in objectives:
+		if objective.id == objective_id:
+			if objective.target_type == "collection":
+				objective.collected_quantity += quantity
+				if objective.collected_quantity >= objective.required_quantity:
+						objective.is_completed = true
+			elif objective.target_type == "talk_to":
+				objective.is_completed = true
 			break   # THIS CODE CAN BE EXPANDED FOR OTHER OBJECTIVES LIKE KILLING ENEMY OR USING ITEM
 	if is_completed():
 		state = "completed"
+		

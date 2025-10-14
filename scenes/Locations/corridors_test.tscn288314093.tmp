@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://e65wmti4wh0f" path="res://resources/Quest/quest.gd" id="6_ik3yk"]
 [ext_resource type="Script" uid="uid://cx1u40iqakpux" path="res://resources/Quest/objectives.gd" id="7_wpxcw"]
 [ext_resource type="Script" uid="uid://dnj3rpn3ir261" path="res://resources/Quest/rewards.gd" id="8_5mtb0"]
-[ext_resource type="Script" uid="uid://dlm4w0v3trk6" path="res://scenes/Entities/test_npc.gd" id="8_ehfjp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_60gh8"]
 texture = ExtResource("2_w7ety")
@@ -559,65 +558,69 @@ texture = ExtResource("2_w7ety")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_08hoh")
 
-[sub_resource type="Resource" id="Resource_ehfjp"]
+[sub_resource type="Resource" id="Resource_7aky1"]
+script = ExtResource("5_ookox")
+metadata/_custom_type_script = "uid://dy7g0i7tadpty"
+
+[sub_resource type="Resource" id="Resource_bjmjk"]
 script = ExtResource("7_wpxcw")
-id = "obj_1"
-description = "Find jacket"
+id = "npc_talk_01"
+description = "Find the other npc and talk to him about gun"
+target_id = "npc_2"
+target_type = "talk_to"
+objective_dialogue = "Find the gun! It is somewhere near me!"
+metadata/_custom_type_script = "uid://cx1u40iqakpux"
+
+[sub_resource type="Resource" id="Resource_m21ht"]
+script = ExtResource("7_wpxcw")
+id = "item_collect_01"
+description = "Find and take the gun"
 target_id = "gun"
 target_type = "collection"
+objective_dialogue = "Wow! You've found it! Thanks!"
 required_quantity = 1
 metadata/_custom_type_script = "uid://cx1u40iqakpux"
 
-[sub_resource type="Resource" id="Resource_ik3yk"]
+[sub_resource type="Resource" id="Resource_vda8e"]
 script = ExtResource("8_5mtb0")
 reward_type = "score"
 reward_amount = 10
 metadata/_custom_type_script = "uid://dnj3rpn3ir261"
 
-[sub_resource type="Resource" id="Resource_wpxcw"]
+[sub_resource type="Resource" id="Resource_t1h1p"]
 script = ExtResource("6_ik3yk")
-quest_id = "find_jacket"
-quest_name = "Girl's jacket"
-quest_description = "Find Yaegashis jacket in locker room"
+quest_id = "npc1_q1"
+quest_name = "Gunless"
+quest_description = "Talk to npc2 and ask where the gun is"
 unlock_id = "npc_1_1"
-objectives = Array[ExtResource("7_wpxcw")]([SubResource("Resource_ehfjp")])
-rewards = Array[ExtResource("8_5mtb0")]([SubResource("Resource_ik3yk")])
-trust_rewards = {
-"npc_1": 2
-}
+objectives = Array[ExtResource("7_wpxcw")]([SubResource("Resource_bjmjk"), SubResource("Resource_m21ht")])
+rewards = Array[ExtResource("8_5mtb0")]([SubResource("Resource_vda8e")])
 metadata/_custom_type_script = "uid://e65wmti4wh0f"
 
-[sub_resource type="Resource" id="Resource_5mtb0"]
+[sub_resource type="Resource" id="Resource_7hrdd"]
 script = ExtResource("7_wpxcw")
-id = "get_vending_item"
-description = "Find and \"use\" a vending machine"
-target_id = "npc_2"
+id = "talk_npc1"
+description = "Talk to npc1"
+target_id = "npc_1"
 target_type = "talk_to"
-objective_dialogue = "I am a vending machine!"
+objective_dialogue = "No, I don't like chocolate!"
 metadata/_custom_type_script = "uid://cx1u40iqakpux"
 
-[sub_resource type="Resource" id="Resource_bjmjk"]
+[sub_resource type="Resource" id="Resource_bvxco"]
 script = ExtResource("8_5mtb0")
 reward_type = "score"
-reward_amount = 10
+reward_amount = 80
 metadata/_custom_type_script = "uid://dnj3rpn3ir261"
 
-[sub_resource type="Resource" id="Resource_m21ht"]
+[sub_resource type="Resource" id="Resource_rrrnk"]
 script = ExtResource("6_ik3yk")
-quest_id = "vending_m"
-quest_name = "Vending machine beat up"
-quest_description = "Find some food for Yaegashi in vending machines or cafeteria"
-unlock_id = "npc_1_2"
-objectives = Array[ExtResource("7_wpxcw")]([SubResource("Resource_5mtb0")])
-rewards = Array[ExtResource("8_5mtb0")]([SubResource("Resource_bjmjk")])
-trust_rewards = {
-"npc_1": 2
-}
+quest_id = "npc2_q1"
+quest_name = "ChocoTalk"
+quest_description = "Find the first npc again and talk to him about chocolate"
+unlock_id = "npc_2_1"
+objectives = Array[ExtResource("7_wpxcw")]([SubResource("Resource_7hrdd")])
+rewards = Array[ExtResource("8_5mtb0")]([SubResource("Resource_bvxco")])
 metadata/_custom_type_script = "uid://e65wmti4wh0f"
-
-[sub_resource type="Resource" id="Resource_vda8e"]
-script = ExtResource("5_ookox")
-metadata/_custom_type_script = "uid://dy7g0i7tadpty"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_rwn2q")
@@ -633,21 +636,20 @@ tile_map_data = PackedByteArray("AAACACIAAQAQAAoAAAACACMAAQAQAAsAAAADACIAAQARAAo
 tile_set = SubResource("TileSet_t3tyx")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_6uh2i")]
-position = Vector2(350, 36)
+position = Vector2(353, 33)
 
 [node name="npc1" parent="." instance=ExtResource("4_ookox")]
-position = Vector2(119, 640)
+position = Vector2(120, 640)
 npc_id = "npc_1"
-npc_name = "Yaegashi"
-quests = Array[ExtResource("6_ik3yk")]([SubResource("Resource_wpxcw"), SubResource("Resource_m21ht")])
+dialogue_res = SubResource("Resource_7aky1")
+quests = Array[ExtResource("6_ik3yk")]([SubResource("Resource_t1h1p")])
 
 [node name="npc2" parent="." instance=ExtResource("4_ookox")]
 position = Vector2(804, 640)
-script = ExtResource("8_ehfjp")
 npc_id = "npc_2"
-npc_name = "Vending Machine"
-dialogue_res = SubResource("Resource_vda8e")
-quests = Array[ExtResource("6_ik3yk")]([])
+npc_name = "Test dude2"
+dialogue_res = SubResource("Resource_7aky1")
+quests = Array[ExtResource("6_ik3yk")]([SubResource("Resource_rrrnk")])
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.6464836, 0.6667261, 0.65997857, 1)

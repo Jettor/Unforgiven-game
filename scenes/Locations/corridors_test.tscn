@@ -559,34 +559,6 @@ texture = ExtResource("2_w7ety")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_08hoh")
 
-[sub_resource type="Resource" id="Resource_ehfjp"]
-script = ExtResource("7_wpxcw")
-id = "obj_1"
-description = "Find jacket"
-target_id = "gun"
-target_type = "collection"
-required_quantity = 1
-metadata/_custom_type_script = "uid://cx1u40iqakpux"
-
-[sub_resource type="Resource" id="Resource_ik3yk"]
-script = ExtResource("8_5mtb0")
-reward_type = "score"
-reward_amount = 10
-metadata/_custom_type_script = "uid://dnj3rpn3ir261"
-
-[sub_resource type="Resource" id="Resource_wpxcw"]
-script = ExtResource("6_ik3yk")
-quest_id = "find_jacket"
-quest_name = "Girl's jacket"
-quest_description = "Find Yaegashis jacket in locker room"
-unlock_id = "npc_1_1"
-objectives = Array[ExtResource("7_wpxcw")]([SubResource("Resource_ehfjp")])
-rewards = Array[ExtResource("8_5mtb0")]([SubResource("Resource_ik3yk")])
-trust_rewards = {
-"npc_1": 2
-}
-metadata/_custom_type_script = "uid://e65wmti4wh0f"
-
 [sub_resource type="Resource" id="Resource_5mtb0"]
 script = ExtResource("7_wpxcw")
 id = "get_vending_item"
@@ -607,9 +579,37 @@ script = ExtResource("6_ik3yk")
 quest_id = "vending_m"
 quest_name = "Vending machine beat up"
 quest_description = "Find some food for Yaegashi in vending machines or cafeteria"
-unlock_id = "npc_1_2"
+unlock_id = "npc_1_1"
 objectives = Array[ExtResource("7_wpxcw")]([SubResource("Resource_5mtb0")])
 rewards = Array[ExtResource("8_5mtb0")]([SubResource("Resource_bjmjk")])
+trust_rewards = {
+"npc_1": 2
+}
+metadata/_custom_type_script = "uid://e65wmti4wh0f"
+
+[sub_resource type="Resource" id="Resource_ehfjp"]
+script = ExtResource("7_wpxcw")
+id = "obj_1"
+description = "Find some weapon"
+target_id = "gun"
+target_type = "collection"
+required_quantity = 1
+metadata/_custom_type_script = "uid://cx1u40iqakpux"
+
+[sub_resource type="Resource" id="Resource_ik3yk"]
+script = ExtResource("8_5mtb0")
+reward_type = "score"
+reward_amount = 10
+metadata/_custom_type_script = "uid://dnj3rpn3ir261"
+
+[sub_resource type="Resource" id="Resource_wpxcw"]
+script = ExtResource("6_ik3yk")
+quest_id = "find_weapon"
+quest_name = "Girl's weapon"
+quest_description = "Find something, that Yaegashi can protect herself with"
+unlock_id = "npc_1_2"
+objectives = Array[ExtResource("7_wpxcw")]([SubResource("Resource_ehfjp")])
+rewards = Array[ExtResource("8_5mtb0")]([SubResource("Resource_ik3yk")])
 trust_rewards = {
 "npc_1": 2
 }
@@ -639,13 +639,13 @@ position = Vector2(350, 36)
 position = Vector2(119, 640)
 npc_id = "npc_1"
 npc_name = "Yaegashi"
-quests = Array[ExtResource("6_ik3yk")]([SubResource("Resource_wpxcw"), SubResource("Resource_m21ht")])
+quests = Array[ExtResource("6_ik3yk")]([SubResource("Resource_m21ht"), SubResource("Resource_wpxcw")])
 
 [node name="npc2" parent="." instance=ExtResource("4_ookox")]
-position = Vector2(804, 640)
+position = Vector2(661, 639)
 script = ExtResource("8_ehfjp")
 npc_id = "npc_2"
-npc_name = "Vending Machine"
+npc_name = "Vending machine"
 dialogue_res = SubResource("Resource_vda8e")
 quests = Array[ExtResource("6_ik3yk")]([])
 
@@ -653,7 +653,7 @@ quests = Array[ExtResource("6_ik3yk")]([])
 color = Color(0.6464836, 0.6667261, 0.65997857, 1)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("4_w7ety")]
-position = Vector2(767.8, 641.53)
+position = Vector2(1100, 640)
 
 [node name="QuestItem" parent="." instance=ExtResource("5_6uh2i")]
 position = Vector2(579, 635)

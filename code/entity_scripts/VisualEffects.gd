@@ -31,11 +31,11 @@ func visual_manager(delta):
 				
 	elif is_moving:                 #WALK
 		if player.state == player.PlayerState.IDLE and !player.is_attacking:
-			player.sprite_bottom.play("walking_bottom")
+			player.sprite_bottom.play("walking_bottom12")
 			if Global.has_gun:
-				player.sprite_top.play("walking_top")
+				player.sprite_top.play("walking_top12")
 			else:
-				player.sprite_top.play("walking_no_gun_top")
+				player.sprite_top.play("walking_no_gun_top12")
 				
 	else:                           #STAND
 		if player.state == player.PlayerState.IDLE and !player.is_attacking:

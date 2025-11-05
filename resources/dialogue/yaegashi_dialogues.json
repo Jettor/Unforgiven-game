@@ -80,7 +80,7 @@
 						{
 						"state":"give_quests",
 						"trust_required":0,
-						"text":"Umm. If so... Could you please bring me my jacket? It's quite cold here. You can find it in the changing room. A black, long jacket with red buttons. I would be grateful",
+						"text":"I am running low on food... Could you check on vending machines... or cafeteria at least? But be careful! Loud noises attract monsters!",
 						"options": {
 							"I'll think about it":"exit_no_quest_zero_trust",
 							"Sure":"exit_quest_accept",
@@ -130,7 +130,7 @@
 					{
 						"state":"start_low_trust_1",
 						"trust_required":2,
-						"text":"Thank you! I didn't think you'll actually bring me my coat!",
+						"text":"Thank you! I didn't think you'll actually find food for me!",
 						"options":{
 							"next":"start_low_trust_2",
 							"leave":"exit_interrupt_low_trust"
@@ -139,7 +139,7 @@
 					{
 						"state":"start_low_trust_2",
 						"trust_required":2,
-						"text":"Now I won't freeze to death in here, haha...",
+						"text":"Now I won't starve to death in here, haha...",
 						"options":{
 							"Yaegashi, tell me...":"talk_menu_low_trust",
 							"leave":"exit_no_quest_low_trust"
@@ -166,7 +166,7 @@
 					},
 					{
 						"state":"about_self_2",
-						"text":"Now... I'm just trying to survive in this cursed place. Monsters are everywhere. It's one of only safe places in school, I managed to find.",
+						"text":"Now... I'm just trying to survive in this cursed place. Monsters are everywhere. It's one of only few safe places in school, I managed to find.",
 						"options":{
 							"Next":"about_self_3",
 							"Nevermind":"exit_interrupt_low_trust"
@@ -183,7 +183,7 @@
 					},
 					{
 						"state":"why_summon_1",
-						"text":"I... needed a distraction. Tests, teachers and parents got me fed up...I wanted to do something out of ordinary.",
+						"text":"I... needed a distraction. Tests, teachers and parents got me fed up... I just wanted to do something out of ordinary.",
 						"options":{
 							"Next":"why_summon_2",
 							"Nevermind":"exit_interrupt_low_trust"
@@ -191,7 +191,7 @@
 					},
 					{
 						"state":"why_summon_2",
-						"text":"Then suddenly I overheard my classmates talk about summoning a demon at school. This set a sparcle in my heart, so I went with them.",
+						"text":"Then, suddenly I overheard my classmates talk about summoning a demon at school. This set a sparcle in my heart, so I went with them.",
 						"options":{
 							"Yaegashi...":"talk_menu_low_trust",
 							"Others?":"talk_others_1",
@@ -233,15 +233,15 @@
 					},
 					{
 						"state":"give_quest_2",
-						"text":"I am running low on food... Could you check on vending machines... or cafeteria at least? But be careful! Loud noises attract monsters!",
+						"text":"I thought about it and... I am completely defenceless. If a demon runs in here, I am as good as dead... Could you find some weapon for me? You can check PE storeroom for something.",
 						"options":{
-							"I'll think about that":"exit_no_quest",
+							"I'll think about that":"exit_no_quest_low_trust",
 							"Sure":"exit_quest_accept"
 						}
 					},
 					{
 						"state":"exit_quest_accept",
-						"text":"Oh, you're a lifesaver! I would starve otherwise...",
+						"text":"Oh, you're a lifesaver! Maybe I will stand a chance against those creatures...",
 						"options":{
 							"leave":"exit"
 						}
@@ -259,11 +259,131 @@
 				"branch_id": "npc_1_3", 
 				"dialogues":[
 					{
-						"state":"start_mid_trust",
+						"state":"start_mid_trust_1",
 						"trust_required":4,
-						"text":"This is mid trust",
+						"text":"Oh, God! Thank you...",
+						"options":{
+							"Next":"start_mid_trust_2",
+							"Whatever":"exit_interrupt_mid_trust_nameless"
+						}
+					},
+					{
+						"state":"exit_interrupt_mid_trust_nameless",
+						"text":"Ah, wait! I don't even know your name!",
+						"options":{
+							"Tell name":"leaving_tell_name",
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"start_mid_trust_2",
+						"text":"Sorry, you did so much for me already and I still don't know your name...",
+						"options":{
+							"Tell name":"about_myself_1",
+							"Don't tell":"name_minus_trust"
+						}
+					},
+					{
+						"state":"about_myself_1",
+						"text":"So, Kain it is... That's an uncommon name. Well, what a dumb statement, isn't it? You are clearly not from here.",
+						"options":{
+							"Next":"about_myself_menu",
+							"Yeah, bye":"exit_no_quest_mid_trust"
+						}
+					},
+					{
+						"state":"name_minus_trust",
+						"text":"Oh... Sorry for asking",
+						"options":{
+							"leave":"exit_no_quest_mid_trust"
+						}
+					},
+					{
+						"state":"about_myself_menu",
+						"text":"I mean... you're somewhere from the west, right? And your attire. People don't dress like that anymore. Who are you really, Kain?",
+						"options":{
+							"My job":"about_job_1",
+							"My world":"about_world_1",
+							"My past":"about_past_minus_trust_1",
+							"You shouldn't know":"shouldnt_know"
+						}
+					},
+					{
+						"state":"about_myself_menu_return",
+						"text":"Yes, I would like to know more about you. Mind telling me something?",
+						"options":{
+							"My job":"about_job_1",
+							"My world":"about_world_1",
+							"My past":"about_past_minus_trust_1",
+							"You shouldn't know":"shouldnt_know_2_minus_trust"
+						}
+					},
+					{
+						"state":"shouldnt_know_2_minus_trust",
+						"text":"Well, don't tell me anything then, if you say I shouldn't know.",
+						"options":{
+							"Do you need something":"",
+							"Bye":"exit_interrupt_mid_trust"
+						}
+					},
+					{
+						"state":"shouldnt_know",
+						"text":"...Maybe you're right. In this cursed world, there definitely are things I don't have to know about.",
+						"options":{
+							"Tell me":"talk_menu_mid_trust",
+							"That's for sure. Bye":"exit_no_quest_mid_trust"
+						}
+					},
+					{
+						"state":"about_job_1",
+						"text":"Talking about job",
 						"options":{
 							
+						}
+					},
+					{
+						"state":"about_world_1",
+						"text":"Talking about world",
+						"options":{
+							
+						}
+					},
+					{
+						"state":"talk_menu_mid_trust",
+						"text":"Hm?",
+						"options":{
+							"Need something else?":"give_quest_3",
+							"Want to know about me?":"about_myself_menu_return",
+							"Nevermind":"exit_no_quest_mid_trust"
+						}
+					},
+					{
+						"state":"about_past_minus_trust_1",
+						"text":"Talking about my criminal past. -1 trust",
+						"options":{
+							
+						}
+					},
+					{
+						"state":"give_quest_3",
+						"text":"Wire quest"
+					},
+					{
+						"state":"exit_no_quest_mid_trust",
+						"text":"Alright, Kain... Keep yourself safe."
+					},
+					{
+						"state":"exit_interrupt_mid_trust",
+						"text":"...bye, Kain.",
+						"options":{
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"leaving_tell_name",
+						"text":"Oh. Goodbye then, Kain.",
+						"options":{
+							"leave":"exit"
 						}
 					}
 				]

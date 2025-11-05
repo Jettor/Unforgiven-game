@@ -16,7 +16,7 @@ func is_completed() -> bool:   #OBJECTIVE STATE CHECK
 			return false
 	return true
 	
-func complete_objective(quest: Quest, objective_id: String, quantity: int = 1):
+func complete_objective(_quest: Quest, objective_id: String, quantity: int = 1):
 	for objective in objectives:
 		if objective.id == objective_id:
 			if objective.target_type == "collection":

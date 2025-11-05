@@ -249,6 +249,7 @@ func is_item_needed(item_id: String) -> bool:   #CHECK IF QUEST ITEM IS REQUIRED
 func check_quest_objectives(target_id: String, target_type: String, quantity: int = 1):
 	print("check_quest_objectives called ",selected_quest)
 	if selected_quest == null:
+		print("no selected quest")
 		return
 	var objective_updated = false   #UPDATE OBJECTIVES
 	for objective in selected_quest.objectives:

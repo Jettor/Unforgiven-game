@@ -59,6 +59,10 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_8djo3")
 theme_override_font_sizes/font_size = 25
 text = "NPC speaking something important or not"
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 2
+max_lines_visible = 3
 
 [node name="D_options" type="HBoxContainer" parent="CanvasLayer/Panel/dialogue_box"]
 layout_mode = 2

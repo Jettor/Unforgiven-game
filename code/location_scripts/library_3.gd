@@ -18,8 +18,12 @@ func _ready():
 	$Timer.start()
 	$CharacterBody2D/candle_light.show()
 
-func _process(delta):
+func _process(_delta):
 	$CanvasL/Panel/punkty.text = "SCORE:" + str(Global.score)
+	if Global.player_alive == false:
+		$finish/shape.disabled = true
+	if !Global.player_alive:
+		$theme.stop()
 	
 func _on_timer_timeout():
 	for i in range(4):

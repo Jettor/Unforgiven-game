@@ -25,6 +25,7 @@ func start_dialogue(npc):
 	print("dialogue started")
 	var npc_dialogues = dialogue_res.get_npc_dialogue(npc_id)
 	if npc_dialogues.is_empty():
+		print("npc_dialogues is empty")
 		return
 	dialogue_manager.show_dialogue(self)
 	

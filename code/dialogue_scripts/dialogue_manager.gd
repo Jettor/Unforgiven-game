@@ -16,6 +16,7 @@ func show_dialogue(curr_npc, text="", options = {}):
 		else:
 			var dialogue = curr_npc.get_curr_dialogue()  
 			if dialogue == null:
+				print("dialogue == null")
 				return
 			dialogue_ui.show_dialogue(curr_npc.npc_name, dialogue["text"], dialogue["options"])
 
@@ -40,6 +41,7 @@ func handle_dialogue_choice(option):
 			offer_remaining_quests()
 		else:
 			offer_quests(npc.dialogue_res.get_npc_dialogue(npc.npc_id)[npc.curr_branch_index]["branch_id"])
+			print("QUEST GIVEN")
 		show_dialogue(npc)
 	else:
 		show_dialogue(npc)
@@ -68,7 +70,7 @@ func get_start_state(curr_npc: Node) -> String:
 						return "start_low_trust_1"
 					4:
 						npc.curr_branch_index += 1
-						return "start_mid_trust"
+						return "start_mid_trust_1"
 					6:
 						npc.curr_branch_index += 1
 						return "start_high_trust"

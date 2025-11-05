@@ -31,9 +31,9 @@ func start_dialogue(npc):
 func get_curr_dialogue():
 	var npc_dialogues = dialogue_res.get_npc_dialogue(npc_id)
 	if curr_branch_index < npc_dialogues.size(): #array.size() is int
-		for i in npc_dialogues[curr_branch_index]["dialogues"]: #Here dialogue is i 
-			if i["state"] == curr_state:
-				return i
+		for dialogue in npc_dialogues[curr_branch_index]["dialogues"]:
+			if dialogue["state"] == curr_state:
+				return dialogue
 	return null
 	
 func set_dialogue_tree(branch_index):   #UPDATE BRANCH

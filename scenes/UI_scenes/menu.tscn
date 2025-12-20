@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cnlwimxtre7yi" path="res://images/test_cols.png" id="7_8c7ec"]
 [ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="8_utldp"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="9_t76vg"]
-[ext_resource type="Texture2D" uid="uid://cqtxqtmghug5m" path="res://images/3.png" id="10_s71n8"]
+[ext_resource type="Texture2D" uid="uid://ci1vc0jaj7ab7" path="res://images/3t.png" id="10_0xha0"]
 [ext_resource type="AudioStream" uid="uid://b0ochwvpny20o" path="res://music/Soundtrack/pravetz_-_infinite_grey_main_menu_version.ogg" id="11_8fdho"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/SFX/ui_hover1.mp3" id="12_d2875"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/SFX/ui_press.mp3" id="13_8b0gq"]
@@ -302,7 +302,7 @@ grow_vertical = 2
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/moving/HBoxContainer"]
 position = Vector2(0, -700)
 scale = Vector2(3, 3)
-texture = ExtResource("10_s71n8")
+texture = ExtResource("10_0xha0")
 hframes = 7
 
 [node name="transition" type="AnimationPlayer" parent="CanvasLayer"]

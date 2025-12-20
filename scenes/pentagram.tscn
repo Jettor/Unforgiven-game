@@ -52,5 +52,5 @@ texture = ExtResource("1_hvcf6")
 [node name="pentagram_animation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../pentagram")
 libraries = {
-"": SubResource("AnimationLibrary_ulwul")
+&"": SubResource("AnimationLibrary_ulwul")
 }

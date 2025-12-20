@@ -4,7 +4,6 @@ extends ProgressBar
 @onready var damage_bar = $DamageBar
 var health = Global.healthp : set = _set_health
 
-
 func _set_health(new_health):
 	var prev_health: int = health
 	health = min(max_value, new_health)

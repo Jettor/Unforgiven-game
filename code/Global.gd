@@ -64,3 +64,50 @@ func _on_enemy_died():
 	if death_sound:
 		death_sound.pitch_scale = randf_range(0.8, 1.2)
 		death_sound.play()
+
+func _calc_actor_height(body_parts: Array[AnimatedSprite2D]):
+	var height: int = 0
+	for part in body_parts:
+		var frame_texture_name: StringName = part.animation
+		var frame_texture_idx: int = part.frame 
+		var frame_texture: Texture2D = part.sprite_frames.get_frame_texture(frame_texture_name, frame_texture_idx)
+		height += frame_texture.get_size().y
+	return height
+
+func _calc_actor_width(body_parts: Array[AnimatedSprite2D]):
+	var width: int = 0
+	for part in body_parts:
+		var frame_texture_name: StringName = part.animation
+		var frame_texture_idx: int = part.frame 
+		var frame_texture: Texture2D = part.sprite_frames.get_frame_texture(frame_texture_name, frame_texture_idx)
+		if frame_texture.get_size().x > width:
+			width = frame_texture.get_size().x
+	return width
+
+func radtodeg(angle: float) -> float:
+	return angle * (180 / PI);
+
+func normalize_movement_direction(dir: Vector2):
+	return Vector2(0 if dir.x == 0 else 1 if dir.x > 0 else -1, 0 if dir.y == 0 else 1 if dir.y > 0 else -1)
+
+func abs_angle(angle: float) -> float:
+	return abs(angle)
+
+func obtuse_angle(angle: float) -> bool:
+	return PI > angle and angle > PI / 2 
+
+func acute_angle(angle: float) -> bool:
+	return angle <= PI / 2
+
+func give_up_trigger_angle(angle: float) -> bool:
+	var degrees: float = round(radtodeg(angle))
+	return degrees >= 45 and degrees <= 90
+
+func node_is_in_groups(node: Node2D, groups: Array[StringName]) -> bool:
+	var node_groups = node.get_groups()
+	print(node_groups)
+	print(groups)
+	for group in groups:
+		if node_groups.count(group) >= 1:
+			return true
+	return false

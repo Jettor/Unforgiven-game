@@ -34,6 +34,8 @@ var knockback_timer: float = 0.0
 @onready var punch_push_timer = 0.1
 
 @onready var punch_queued = false
+var actor_width: int
+var actor_height: int
 var shake = false
 var anim_name: String
 var SPEED: float
@@ -86,6 +88,9 @@ func _ready():
 	top_level = true
 	healthbar.init_health(healthp)
 	punch_hurtbox.disabled = true
+	var temp_actor_parts: Array[AnimatedSprite2D] = [$Sprite_top, $Sprite_bottom]
+	self.actor_width = Global._calc_actor_width(temp_actor_parts)
+	self.actor_height = Global._calc_actor_height(temp_actor_parts)
 	
 func death():
 	Engine.time_scale = 0.05
@@ -211,3 +216,15 @@ func _on_shooting_timer_timeout():
 	is_attacking = false
 	print("Shooting timeout")
 	visual_handler.attack_animation_handler("shoot")
+
+func damage_box_clb(_type: StringName, _damage: int, _direction: Vector2, _knock_back_power: int):
+	damage_taken = _damage
+	if can_take_damage:
+		$DamageSound.play()
+		$Camera2D/zoom_animation.play("cam_shake")
+		if Global.INPUT_SCHEME == Global.INPUT_SCHEMES.GAMEPAD:
+			Input.start_joy_vibration(0,0.5,0.2,0.2)
+		damagee()
+		healthbar.health = healthp
+		print("zgon")
+		$damage.play("damage")

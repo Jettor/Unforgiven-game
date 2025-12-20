@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c4u78vsnpdtuw" path="res://music/SFX/alt_shot.wav" id="6_ggplk"]
 [ext_resource type="AudioStream" uid="uid://d1lnt08ay2umo" path="res://music/SFX/walk_concrete.wav" id="7_dlm4k"]
 [ext_resource type="AudioStream" uid="uid://bs3xllpaxpcqp" path="res://music/SFX/player_damage.mp3" id="8_5krv6"]
-[ext_resource type="AudioStream" uid="uid://bfs86e58tg32a" path="res://music/SFX/death_sound_new.wav" id="8_dlm4k"]
+[ext_resource type="AudioStream" uid="uid://bfs86e58tg32a" path="res://music/SFX/death_sound_new.wav" id="8_i0nfk"]
 [ext_resource type="Script" uid="uid://c8cixb4mugd2o" path="res://code/healthbar.gd" id="9_32chr"]
 [ext_resource type="AudioStream" uid="uid://cl6c5dpss5knv" path="res://music/SFX/punch_swish.mp3" id="9_dlm4k"]
 [ext_resource type="PackedScene" uid="uid://cuom58gpjk0p6" path="res://scenes/dash.tscn" id="11_cosi0"]
@@ -838,26 +838,23 @@ size = Vector2(30, 23)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwif6"]
 size = Vector2(80, 23)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Inquisition"]]
 script = ExtResource("1_tt4rc")
 
 [node name="Sprite_bottom" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_dlm4k")
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_fsooo")
-animation = &"kick_stance1"
 
 [node name="Sprite_top" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_61ipx")
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_k74gw")
-animation = &"shoot"
+animation = &"melee_with_gun"
 autoplay = "default"
-frame = 2
-frame_progress = 1.0
 
-[node name="player_hitbox" type="CollisionShape2D" parent="."]
+[node name="player_hitbox" type="CollisionShape2D" parent="." groups=["Inquisition"]]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_3aqem")
 
@@ -899,7 +896,7 @@ volume_db = -6.7
 pitch_scale = 0.93
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_dlm4k")
+stream = ExtResource("8_i0nfk")
 volume_db = 5.0
 
 [node name="PunchSound" type="AudioStreamPlayer" parent="."]
@@ -917,9 +914,9 @@ volume_db = -5.0
 stream = ExtResource("12_ob8c1")
 volume_db = -5.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["Inquisition"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Inquisition"]]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_xf07x")
 
@@ -986,16 +983,16 @@ energy = 1.78
 shadow_enabled = true
 texture = ExtResource("12_7lxtn")
 
-[node name="punch" type="Area2D" parent="." groups=["melee"]]
+[node name="punch" type="Area2D" parent="." groups=["Inquisition", "melee"]]
 position = Vector2(31, -4)
 
-[node name="punch_hurtbox" type="CollisionShape2D" parent="punch" groups=["melee"]]
+[node name="punch_hurtbox" type="CollisionShape2D" parent="punch" groups=["Inquisition", "melee"]]
 position = Vector2(-5, 1.5)
 shape = SubResource("RectangleShape2D_dlm4k")
 
-[node name="punch_r" type="Area2D" parent="."]
+[node name="punch_r" type="Area2D" parent="." groups=["Inquisition"]]
 
-[node name="punch_radius" type="CollisionShape2D" parent="punch_r"]
+[node name="punch_radius" type="CollisionShape2D" parent="punch_r" groups=["Inquisition"]]
 position = Vector2(1, -2.5)
 shape = SubResource("RectangleShape2D_jwif6")
 

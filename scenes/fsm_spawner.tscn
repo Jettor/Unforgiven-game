@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://civgt6ysr5fho"]
+
+[ext_resource type="Script" uid="uid://kxrd0cjcr08i" path="res://code/fsm_spawner.gd" id="1_jdmp5"]
+
+[node name="FSMSpawner" type="Node2D"]
+script = ExtResource("1_jdmp5")

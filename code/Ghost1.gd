@@ -42,17 +42,54 @@ func Bullet_damage_handler():
 				await apply_knockback(global_position - target.global_position, k_force, 0.1)
 				print(health)
 
+func damage_box_clb(_type: StringName, _damage: int, _direction: Vector2, _knock_back_power: int):
+	print("ghost invoke dbox callback for type ", _type)
+	if can_take_damage:
+		if _type == "shoot":
+			if health > 0:
+				health -= _damage
+				if health <= 0:
+					alive = false
+					if not alive: 
+						emit_signal("enemy_scream")
+						death()
+						queue_free()
+				elif health > 0:
+					await apply_knockback(global_position - target.global_position, _knock_back_power, 0.1)
+					print(health)
+		elif _type == "melee":
+			$Enemy_hit_scream.pitch_scale = randf_range(0.8, 1.2)
+			$Enemy_hit_scream.play()
+			if health > 0:
+				health -= _damage 
+				if health <= 0:
+					alive = false
+					emit_signal("enemy_scream")
+					death()  
+					queue_free()
+				elif health > 0:
+					await apply_knockback(global_position - target.global_position, k_force-80, 0.1)
+					#current_speed = lerp(0.0, 180, 20*delta)
+					if Global.combo_counter >= 3:
+						await apply_knockback(global_position - target.global_position, k_force, 0.1)
+						particle_spawner.position = enemy.global_position
+						particle_spawner.play_stun()
+						get_tree().get_root().add_child(particle_spawner)
+						play_stun_effect()
+						$stun_timer.start()
+					print(health)
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
 		Global.bullet_name = "normal"
 		print(Global.bullet_name, "bullet has hit enemy")
-		Bullet_damage_handler()
+		#Bullet_damage_handler()
 	elif area.is_in_group("melee"):
 		emit_signal("enemy_punched")
 		$Enemy_hit_scream.pitch_scale = randf_range(0.8, 1.2)
 		$Enemy_hit_scream.play()
 		print("fist has hit enemy")
-		Melee_damage_handler()
+		#Melee_damage_handler()
 	if area.name == "punch_r":
 		$in_radius.play("radius_entered")
 		

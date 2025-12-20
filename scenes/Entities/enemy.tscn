@@ -77,14 +77,14 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xwavj"]
 shader = SubResource("Shader_5uy6h")
 
-[node name="CharacterBody2D2" type="CharacterBody2D"]
+[node name="CharacterBody2D2" type="CharacterBody2D" groups=["Demons"]]
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_j04kq")
 
-[node name="Enemy" type="Sprite2D" parent="."]
+[node name="Enemy" type="Sprite2D" parent="." groups=["Demons"]]
 texture_filter = 1
 texture = SubResource("CanvasTexture_5dnoo")
 
@@ -109,9 +109,9 @@ autostart = true
 wait_time = 2.0
 one_shot = true
 
-[node name="Area2D" type="Area2D" parent="." groups=["Wrog"]]
+[node name="Area2D" type="Area2D" parent="." groups=["Demons", "Wrog"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Demons", "Wrog"]]
 position = Vector2(-4, 2)
 shape = SubResource("CapsuleShape2D_af7kp")
 

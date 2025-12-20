@@ -12,9 +12,20 @@ func process_input():
 			player.is_attacking = true
 			player.shoot_sound.play()
 			player.sprite_top.play("shoot")
-			var bullet_instance = player.bullet.instantiate()
-			bullet_instance.global_position = player.marker_2d.global_position
-			bullet_instance.face_direction = player.face_direction
+			var bullet_instance: DamageBox = DamageBox.new(
+				player,
+				["Demons"],
+				player.global_position + player.actor_width * player.face_direction,
+				player.face_direction,
+				4000,
+				Vector2(4,5),
+				"shoot",
+				load("res://images/bullet.png"),
+				Global.bullet_damage,
+				Global.knockback_force,
+				2000.0
+			)
+			
 			player.get_parent().add_child(bullet_instance)
 			print("bullet shot")
 		else:
@@ -53,7 +64,21 @@ func process_input():
 		if Global.has_gun:
 			Global.combo_counter = 0
 			player.sprite_top.play("melee_with_gun")
-			player.punch_hurtbox.disabled = false
+			#player.punch_hurtbox.disabled = false
+			var punch_instance: DamageBox = DamageBox.new(
+				player,
+				["Demons"],
+				player.global_position + player.actor_width * player.face_direction,
+				player.face_direction,
+				1000,
+				Vector2(player.actor_width, player.actor_height),
+				"melee",
+				null,
+				Global.melee_damage,
+				Global.knockback_force,
+				0.0
+			)
+			player.get_parent().add_child(punch_instance)
 			play_punch_sound()
 			await player.get_tree().create_timer(0.4).timeout
 			player.visual_handler.attack_animation_handler("melee_with_gun")
@@ -62,7 +87,20 @@ func process_input():
 			player.can_take_damage = false
 			player.sprite_top.play("punch1")        #FIRST PUNCH
 			player.sprite_bottom.play("punch_stance1")
-			enable_hurtbox()
+			var punch_instance: DamageBox = DamageBox.new(
+				player,
+				["Demons"],
+				player.global_position + player.actor_width * player.face_direction,
+				player.face_direction,
+				1000,
+				Vector2(player.actor_width, player.actor_height),
+				"melee",
+				null,
+				Global.melee_damage,
+				Global.knockback_force,
+				0.0
+			)
+			player.get_parent().add_child(punch_instance)
 			play_punch_sound()
 			if player.is_moving:
 				temporary_boost(200) 

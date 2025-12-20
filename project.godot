@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="UNFORGIVEN"
+config/name="UNFORGIVEN_DEVDEMO-AI"
 run/main_scene="res://scenes/UI_scenes/menu.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -33,6 +33,8 @@ window/stretch/aspect="expand"
 [global_group]
 
 right_gate=""
+Inquisition=""
+Demons=""
 
 [input]
 

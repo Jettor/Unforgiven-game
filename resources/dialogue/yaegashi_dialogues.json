@@ -7,6 +7,7 @@
 					{
 						"state":"start",
 						"trust_required":0,
+						"speaker":"...",
 						"text":"Um... hello?",
 						"options": {
 							"Who are you?":"talk_first",
@@ -146,6 +147,17 @@
 						}
 					},
 					{
+						"state":"start_low_trust_return_1",
+						"trust_required":2,
+						"text":"Hello again!",
+						"options":{
+							"About yourself":"about_self_1",
+							"Why summon demons?":"why_summon_1",
+							"Need something else?":"give_quest_2",
+							"Nevermind":"exit_no_quest_low_trust"
+						}
+					},
+					{
 						"state":"talk_menu_low_trust",
 						"trust_required":2,
 						"text":"Yes?",
@@ -268,6 +280,25 @@
 						}
 					},
 					{
+						"state":"start_mid_trust_return_1_nameless",
+						"trust_required":4,
+						"text":"Hello uh... traveller?. Sorry, I still don't know your name.",
+						"options":{
+							"Tell name":"about_myself_1",
+							"Don't tell":"penalty_option_name"
+						}
+					},
+					{
+						"state":"start_mid_trust_return_1_name",
+						"trust_required":4,
+						"text":"Hi, Kain! Glad you're still alive.",
+						"options":{
+							"Do you need something?":"give_quest_3",
+							"Want to know about me?":"about_myself_menu_return",
+							"Nevermind":"exit_no_quest_mid_trust"
+						}
+					},
+					{
 						"state":"exit_interrupt_mid_trust_nameless",
 						"text":"Ah, wait! I don't even know your name!",
 						"options":{
@@ -280,7 +311,7 @@
 						"text":"Sorry, you did so much for me already and I still don't know your name...",
 						"options":{
 							"Tell name":"about_myself_1",
-							"Don't tell":"name_minus_trust"
+							"Don't tell":"penalty_option_name"
 						}
 					},
 					{
@@ -292,10 +323,10 @@
 						}
 					},
 					{
-						"state":"name_minus_trust",
-						"text":"Oh... Sorry for asking",
+						"state":"penalty_option_name",
+						"text":"Oh... Sorry for asking.",
 						"options":{
-							"leave":"exit_no_quest_mid_trust"
+							"leave":"exit"
 						}
 					},
 					{
@@ -304,17 +335,17 @@
 						"options":{
 							"My job":"about_job_1",
 							"My world":"about_world_1",
-							"My past":"about_past_minus_trust_1",
+							"My past":"penalty_option_past",
 							"You shouldn't know":"shouldnt_know"
 						}
 					},
 					{
 						"state":"about_myself_menu_return",
-						"text":"Yes, I would like to know more about you. Mind telling me something?",
+						"text":"Yes, I would like to know more about you. Mind telling me something else?",
 						"options":{
 							"My job":"about_job_1",
 							"My world":"about_world_1",
-							"My past":"about_past_minus_trust_1",
+							"My past":"penalty_option_past",
 							"You shouldn't know":"shouldnt_know_2_minus_trust"
 						}
 					},
@@ -336,16 +367,71 @@
 					},
 					{
 						"state":"about_job_1",
-						"text":"Talking about job",
+						"speaker":"Kain",
+						"text":"... I am a soldier. I fight in laws of the New Inquisition. My job is to eliminate every supernatural phenomenon identified as a threat.",
 						"options":{
+							"Next":"about_job_2",
+							"Sorry, Gotta go":"exit_interrupt_mid_trust"
+						}
+					},
+					{
+						"state":"about_job_2",
+						"text":"Oh, that's so cool! So, you're like a... Demon hunter?",
+						"options":{
+							"Next":"about_job_3",
+							"Sorry, Gotta go":"exit_interrupt_mid_trust"
+						}
+					},
+					{
+						"state":"about_job_3",
+						"speaker":"Kain",
+						"text":"That's a big exaggeration. Demons are too powerful to deal with alone. Specialized squads are needed to just heavily damage those bastards... There are weaker types of unholy creatures, like the possessed or different abominations. Those are best known and most common to encounter.",
+						"options":{
+							"Want to know more?":"about_myself_menu_return",
+							"Need something else?":"give_quest_3",
 							
 						}
 					},
 					{
 						"state":"about_world_1",
-						"text":"Talking about world",
+						"speaker":"Kain",
+						"text":"My world... when I entered this place, it was spring of 1869. Almost 70 years have passed since the Punishment day.",
 						"options":{
-							
+							"Next":"about_world_2",
+							"Sorry, Gotta go":"exit_interrupt_mid_trust"
+						}
+					},
+					{
+						"state":"about_world_2",
+						"text":"Wow! So, you're from the past!",
+						"options":{
+							"Next":"about_world_3",
+							"Sorry, Gotta go":"exit_interrupt_mid_trust"
+						}
+					},
+					{
+						"state":"about_world_3",
+						"text":"However, looking at what is happening here... I am not surprised.",
+						"options":{
+							"Next":"about_world_4",
+							"Sorry, Gotta go":"exit_interrupt_mid_trust"
+						}
+					},
+					{
+						"state":"about_world_4",
+						"text":"So, what's the punishment day anyway?. What's happening in your world?",
+						"options":{
+							"Next":"about_world_5",
+							"Sorry, Gotta go":"exit_interrupt_mid_trust"
+						}
+					},
+					{
+						"state":"about_world_5",
+						"speaker":"Kain",
+						"text":"After a French revolution in 1789, creatures from the depths of hell filled the surface and caused a genocide on human race... Only after around 50 years we were able to fight them back and began reclaiming occupied lands.",
+						"options":{
+							"Want to know something else?":"about_myself_menu_return",
+							"Sorry, Gotta go":"exit_interrupt_mid_trust"
 						}
 					},
 					{
@@ -358,23 +444,86 @@
 						}
 					},
 					{
-						"state":"about_past_minus_trust_1",
-						"text":"Talking about my criminal past. -1 trust",
+						"state":"penalty_option_past",
+						"speaker":"Kain",
+						"text":"Before I became a soldier, I was a member of a criminal group. Our actions consisted of robberies, assaults, kidnappings and sabotage. This is where I learned how to fight and kill.",
 						"options":{
-							
+							"Next":"about_past_minus_trust_2",
+							"leave":"exit_minus_trust"
+						}
+					},
+					{
+						"state":"about_past_minus_trust_2",
+						"text":"...",
+						"options":{
+							"Next":"about_past_minus_trust_3",
+							"leave":"exit_minus_trust"
+						}
+					},
+					{
+						"state":"about_past_minus_trust_3",
+						"text":"What an experience... to talk to a criminal.",
+						"options":{
+							"Next":"about_past_minus_trust_4",
+							"leave":"exit_minus_trust"
+						}
+					},
+					{
+						"state":"about_past_minus_trust_4",
+						"speaker":"Kain",
+						"text":"... I had a choice. To rot in prison for the rest of my life or join the forces of the Inquisition. I picked the second option trying to atone for my... sins.",
+						"options":{
+							"Next":"about_past_minus_trust_5",
+							"leave":"exit_minus_trust"
+						}
+					},
+					{
+						"state":"about_past_minus_trust_5",
+						"text":"... At least you try to change... or something. And you helped me a lot. Just... don't hurt me, please.",
+						"options":{
+							"I won't":"exit_minus_trust",
+							"leave":"exit_minus_trust_scared"
+						}
+					},
+					{
+						"state":"exit_minus_trust_scared",
+						"text":"...",
+						"options":{
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"exit_minus_trust",
+						"text":"... See you.",
+						"options":{
+							"leave":"exit"
 						}
 					},
 					{
 						"state":"give_quest_3",
-						"text":"Wire quest"
+						"text":"My lamp is running out of battery. Could you please bring me spare ones? You can find it in Computer room. There's no electricity in school, I would probably become insane, sitting here in complete darkness.",
+						"options":{
+							"I'll think about it":"exit_no_quest_mid_trust",
+							"Sure":"exit_quest_accept"
+						}
 					},
 					{
 						"state":"exit_no_quest_mid_trust",
-						"text":"Alright, Kain... Keep yourself safe."
+						"text":"Alright... Keep yourself safe.",
+						"options":{
+							"leave":"exit"
+						}
 					},
 					{
 						"state":"exit_interrupt_mid_trust",
 						"text":"...bye, Kain.",
+						"options":{
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"exit_quest_accept",
+						"text":"Kain, I don't know what would I do without you. Thanks",
 						"options":{
 							"leave":"exit"
 						}
@@ -416,7 +565,49 @@
 			},
 			{
 				"branch_id": "npc_1_default", 
-				"dialogues":[]
+				"dialogues":[
+					{
+						"state":"mid_trust_penalty",
+						"trust_required":3,
+						"text":"You're still alive, Kain. That's good.",
+						"options":{
+							"How are you?":"talk_penalty",
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"talk_penalty",
+						"text":"Trying not to go insane here... Sounds from outside are frightening.",
+						"options":{
+							"Need something?":"idk_penalty",
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"idk_penalty",
+						"text":"I don't know. Maybe.",
+						"options":{
+							"leave":"exit",
+						}
+					},
+					{
+						"state":"mid_trust_penalty_nameless",
+						"trust_required":3,
+						"text":"You're still alive. That's good.",
+						"options":{
+							"How are you?":"talk_penalty_nameless",
+							"leave":"exit"
+						}
+					},
+					{
+						"state":"talk_penalty_nameless",
+						"text":"... Still alive.",
+						"options":{
+							"Need something?":"idk_penalty",
+							"leave":"exit"
+						}
+					}
+				]
 			},
 		],
 	}

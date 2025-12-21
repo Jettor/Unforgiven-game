@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="5_u5ej1"]
 [ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="6_l7s2a"]
 [ext_resource type="AudioStream" uid="uid://dfgwj2pqombyu" path="res://music/Soundtrack/Plastic Treeてふてふ.wav" id="7_ogk8x"]
-[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="8_scuq5"]
+[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://resources/Default.tres" id="8_scuq5"]
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/SFX/ui_press.mp3" id="9_oe7yb"]
 [ext_resource type="AudioStream" uid="uid://ch8nwp7nneatp" path="res://music/SFX/ui_hover1.mp3" id="10_1xrmn"]
 

@@ -24,6 +24,16 @@ func process_input():
 	if Input.is_action_just_pressed("instant_death"): 
 		player.death()
 		
+	if Input.is_action_just_pressed("down"):
+		var ground = player.floor_check.get_collider()
+		if ground != null:
+			if ground.is_in_group("Stairs"):
+				ground.collision_layer = 0
+			else:
+				print("Area is not in group `Stairs`")
+		else:
+			print("ERROR! Ground is ",player.floor_check.get_collider())
+		
 	if Input.is_action_just_released("ui_accept") and player.velocity.y < 0:
 		player.velocity.y = player.JUMP_VELOCITY /4
 		

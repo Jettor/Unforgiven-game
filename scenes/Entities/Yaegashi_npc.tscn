@@ -1,0 +1,80 @@
+[gd_scene load_steps=16 format=3 uid="uid://bwtlwm48ex64w"]
+
+[ext_resource type="Script" uid="uid://ci0eoht8l6oq8" path="res://code/entity_scripts/Yaegashi.gd" id="1_jslad"]
+[ext_resource type="Script" uid="uid://dy7g0i7tadpty" path="res://resources/dialogue/dialogue.gd" id="2_0jwhn"]
+[ext_resource type="Script" uid="uid://e65wmti4wh0f" path="res://resources/Quest/quest.gd" id="3_kqcpw"]
+[ext_resource type="Script" uid="uid://cx1u40iqakpux" path="res://resources/Quest/objectives.gd" id="4_vor3y"]
+[ext_resource type="Script" uid="uid://dnj3rpn3ir261" path="res://resources/Quest/rewards.gd" id="5_jukxd"]
+[ext_resource type="Texture2D" uid="uid://kdrpvfnhckod" path="res://images/yaegashi_sprite.png" id="6_jslad"]
+[ext_resource type="PackedScene" uid="uid://bjuqcpxjcwn1d" path="res://scenes/Dialogue/dialogue_manager.tscn" id="7_mf8pr"]
+
+[sub_resource type="Resource" id="Resource_tc6wm"]
+script = ExtResource("2_0jwhn")
+metadata/_custom_type_script = "uid://dy7g0i7tadpty"
+
+[sub_resource type="Resource" id="Resource_4ym8c"]
+script = ExtResource("4_vor3y")
+id = "obj1"
+description = "fuck niggers"
+target_id = "npc2_1"
+target_type = "talk_to"
+metadata/_custom_type_script = "uid://cx1u40iqakpux"
+
+[sub_resource type="Resource" id="Resource_shvd7"]
+script = ExtResource("5_jukxd")
+reward_type = "score"
+reward_amount = 6
+metadata/_custom_type_script = "uid://dnj3rpn3ir261"
+
+[sub_resource type="Resource" id="Resource_rqw41"]
+script = ExtResource("3_kqcpw")
+quest_id = "q1"
+quest_name = "NIGGER"
+unlock_id = "npc_1_1"
+objectives = Array[ExtResource("4_vor3y")]([SubResource("Resource_4ym8c")])
+rewards = Array[ExtResource("5_jukxd")]([SubResource("Resource_shvd7")])
+metadata/_custom_type_script = "uid://e65wmti4wh0f"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jslad"]
+atlas = ExtResource("6_jslad")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jwhn"]
+atlas = ExtResource("6_jslad")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tc6wm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jslad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jwhn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.1
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3aqem"]
+radius = 12.0
+height = 56.0
+
+[node name="Yaegashi" type="CharacterBody2D" groups=["NPCs"]]
+position = Vector2(-1, 3)
+script = ExtResource("1_jslad")
+npc_id = "test"
+npc_name = "Test dude"
+dialogue_res = SubResource("Resource_tc6wm")
+quests = Array[ExtResource("3_kqcpw")]([SubResource("Resource_rqw41")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tc6wm")
+frame_progress = 0.6336565
+
+[node name="player_hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-10, 3)
+shape = SubResource("CapsuleShape2D_3aqem")
+
+[node name="DialogueManager" parent="." instance=ExtResource("7_mf8pr")]

@@ -54,7 +54,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 1.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3aqem"]
@@ -71,8 +71,7 @@ quests = Array[ExtResource("3_4ym8c")]([SubResource("Resource_rqw41")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tc6wm")
-frame = 1
-frame_progress = 0.211404
+frame_progress = 0.59840906
 
 [node name="player_hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 2)

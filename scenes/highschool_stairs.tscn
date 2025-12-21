@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpdp7tqooajw6"]
+
+[ext_resource type="Script" uid="uid://bhf514tlq10fe" path="res://scenes/highschool_stairs.gd" id="1_xovfy"]
+[ext_resource type="Texture2D" uid="uid://cwfkarmcytiou" path="res://images/stairs_highschool.png" id="2_bf837"]
+[ext_resource type="Texture2D" uid="uid://didri6ii4nd7q" path="res://images/handrails_highschool.png" id="3_bf837"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8yne"]
+size = Vector2(180, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fotdw"]
+size = Vector2(122.0957, 19.979362)
+
+[node name="Highschool_Stairs" type="Node2D"]
+script = ExtResource("1_xovfy")
+
+[node name="stairs" type="Sprite2D" parent="."]
+texture = ExtResource("2_bf837")
+
+[node name="StaticBody_stairs" type="StaticBody2D" parent="." groups=["Stairs"]]
+
+[node name="handrails" type="Sprite2D" parent="StaticBody_stairs" groups=["Stairs"]]
+position = Vector2(0, -1)
+texture = ExtResource("3_bf837")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody_stairs" groups=["Stairs"]]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-2.000002, 16.000004)
+rotation = 0.46251225
+shape = SubResource("RectangleShape2D_h8yne")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Stairs"]]
+position = Vector2(6.527862, 23.935583)
+rotation = 0.46251225
+shape = SubResource("RectangleShape2D_fotdw")
+
+[connection signal="child_exiting_tree" from="StaticBody_stairs/CollisionShape2D" to="." method="_on_collision_shape_2d_child_exiting_tree"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

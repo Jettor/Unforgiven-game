@@ -4,6 +4,7 @@ extends Control
 @onready var d_speech = $CanvasLayer/Panel/dialogue_box/D_text
 @onready var d_options = $CanvasLayer/Panel/dialogue_box/D_options
 @onready var panel = $CanvasLayer/Panel
+var font = load("res://fonts/Poco.ttf")
 
 func _ready():
 	hide_dialogue()
@@ -20,7 +21,10 @@ func show_dialogue(speaker, text, options):
 	for option in options.keys():
 		var button = Button.new()
 		button.text = option
-		button.add_theme_font_size_override("font_size", 20)
+		button.add_theme_color_override("font_hover_color", Color.GOLD)
+		button.add_theme_color_override("font_color", Color.WHITE)
+		button.add_theme_font_override("font", font)
+		button.add_theme_font_size_override("font_size", 25)
 		button.pressed.connect(_on_option_selected.bind(option))  
 		d_options.add_child(button)
 		

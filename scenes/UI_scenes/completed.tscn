@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://b1eap41opp8eb" path="res://music/SFX/ui_press.mp3" id="4_slv0e"]
 [ext_resource type="Texture2D" uid="uid://m5ki5qtuhy5t" path="res://images/frame.png" id="5_l12f8"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="6_jxup0"]
-[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://Default.tres" id="7_ofpoi"]
+[ext_resource type="Theme" uid="uid://3ny4m17to87t" path="res://resources/Default.tres" id="7_ofpoi"]
 
 [sub_resource type="Shader" id="Shader_fl0mm"]
 code = "shader_type canvas_item;

@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cactrb80jrlwa"]
+[gd_scene load_steps=6 format=3 uid="uid://cactrb80jrlwa"]
 
 [ext_resource type="FontFile" uid="uid://vjlkc1a8xeh1" path="res://fonts/Poco.ttf" id="1_8djo3"]
 [ext_resource type="Script" uid="uid://blcupxwk4cso" path="res://code/dialogue_scripts/dialogue_ui.gd" id="1_n0ljt"]
+[ext_resource type="Texture2D" uid="uid://c8apy4dg6uum3" path="res://images/frameTEST.png" id="2_7x7dl"]
 [ext_resource type="FontFile" uid="uid://dje7nt7quhun8" path="res://fonts/PressStart2P-Regular.ttf" id="2_blmq2"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c26yf"]
-bg_color = Color(0.1628, 0.25058, 0.44, 0.784314)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.688938, 0.824777, 0.893227, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lu6q"]
+texture = ExtResource("2_7x7dl")
+texture_margin_left = 66.0
+texture_margin_top = 66.0
+texture_margin_right = 66.0
+texture_margin_bottom = 55.0
+region_rect = Rect2(0, 0, 1056, 583)
 
 [node name="DialogueUI" type="Control"]
 layout_mode = 3
@@ -24,6 +25,7 @@ script = ExtResource("1_n0ljt")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
+texture_filter = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -31,17 +33,17 @@ anchor_bottom = 1.0
 offset_top = -300.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_c26yf")
+theme_override_styles/panel = SubResource("StyleBoxTexture_0lu6q")
 
 [node name="dialogue_box" type="VBoxContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = -25.0
-offset_bottom = -25.0
+offset_left = 44.0
+offset_top = 33.0
+offset_right = -44.0
+offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -74,10 +76,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = 36.0
+offset_left = -33.0
+offset_bottom = 33.0
 grow_horizontal = 0
 theme_override_fonts/font = ExtResource("2_blmq2")
 theme_override_font_sizes/font_size = 24

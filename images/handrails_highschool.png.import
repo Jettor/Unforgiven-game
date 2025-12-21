@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m5ki5qtuhy5t"
-path="res://.godot/imported/frame.png-7d7fb8ff32c852eb711eced4710e3cfa.ctex"
+uid="uid://didri6ii4nd7q"
+path="res://.godot/imported/handrails_highschool.png-ce4da4ab0d4f73ff1c5aa9e9d36548fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/frame.png"
-dest_files=["res://.godot/imported/frame.png-7d7fb8ff32c852eb711eced4710e3cfa.ctex"]
+source_file="res://images/handrails_highschool.png"
+dest_files=["res://.godot/imported/handrails_highschool.png-ce4da4ab0d4f73ff1c5aa9e9d36548fa.ctex"]
 
 [params]
 

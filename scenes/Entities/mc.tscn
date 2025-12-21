@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://bkoweo4wyyvik"]
+[gd_scene load_steps=124 format=3 uid="uid://bkoweo4wyyvik"]
 
 [ext_resource type="Script" uid="uid://cpkb203uxcnu4" path="res://code/entity_scripts/mc.gd" id="1_tt4rc"]
 [ext_resource type="Shader" uid="uid://bef32hgvxjsqu" path="res://shaders/mc.gdshader" id="2_6iiml"]
@@ -799,6 +799,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:limit_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:limit_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [769]
+}
 
 [sub_resource type="Animation" id="Animation_g7e8f"]
 resource_name = "cam_shake"
@@ -863,13 +887,78 @@ tracks/0/keys = {
 "values": [Vector2(2, 2), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_32jka"]
+resource_name = "zoom_staircase"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:limit_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [480]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:limit_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:zoom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.5, 2.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:limit_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:limit_right")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [769]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r08sr"]
 _data = {
 &"RESET": SubResource("Animation_m6f18"),
 &"cam_shake": SubResource("Animation_g7e8f"),
 &"limit_break": SubResource("Animation_ds1sp"),
 &"zoom_corridors": SubResource("Animation_i0nfk"),
-&"zoom_out": SubResource("Animation_ekbpb")
+&"zoom_out": SubResource("Animation_ekbpb"),
+&"zoom_staircase": SubResource("Animation_32jka")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlm4k"]
@@ -897,7 +986,6 @@ autoplay = "default"
 frame_progress = 0.0028668847
 
 [node name="player_hitbox" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_3aqem")
 
@@ -960,14 +1048,12 @@ stream = ExtResource("12_ob8c1")
 volume_db = -5.0
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_xf07x")
 
 [node name="Healthbar" type="ProgressBar" parent="."]
-visible = false
 z_index = 1
 offset_left = -30.0
 offset_top = -44.0
@@ -1010,7 +1096,7 @@ libraries = {
 zoom = Vector2(2, 2)
 limit_left = 0
 limit_top = 0
-limit_right = 1920
+limit_right = 769
 limit_bottom = 1080
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -1031,7 +1117,6 @@ shadow_enabled = true
 texture = ExtResource("12_7lxtn")
 
 [node name="punch" type="Area2D" parent="." groups=["melee"]]
-visible = false
 position = Vector2(31, -4)
 
 [node name="punch_hurtbox" type="CollisionShape2D" parent="punch" groups=["melee"]]
@@ -1039,7 +1124,6 @@ position = Vector2(-5, 1.5)
 shape = SubResource("RectangleShape2D_dlm4k")
 
 [node name="punch_r" type="Area2D" parent="."]
-visible = false
 
 [node name="punch_radius" type="CollisionShape2D" parent="punch_r"]
 position = Vector2(1, -2.5)
@@ -1053,9 +1137,11 @@ position = Vector2(30, -2)
 visible = false
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
 target_position = Vector2(41, 0)
 collide_with_areas = true
+
+[node name="floor_check" type="RayCast2D" parent="."]
+target_position = Vector2(12, 45)
 
 [node name="QuestManager" parent="." instance=ExtResource("18_32jka")]
 

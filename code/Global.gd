@@ -73,9 +73,9 @@ func _on_enemy_died():
 		death_sound.pitch_scale = randf_range(0.8, 1.2)
 		death_sound.play()
 		
-func add_trust(npc_id: String, amount: int) -> void:
+func change_trust(npc_id: String, amount: int) -> void:
 	print(npc_id," TRUST LEVEL BEFORE: ",npc_trust_lvl[npc_id])
-	if npc_id in  npc_trust_lvl:
+	if npc_id in npc_trust_lvl:
 		npc_trust_lvl[npc_id] += amount
 	else:
 		npc_trust_lvl[npc_id] = amount

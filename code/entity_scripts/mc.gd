@@ -22,10 +22,12 @@ var state: PlayerState = PlayerState.IDLE
 @onready var death_stuff = $Death_stuff
 @onready var healthbar = $Healthbar
 @onready var camera = $"../Camera2D"
+@onready var zoom_animator = $Camera2D/zoom_animation
 @onready var combo_timer = $Timers/ComboTimer
 @onready var shoot_timer = $Timers/ShootingTimer
 @onready var raycast = $RayCast2D
-
+@onready var floor_check = $floor_check
+@onready var is_attacking = false
 @onready var input_handler = PlayerInput.new()
 @onready var visual_handler = VisualEffects.new()
 
@@ -35,7 +37,6 @@ var knockback_timer: float = 0.0
 @onready var punch_push_velocity := 1000.0
 @onready var punch_push_force:= 5.0
 @onready var punch_push_timer = 0.1
-
 @onready var punch_queued = false
 var selected_quest: Quest = null
 var shake = false
@@ -53,7 +54,8 @@ var score_amount = 0
 var healthp: int = Global.healthp
 var damage_taken: int
 var can_take_damage = true
-@onready var is_attacking = false
+var curr_stairs: Node2D = null
+
 #Gravity from project settings
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var main_instance = death_scene.instantiate()
@@ -117,6 +119,20 @@ func _physics_process(delta):
 	input_handler.process_input()
 	visual_handler.visual_manager(delta)
 	
+	if floor_check.is_colliding():    #FIX_HANDRAIL_OVERLAPPING_BUG
+		var ground = floor_check.get_collider()
+		if ground is StaticBody2D:
+			var stairs = ground.get_child(0)
+			if stairs != curr_stairs:
+				if curr_stairs:
+					curr_stairs.z_index = 0
+				curr_stairs = stairs
+				curr_stairs.z_index = 1
+	else:
+		if curr_stairs:
+			curr_stairs.z_index = 0
+			curr_stairs = null
+	
 	if Global.has_gun == false:
 		can_fire = false
 		#can_punch = true
@@ -140,6 +156,7 @@ func _physics_process(delta):
 				sprite_bottom.flip_h = true
 				sprite_top.flip_h = true
 				raycast.target_position = Vector2(-39,0)
+				floor_check.target_position = Vector2(-10,40)
 				$Marker2D.position = Vector2(-31, 5)
 				$Impact_effect.position = Vector2(-30, -2)
 				punch_hurtbox.position.x = -62
@@ -148,6 +165,7 @@ func _physics_process(delta):
 				sprite_bottom.flip_h = false
 				sprite_top.flip_h = false
 				raycast.target_position = Vector2(41,0)
+				floor_check.target_position = Vector2(10,40)
 				$Marker2D.position = Vector2(31, 5)
 				$Impact_effect.position = Vector2(30, -2)
 				punch_hurtbox.position.x = 0
@@ -223,7 +241,7 @@ func _on_shooting_timer_timeout():
 
 func _input(event):            #INTERRACTION
 	if event.is_action_pressed("interract"):
-		var target = raycast.get_collider()
+		var target = raycast.get_collider()    # MOVE TO PlayerInput.gd LATER!
 		if target != null:
 			if target.is_in_group("NPCs"):
 				#print("NPC talk")
@@ -265,9 +283,9 @@ func check_quest_objectives(target_id: String, target_type: String, quantity: in
 				else:
 					print("Objective completion ERROR")
 			else:
-				print("target type ERROR")
+				print("target type is not objective")
 		else:
-			print("target id ERROR")
+			print("target id is not objective")
 	if objective_updated:   #GIVE REWARDS
 		if selected_quest.is_completed():
 			handle_quest_completion(selected_quest)
@@ -280,6 +298,6 @@ func handle_quest_completion(quest: Quest):
 	quest_manager.complete_objective(quest.quest_id, "completed")
 	for npc_id in quest.trust_rewards.keys():
 			var trust_increase = quest.trust_rewards[npc_id]
-			Global.add_trust(npc_id, trust_increase)
+			Global.change_trust(npc_id, trust_increase)
 	hint.give_hint(" Quest\n completed!")
 				

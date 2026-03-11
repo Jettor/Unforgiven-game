@@ -118,6 +118,7 @@
 					},
 					{
 						"state":"exit_no_quest_zero_trust",
+						"speaker":"...",
 						"text":"Oh... okay. Bye",
 						"options":{
 							"leave":"exit"

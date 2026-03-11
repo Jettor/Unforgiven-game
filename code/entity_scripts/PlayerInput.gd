@@ -133,6 +133,35 @@ func play_kick1():
 	player.combo_timer.start()
 	#print("State: ",player.state)
 	
+func interraction_handler(event):
+	if event.is_action_pressed("interract"):    #INTERRACTION
+		if player.curr_transition_area != null:
+			var area = player.curr_transition_area
+			if area.is_in_group("Transition_to_staircase"):
+				print("Entering staircase ",area.name)
+				RunManager.go_to_stairs(1) 
+				return
+		var target = player.raycast.get_collider()
+		if target != null:
+			if target.is_in_group("NPCs"):
+				#print("NPC talk")
+				Global.can_move = false
+				target.start_dialogue(target)
+				player.check_quest_objectives(target.npc_id, "talk_to")
+			elif target.is_in_group("Items"):
+				#print("I see item")
+				if player.is_item_needed(target.item_id):
+					player.check_quest_objectives(target.item_id, "collection", target.item_quantt)
+					target.queue_free()
+				else:
+					print("Item not needed for any active quest")
+			elif target.is_in_group("Transition_to_floor"):
+				if target.targetFloor != null:
+					print("Target floor found! It is: ", target.targetFloor)
+					RunManager.go_to_floor(target.targetFloor)
+				else:
+					print("ERROR! Target floor not found!")
+			
 func enable_hurtbox():
 	player.punch_hurtbox.disabled = false
 	await player.get_tree().create_timer(0.1).timeout

@@ -14,9 +14,10 @@ func _on_graj_pressed():
 	Engine.time_scale = 1
 	$press.play()
 	await $press.finished
-	get_tree().change_scene_to_file("res://scenes/UI_scenes/cutscene.tscn")
+	RunManager.generate_run()
+	RunManager.go_to_floor(1)
+	#get_tree().change_scene_to_file("res://scenes/UI_scenes/cutscene.tscn")
 	
-
 func _on_wyjdz_pressed():
 	$press.play()
 	await $press.finished

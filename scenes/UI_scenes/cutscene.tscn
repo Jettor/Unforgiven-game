@@ -512,7 +512,6 @@ libraries = {
 speed_scale = 0.5
 
 [node name="cutscene0" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(424, 514.462)
 scale = Vector2(7.08077, 7.08077)
 sprite_frames = SubResource("SpriteFrames_jcsiq")

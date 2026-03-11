@@ -13,6 +13,7 @@ var state: PlayerState = PlayerState.IDLE
 @onready var punch_sound = $Audio/PunchSound
 @onready var shoot_sound = $Audio/ShootSound
 @onready var dash = $Dash
+@onready var can_interract = $Can_interract
 @onready var hint = $Hint_message
 @onready var walk_sound = $Audio/WalkSound
 @onready var sprite_bottom = $Sprite_bottom
@@ -54,14 +55,15 @@ var score_amount = 0
 var healthp: int = Global.healthp
 var damage_taken: int
 var can_take_damage = true
-var curr_stairs: Node2D = null
+var curr_stairs: Node2D = null #VARIABLE FOR MOVING BETWEEN THE STAIRS, NOT STAIRCASES!!
+var curr_transition_area: Area2D = null
 
 #Gravity from project settings
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var main_instance = death_scene.instantiate()
 
-func _on_area_2d_area_entered(area): # TAKING DAMAGE
-	if area.is_in_group("Wrog") and can_take_damage:
+func _on_area_2d_area_entered(area): # COLLISIONS
+	if area.is_in_group("Wrog") and can_take_damage: # TAKING DAMAGE
 		if area.get_parent().has_method("give_damage"):
 			damage_taken = area.get_parent().give_damage()
 			if area.get_parent().give_damage() > 0:
@@ -76,6 +78,9 @@ func _on_area_2d_area_entered(area): # TAKING DAMAGE
 	elif area.is_in_group("Hint"): # HANDLE HINTS
 		hint.hint_manager(area.name)
 		area.queue_free()
+	elif area.is_in_group("Transition_to_staircase"): #or area.is_in_group("Transition_to_floor"):
+		curr_transition_area = area
+		print("curr_transition_area -> ",curr_transition_area)
 			
 func damagee():
 	if healthp > 0:
@@ -118,6 +123,12 @@ func death():
 func _physics_process(delta):
 	input_handler.process_input()
 	visual_handler.visual_manager(delta)
+	
+	#if raycast.get_collider() != null and raycast.get_collider().is_in_group("Interractable"): FIX LATER
+	#	can_interract.show()
+	#  WHEN PLAYER PRESSES E, IT DISAPPEARS UNTIL NEW INTERRACTABLE IS FOUND + SHOW IT WHEN PLAYER IS WITHIN THE INTERRACTABLE AREA
+	#else:
+	#	can_interract.hide()
 	
 	if floor_check.is_colliding():    #FIX_HANDRAIL_OVERLAPPING_BUG
 		var ground = floor_check.get_collider()
@@ -239,22 +250,8 @@ func _on_shooting_timer_timeout():
 	print("Shooting timeout")
 	visual_handler.attack_animation_handler("shoot")
 
-func _input(event):            #INTERRACTION
-	if event.is_action_pressed("interract"):
-		var target = raycast.get_collider()    # MOVE TO PlayerInput.gd LATER!
-		if target != null:
-			if target.is_in_group("NPCs"):
-				#print("NPC talk")
-				Global.can_move = false
-				target.start_dialogue(target)
-				check_quest_objectives(target.npc_id, "talk_to")
-			elif target.is_in_group("Items"):
-				#print("I see item")
-				if is_item_needed(target.item_id):
-					check_quest_objectives(target.item_id, "collection", target.item_quantt)
-					target.queue_free()
-				else:
-					print("Item not needed for any active quest")
+func _input(event):            #INTERRACTION... IDK WHY THIS IS ALSO HERE
+	input_handler.interraction_handler(event)
 
 func is_item_needed(item_id: String) -> bool:   #CHECK IF QUEST ITEM IS REQUIRED
 	if selected_quest != null:

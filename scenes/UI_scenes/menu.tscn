@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://tdpuab6wo04l"]
+[gd_scene format=3 uid="uid://tdpuab6wo04l"]
 
 [ext_resource type="Script" uid="uid://da02w47wg2cec" path="res://code/Menu.gd" id="1_0xha0"]
 [ext_resource type="Shader" uid="uid://cbpbfpd2c6rw6" path="res://shaders/moving_menu.gdshader" id="2_1ovma"]
@@ -160,7 +160,7 @@ _data = {
 &"title_animation": SubResource("Animation_6hi56")
 }
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=2035501102]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -170,9 +170,9 @@ grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_0xha0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1370789729]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=2135177514]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_euw8f")
 anchors_preset = 15
@@ -183,7 +183,7 @@ grow_vertical = 2
 texture = ExtResource("3_n2ypy")
 stretch_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TextureRect"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TextureRect" unique_id=1586545987]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -192,11 +192,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.439216)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer/TextureRect"]
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer/TextureRect" unique_id=1435840855]
 visible = false
 color = Color(0.412152, 0.412153, 0.412152, 1)
 
-[node name="windows" type="TextureRect" parent="CanvasLayer/TextureRect"]
+[node name="windows" type="TextureRect" parent="CanvasLayer/TextureRect" unique_id=1515160342]
 material = SubResource("ShaderMaterial_jcjhn")
 layout_mode = 1
 anchors_preset = 15
@@ -206,7 +206,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_l88kx")
 
-[node name="columns" type="TextureRect" parent="CanvasLayer/TextureRect"]
+[node name="columns" type="TextureRect" parent="CanvasLayer/TextureRect" unique_id=1388075284]
 material = SubResource("ShaderMaterial_0k6h6")
 layout_mode = 0
 offset_right = 1920.0
@@ -214,13 +214,11 @@ offset_bottom = 1080.0
 size_flags_vertical = 4
 texture = ExtResource("7_8c7ec")
 
-[node name="moving" type="AnimationPlayer" parent="CanvasLayer"]
+[node name="moving" type="AnimationPlayer" parent="CanvasLayer" unique_id=1649418747]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_ji2j7")
-}
+libraries/ = SubResource("AnimationLibrary_ji2j7")
 
-[node name="Control" type="Control" parent="CanvasLayer/moving"]
+[node name="Control" type="Control" parent="CanvasLayer/moving" unique_id=206276128]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -230,7 +228,7 @@ offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GRAJ" type="Button" parent="CanvasLayer/moving/Control"]
+[node name="GRAJ" type="Button" parent="CanvasLayer/moving/Control" unique_id=2106741617]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -249,7 +247,7 @@ theme_override_fonts/font = ExtResource("9_t76vg")
 theme_override_font_sizes/font_size = 30
 text = "PLAY"
 
-[node name="TWORCY" type="Button" parent="CanvasLayer/moving/Control"]
+[node name="TWORCY" type="Button" parent="CanvasLayer/moving/Control" unique_id=1494069572]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -267,7 +265,7 @@ theme_override_fonts/font = ExtResource("9_t76vg")
 theme_override_font_sizes/font_size = 30
 text = "CREDITS"
 
-[node name="WYJDZ" type="Button" parent="CanvasLayer/moving/Control"]
+[node name="WYJDZ" type="Button" parent="CanvasLayer/moving/Control" unique_id=1305233293]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -286,7 +284,7 @@ theme_override_fonts/font = ExtResource("9_t76vg")
 theme_override_font_sizes/font_size = 30
 text = "EXIT"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/moving"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/moving" unique_id=1969640308]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -299,19 +297,17 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/moving/HBoxContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/moving/HBoxContainer" unique_id=1922922776]
 position = Vector2(0, -700)
 scale = Vector2(3, 3)
 texture = ExtResource("10_s71n8")
 hframes = 7
 
-[node name="transition" type="AnimationPlayer" parent="CanvasLayer"]
+[node name="transition" type="AnimationPlayer" parent="CanvasLayer" unique_id=1553310698]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_8p0el")
-}
+libraries/ = SubResource("AnimationLibrary_8p0el")
 
-[node name="black screen" type="ColorRect" parent="CanvasLayer/transition"]
+[node name="black screen" type="ColorRect" parent="CanvasLayer/transition" unique_id=46553570]
 visible = false
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 15
@@ -322,22 +318,20 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/transition"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/transition" unique_id=1188427031]
 stream = ExtResource("11_8fdho")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
-[node name="logo_wave" type="AnimationPlayer" parent="."]
+[node name="logo_wave" type="AnimationPlayer" parent="." unique_id=288394845]
 root_node = NodePath("../CanvasLayer/moving/HBoxContainer/Sprite2D")
-libraries = {
-&"": SubResource("AnimationLibrary_stwfa")
-}
+libraries/ = SubResource("AnimationLibrary_stwfa")
 
-[node name="hover" type="AudioStreamPlayer" parent="."]
+[node name="hover" type="AudioStreamPlayer" parent="." unique_id=88096367]
 stream = ExtResource("12_d2875")
 
-[node name="press" type="AudioStreamPlayer" parent="."]
+[node name="press" type="AudioStreamPlayer" parent="." unique_id=534470397]
 stream = ExtResource("13_8b0gq")
 
 [connection signal="focus_entered" from="CanvasLayer/moving/Control/GRAJ" to="." method="_on_graj_focus_entered"]

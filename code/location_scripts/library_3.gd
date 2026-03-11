@@ -52,8 +52,9 @@ func _stop() -> void:
 	
 func _on_lvl_finished_timeout():
 	_stop()
-	get_tree().change_scene_to_file("res://scenes/UI_scenes/completed.tscn")
-
+	RunManager.generate_run()
+	RunManager.go_to_floor(1)
+	#get_tree().change_scene_to_file("res://scenes/UI_scenes/completed.tscn")
 
 func _on_end_game_zone_area_entered(area):
 	print("END!!")
